@@ -39,7 +39,7 @@ public class MapSimple implements IMap {
 	}
 
 	@Override
-	public Position getObjectPosition(IObjectsOnBoard object) {
+	public Position getObjectPosition(IObjectsOnBoard object) { //// Odczyt pozycji podanego obiektu
 		Position position= objectsPositions.get(object);
 		if(position!=null)return position;
 		return null;

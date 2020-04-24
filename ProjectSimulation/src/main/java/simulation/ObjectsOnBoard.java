@@ -1,6 +1,6 @@
 package simulation;
 
-public abstract class ObjectsOnBoard implements IObjectsOnBoard, IRandomizable {
+public abstract class ObjectsOnBoard implements IObjectsOnBoard {
 	
 	Position position;
 	int sightRange;
@@ -21,17 +21,7 @@ public abstract class ObjectsOnBoard implements IObjectsOnBoard, IRandomizable {
 		return null;
 	}
 
-	@Override
-	public long getSeed() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setSeed(long seed) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void disappear() {

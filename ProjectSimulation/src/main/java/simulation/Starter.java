@@ -18,7 +18,11 @@ public class Starter {
 		objectList = new LinkedList<>();
 		
 	}
-
+	
+	public int getSize()
+	{
+		return mapSize;
+	}
 	
 	
 	void runSimulation()
