@@ -9,7 +9,5 @@ public interface IMap {
 	
 	Position getObjectPosition(IObjectsOnBoard object);
 	
-	void createMap(int size);
-	
 	void createNewObject(IObjectsOnBoard object, Position position);
 }

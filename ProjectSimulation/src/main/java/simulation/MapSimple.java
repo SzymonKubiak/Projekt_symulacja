@@ -7,6 +7,11 @@ import java.util.HashMap;
 
 public class MapSimple implements IMap {
 	
+	public MapSimple(int size) {
+		tableMap = new IObjectsOnBoard[size][size];
+		objectsPositions= new HashMap<>();
+	}
+	
 	private IObjectsOnBoard[][] tableMap;
 	private Map<IObjectsOnBoard, Position> objectsPositions;
 	
@@ -38,12 +43,6 @@ public class MapSimple implements IMap {
 		Position position= objectsPositions.get(object);
 		if(position!=null)return position;
 		return null;
-	}
-
-	@Override
-	public void createMap(int size) {
-		tableMap = new IObjectsOnBoard[size][size];
-		objectsPositions= new HashMap<>();
 	}
 
 	@Override
