@@ -1,11 +1,25 @@
 package simulation;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Starter {
-
-	ArrayList<IObjectsOnBoard> objectList;
+	
+	List<IObjectsOnBoard> objectList;
 	IMap map;
+	int numberofIter;
+	int mapSize;
+	
+	public Starter(int numberofIter, int mapSize) {
+		
+		this.numberofIter = numberofIter;
+		map = new MapSimple(mapSize);
+		this.mapSize = mapSize;
+		objectList = new LinkedList<>();
+		
+	}
+
+	
 	
 	void runSimulation()
 	{
@@ -15,6 +29,10 @@ public class Starter {
 	
 	
 	public static void main(String[] args) {
+		
+		Starter starter = new Starter(10,10);
+		
+		starter.runSimulation();
 		
 
 	}
