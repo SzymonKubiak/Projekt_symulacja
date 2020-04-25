@@ -2,10 +2,11 @@ package simulation;
 
 public class Wolf extends Enemies {
 
-	@Override
-	public void disappear() {
-		// TODO Auto-generated method stub
-		
+	public Wolf(IMap map, Position position, int sightRange, int movementSpeed, int visibilityRange) {
+		super(map, position, sightRange, movementSpeed, visibilityRange);
+	}
+	public Wolf(IMap map, Position position) { //dodatkowy konstruktor, ktory sam przypisze domyslne wartosci do sightRange, movementSpeed i visibilityRange
+		super(map, position, 5, 4, 1);
 	}
 
 	@Override

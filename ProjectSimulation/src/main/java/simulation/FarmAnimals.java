@@ -3,10 +3,8 @@ package simulation;
 public abstract class FarmAnimals extends ObjectsOnBoard {
 
 	
-	@Override
-	public void disappear() {
-		// TODO Auto-generated method stub
-
+	public FarmAnimals(IMap map, Position position, int sightRange, int movementSpeed) {
+		super(map, position, sightRange, movementSpeed);
 	}
 
 }

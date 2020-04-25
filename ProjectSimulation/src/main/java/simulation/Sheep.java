@@ -2,6 +2,15 @@ package simulation;
 
 public class Sheep extends FarmAnimals {
 	
+	public Sheep(IMap map, Position position, int sightRange, int movementSpeed) {
+		super(map, position, sightRange, movementSpeed);
+	}
+	
+	public Sheep(IMap map, Position position) { //ustawienie dodatkowego konstruktora, ktory sam przypisze domyslne wartosci do sightRange i movementSpeed
+		super(map , position, 1, 2);  
+	}
+	
+	
 	public int multiplicationPoints;
 	
 	void eatGrass()
@@ -9,6 +18,7 @@ public class Sheep extends FarmAnimals {
 		
 		
 	}
+	
 	void multiplicate()
 	{
 		if(this.multiplicationPoints==10)
@@ -18,6 +28,7 @@ public class Sheep extends FarmAnimals {
 		//	IMap.createNewObject();//// dokonczyc po zrobieniu metody create new object z mapsimple!!
 		}
 	}
+	
 	@Override
 	public void makeMove() {
 		
@@ -29,4 +40,5 @@ public class Sheep extends FarmAnimals {
 		} while(false);
 		
 	}
+
 }

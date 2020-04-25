@@ -1,6 +1,14 @@
 package simulation;
 
 public class Grass implements IObjectsOnBoard {
+	public Grass(IMap map, Position position) {
+		this.map = map;
+		this.position = position;
+	}
+	
+	IMap map; //musi posiadac obiekt spelniajacy interface mapy, zeby wykonywac ponizsze metody. Moglibysmy utworzyc sobie jakis nowy w konstruktorze
+	          //ale w tym przypadku musimy dostac konkretny i dlatego jest podany jako argument konstruktora.
+	Position position;
 
 	@Override
 	public void makeMove() {
@@ -10,14 +18,12 @@ public class Grass implements IObjectsOnBoard {
 
 	@Override
 	public void setMap(IMap map) {
-		// TODO Auto-generated method stub
-		
+		this.map = map;
 	}
 
 	@Override
 	public IMap getMap() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.map;
 	}
 
 	@Override
@@ -28,8 +34,7 @@ public class Grass implements IObjectsOnBoard {
 
 	@Override
 	public Position getPosition() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.position;
 	}
 
 }
