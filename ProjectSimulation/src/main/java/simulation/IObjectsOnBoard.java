@@ -7,4 +7,5 @@ public interface IObjectsOnBoard {
 	IMap getMap();
 	void disappear();
 	Position getPosition();
+	
 }

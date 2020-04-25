@@ -7,13 +7,17 @@ import java.util.HashMap;
 
 public class MapSimple implements IMap {
 	
+	
+		
 	public MapSimple(int size) {
 		tableMap = new IObjectsOnBoard[size][size];
 		objectsPositions= new HashMap<>();
+		this.size=size;
 	}
 	
 	private IObjectsOnBoard[][] tableMap;
 	private Map<IObjectsOnBoard, Position> objectsPositions;
+	int size;
 	
 	@Override
 	public void setPosition(IObjectsOnBoard object, Position position) {
@@ -55,6 +59,29 @@ public class MapSimple implements IMap {
 	public void createNewObject(IObjectsOnBoard object, Position position) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public boolean isTheMoveProperly(Position position, int move) { ////Metoda sprawdza, czy nie wyjezdzamy za granice planszy
+		int x = position.getX();
+		int y = position.getY();
+		
+		if(move==1) 
+		{
+			if(x==0) return false;
+		}
+		if(move==2)
+		{
+			if(y==size) return false;
+		}
+		if(move==3)
+		{
+			if(x==size) return false;
+		}
+		if(move==4)
+		{
+			if(y==0) return false;
+		}
+		return true;
 	}
 }
 

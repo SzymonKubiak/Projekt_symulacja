@@ -11,6 +11,7 @@ public class Sheep extends FarmAnimals {
 	}
 	
 	
+	
 	public int multiplicationPoints;
 	
 	void eatGrass()
@@ -30,14 +31,23 @@ public class Sheep extends FarmAnimals {
 	}
 	
 	@Override
-	public void makeMove() {
-		
+	public void makeMove() {	
+			boolean moveProperly;
+			boolean movePossible;
+			int moveDirection;
+			Position newPosition;
 		do {
+			moveDirection=RandomGenerator.giveRandomMove(); //losujemy kierunek przemieszczenia
+			moveProperly = map.isTheMoveProperly(this.position, moveDirection); //sprawdzenie czy ruch nie wyjedzie poza mape
+			newPosition= new Position(this.position); //stworzenie nowego obiektu na now¹ pozycjê
+			newPosition.positionAfterMove(moveDirection); //obliczenie pozycji po ruchu
+			if(map.getObject(newPosition)==null || map.getObject(newPosition) instanceof Grass) movePossible=true;  // sprawdzenie czy nowy ruch nie spowoduje kolizji z innym obiektem
+			else movePossible=false;
 			
-			int moveDirection=RandomGenerator.giveRandomMove(); // gdzieœ wy¿ej trzeba wrzucic metode getMap() bo nie mamy innego sposobu na dostanie sie do mapy...
-			
-			
-		} while(false);
+		} while(!moveProperly || !movePossible);
+		 position=null;  // zwolnienie pamiêci 
+		map.setPosition(this, newPosition);
+		
 		
 	}
 
