@@ -18,6 +18,8 @@ public class MapSimple implements IMap {
 	@Override
 	public void setPosition(IObjectsOnBoard object, Position position) {
 		
+		
+		//ustawienie obiektu tylko w tablicy
 		int targetX = position.getX();
 		int targetY = position.getY();
 		
@@ -27,6 +29,10 @@ public class MapSimple implements IMap {
 		
 		tableMap[actualX][actualY]=null;
 		tableMap[targetX][targetY]=object;
+		
+		//ustawienie w mapie (zakladajac, ze obiekt juz tam jest i ma przypisana wartosc)
+		objectsPositions.remove(object);  //usuwanie wartosci przypisanej do klucza object, 
+		objectsPositions.put(object, position); // nie wiem czy jest to poprawne przypisanie
 		
 	}
 
