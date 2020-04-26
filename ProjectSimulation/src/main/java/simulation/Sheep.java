@@ -2,12 +2,12 @@ package simulation;
 
 public class Sheep extends FarmAnimals {
 	
-	public Sheep(IMap map, Position position, int sightRange, int movementSpeed) {
-		super(map, position, sightRange, movementSpeed);
+	public Sheep(IMap map, int mapSize, int sightRange, int movementSpeed) {
+		super(map, mapSize, sightRange, movementSpeed);
 	}
 	
-	public Sheep(IMap map, Position position) { //ustawienie dodatkowego konstruktora, ktory sam przypisze domyslne wartosci do sightRange i movementSpeed
-		super(map , position, 1, 2);  
+	public Sheep(IMap map, int mapSize) { //ustawienie dodatkowego konstruktora, ktory sam przypisze domyslne wartosci do sightRange i movementSpeed
+		this(map , mapSize, 1, 2);  
 	}
 	
 	

@@ -1,11 +1,11 @@
 package simulation;
 
 public class Dog extends FarmAnimals {
-	public Dog(IMap map, Position position, int sightRange, int movementSpeed) {
-		super(map, position, sightRange, movementSpeed);
+	public Dog(IMap map, int mapSize, int sightRange, int movementSpeed) {
+		super(map, mapSize, sightRange, movementSpeed);
 	}
-	public Dog(IMap map, Position position) {  //ustawienie dodatkowego konstruktora, ktory sam przypisze domyslne wartosci do sightRange i movementSpeed
-		super(map, position, 4, 3);        
+	public Dog(IMap map, int mapSize) {  //ustawienie dodatkowego konstruktora, ktory sam przypisze domyslne wartosci do sightRange i movementSpeed
+		this(map, mapSize, 4, 3);        
 	}
 
 	void bark()

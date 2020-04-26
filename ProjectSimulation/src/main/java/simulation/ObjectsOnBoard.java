@@ -1,9 +1,9 @@
 package simulation;
 
 public abstract class ObjectsOnBoard implements IObjectsOnBoard {
-	public ObjectsOnBoard(IMap map, Position position, int sightRange, int movementSpeed) {
+	public ObjectsOnBoard(IMap map, int mapSize, int sightRange, int movementSpeed) {
 		this.map = map;
-		this.position = position;
+		position = RandomGenerator.giveRandomPosition(mapSize);
 		this.sightRange = sightRange;
 		this.movementSpeed = movementSpeed;
 	}
