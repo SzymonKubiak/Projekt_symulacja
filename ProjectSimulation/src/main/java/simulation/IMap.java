@@ -9,7 +9,7 @@ public interface IMap {
 	
 	Position getObjectPosition(IObjectsOnBoard object);
 	
-	void createNewObject(IObjectsOnBoard object, Position position);
+	boolean createNewObject(IObjectsOnBoard object, Position position);
 	
 	boolean isTheMoveProperly(Position position, int move);
 }

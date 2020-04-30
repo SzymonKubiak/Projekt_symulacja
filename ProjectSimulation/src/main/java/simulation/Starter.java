@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Starter {
 	
-public Starter(int numberofIter, int mapSize, int numS, int numD, int numG, int numT, int numW) {
+public Starter(int numberOfIter, int mapSize, int numS, int numD, int numG, int numT, int numW) {
 		
-		this.numberofIter = numberofIter;
+		this.numberOfIter = numberOfIter;
 		map = new MapSimple(mapSize);
 		this.mapSize = mapSize;
 		creator = new ObjectsOnBoardCreator(map, mapSize);
@@ -23,7 +23,7 @@ public Starter(int numberofIter, int mapSize, int numS, int numD, int numG, int 
 	List<IObjectsOnBoard> objectList;
 	IObjectsOnBoardCreator creator;
 	IMap map;
-	int numberofIter;
+	int numberOfIter;
 	int mapSize;
 	int numS;
 	int numD;
@@ -43,7 +43,12 @@ public Starter(int numberofIter, int mapSize, int numS, int numD, int numG, int 
 	
 	void runSimulation()
 	{
-		
+		for(int i =0; i<numberOfIter; i++) {
+			
+			//for(IObjectsOnBoard iObjectsOnBoard : objectList) ////odkomentowaæ kiedy uzgodnimy do stanie sie z metod¹ makeTurn
+				//iObjectsOnBoard.makeTurn();
+		}
+
 	}
 	
 	

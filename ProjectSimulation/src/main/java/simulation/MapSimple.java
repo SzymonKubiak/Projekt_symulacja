@@ -56,10 +56,18 @@ public class MapSimple implements IMap {
 	}
 
 	@Override
-	public void createNewObject(IObjectsOnBoard object, Position position) {
-		// TODO Auto-generated method stub
+	public boolean createNewObject(IObjectsOnBoard object, Position position) {
 		
+		if(getObject(position)==null) // je¿eli pozycja jest wolna osadz tam obiekt, zwroc true
+		{
+			tableMap[position.getX()][position.getY()]= object;
+			objectsPositions.put(object, position);
+			return true;
+		}
+		return false;
 	}
+	
+	
 	
 	public boolean isTheMoveProperly(Position position, int move) { ////Metoda sprawdza, czy nie wyjezdzamy za granice planszy
 		int x = position.getX();
