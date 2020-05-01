@@ -2,11 +2,11 @@ package simulation;
 
 public class Thief extends Enemies {
 
-	public Thief(IMap map, int mapSize, int sightRange, int movementSpeed, int visibilityRange) {
-		super(map, mapSize, sightRange, movementSpeed, visibilityRange);
+	public Thief(IMap map, int sightRange, int movementSpeed, int visibilityRange) {
+		super(map, sightRange, movementSpeed, visibilityRange);
 	}
-	public Thief(IMap map, int mapSize) { //dodatkowy konstruktor, ktory sam przypisze domyslne wartosci do sightRange, movementSpeed i visibilityRange
-		this(map, mapSize, 2, 2, 2);
+	public Thief(IMap map) { //dodatkowy konstruktor, ktory sam przypisze domyslne wartosci do sightRange, movementSpeed i visibilityRange
+		this(map, 2, 2, 2);
 	}
 
 	@Override

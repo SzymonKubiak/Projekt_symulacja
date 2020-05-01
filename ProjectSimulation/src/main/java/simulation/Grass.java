@@ -1,9 +1,9 @@
 package simulation;
 
 public class Grass implements IObjectsOnBoard {
-	public Grass(IMap map, int mapSize) {
+	public Grass(IMap map) {
 		this.map = map;
-		this.position = RandomGenerator.giveRandomPosition(mapSize);
+		this.position = RandomGenerator.giveRandomPosition( map.getSize() );
 	}
 	
 	IMap map; //musi posiadac obiekt spelniajacy interface mapy, zeby wykonywac ponizsze metody. Moglibysmy utworzyc sobie jakis nowy w konstruktorze
@@ -36,5 +36,6 @@ public class Grass implements IObjectsOnBoard {
 	public Position getPosition() {
 		return this.position;
 	}
+
 
 }
