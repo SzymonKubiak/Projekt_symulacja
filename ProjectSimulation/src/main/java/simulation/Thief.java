@@ -15,11 +15,8 @@ public class Thief extends Enemies {
 		
 	}
 
-	@Override
-	public void makeMove() {
-		// TODO Auto-generated method stub
-		
-	}
+	
+	
 	@Override
 	public void makeTurn() {
 		// TODO Auto-generated method stub

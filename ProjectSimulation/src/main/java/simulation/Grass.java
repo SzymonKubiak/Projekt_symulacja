@@ -10,11 +10,7 @@ public class Grass implements IObjectsOnBoard {
 	          //ale w tym przypadku musimy dostac konkretny i dlatego jest podany jako argument konstruktora.
 	Position position;
 
-	@Override
-	public void makeMove() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void setMap(IMap map) {
@@ -43,5 +39,27 @@ public class Grass implements IObjectsOnBoard {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void changePosition()
+	{
+		Position newPosition;
+		boolean isMovePossible;
+		
+		do {
+			newPosition=new Position(RandomGenerator.giveRandomPosition(map.getSize())); // wylosowanie pozycji na mapie
+			if(map.getObject(newPosition)==null) isMovePossible=true;
+			
+			else isMovePossible=false;      //// sprawdzenie czy wylosowane miejsce jest wolne
+		
+		}while(!isMovePossible);   // dopoki nie znajdzie miejsca ktore jest wolne
+		
+		position=null;  // zwolnienie pamiêci
+		map.setPosition(this, newPosition);
+		
+		
+		
+	}
+	
+	
 }
 

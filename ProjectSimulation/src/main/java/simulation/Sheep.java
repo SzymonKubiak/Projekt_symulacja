@@ -29,7 +29,6 @@ public class Sheep extends FarmAnimals {
 		}
 	}
 	
-	@Override
 	public void makeMove() {	
 			boolean moveProperly;
 			boolean movePossible;
