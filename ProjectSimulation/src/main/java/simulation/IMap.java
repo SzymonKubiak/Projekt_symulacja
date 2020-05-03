@@ -1,5 +1,6 @@
 package simulation;
 
+
 public interface IMap {
 
 	
@@ -12,4 +13,6 @@ public interface IMap {
 	boolean createNewObject(IObjectsOnBoard object, Position position);
 	
 	boolean isTheMoveProperly(Position position, int move);
+	
+	int getSize();
 }

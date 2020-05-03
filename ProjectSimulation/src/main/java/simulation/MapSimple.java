@@ -17,7 +17,7 @@ public class MapSimple implements IMap {
 	
 	private IObjectsOnBoard[][] tableMap;
 	private Map<IObjectsOnBoard, Position> objectsPositions;
-	int size;
+	private int size;
 	
 	@Override
 	public void setPosition(IObjectsOnBoard object, Position position) {
@@ -68,7 +68,7 @@ public class MapSimple implements IMap {
 	}
 	
 	
-	
+
 	public boolean isTheMoveProperly(Position position, int move) { ////Metoda sprawdza, czy nie wyjezdzamy za granice planszy
 		int x = position.getX();
 		int y = position.getY();
@@ -91,6 +91,12 @@ public class MapSimple implements IMap {
 		}
 		return true;
 	}
-}
 
+	@Override
+	public int getSize() {
+		return this.size;
+	}
+
+	
+}
 

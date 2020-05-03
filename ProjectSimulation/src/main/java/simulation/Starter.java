@@ -21,7 +21,7 @@ public Starter(int numberOfIter, int mapSize, int numS, int numD, int numG, int 
 		this.numberOfIter = numberOfIter;
 		map = new MapSimple(mapSize);
 		this.mapSize = mapSize;
-		creator = new ObjectsOnBoardCreator(map, mapSize);
+		creator = new ObjectsOnBoardCreator(map);
 		objectList = creator.create(numS, numD, numG, numT, numW);
 		
 		this.numS = numS;
