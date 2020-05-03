@@ -18,4 +18,9 @@ public class Dog extends FarmAnimals {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void makeTurn() {
+		// TODO Auto-generated method stub
+		
+	}
 }

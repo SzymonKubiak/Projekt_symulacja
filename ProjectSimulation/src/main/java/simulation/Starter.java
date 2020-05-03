@@ -4,6 +4,18 @@ import java.util.List;
 
 public class Starter {
 	
+	List<IObjectsOnBoard> objectList;
+	IObjectsOnBoardCreator creator;
+	IMap map;
+	int numberOfIter;
+	int mapSize;
+	int numS;
+	int numD;
+	int numG;
+	int numT;
+	int numW;
+	
+	
 public Starter(int numberOfIter, int mapSize, int numS, int numD, int numG, int numT, int numW) {
 		
 		this.numberOfIter = numberOfIter;
@@ -20,17 +32,7 @@ public Starter(int numberOfIter, int mapSize, int numS, int numD, int numG, int 
 		
 	}
 	
-	List<IObjectsOnBoard> objectList;
-	IObjectsOnBoardCreator creator;
-	IMap map;
-	int numberOfIter;
-	int mapSize;
-	int numS;
-	int numD;
-	int numG;
-	int numT;
-	int numW;
-	
+
 	
 	
 
@@ -45,8 +47,8 @@ public Starter(int numberOfIter, int mapSize, int numS, int numD, int numG, int 
 	{
 		for(int i =0; i<numberOfIter; i++) {
 			
-			//for(IObjectsOnBoard iObjectsOnBoard : objectList) ////odkomentowaæ kiedy uzgodnimy do stanie sie z metod¹ makeTurn
-				//iObjectsOnBoard.makeTurn();
+			for(IObjectsOnBoard iObjectsOnBoard : objectList) 
+				iObjectsOnBoard.makeTurn();
 		}
 
 	}

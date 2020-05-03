@@ -51,4 +51,10 @@ public class Sheep extends FarmAnimals {
 		
 	}
 
+	@Override
+	public void makeTurn() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

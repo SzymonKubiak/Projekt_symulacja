@@ -37,4 +37,10 @@ public class Grass implements IObjectsOnBoard {
 		return this.position;
 	}
 
+	@Override
+	public void makeTurn() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
