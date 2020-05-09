@@ -4,7 +4,9 @@ package simulation;
 public interface IMap {
 
 	
-	void setPosition(IObjectsOnBoard object, Position position);
+	boolean setPosition(IObjectsOnBoard object, Position position);
+	
+	void freePosition(IObjectsOnBoard object, Position position);
 	
 	IObjectsOnBoard getObject(Position position);
 	
