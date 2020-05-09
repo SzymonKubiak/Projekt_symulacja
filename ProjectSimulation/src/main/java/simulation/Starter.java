@@ -4,45 +4,20 @@ import java.util.List;
 
 public class Starter {
 	
-	private static List<IObjectsOnBoard> objectList;
-	IObjectsOnBoardCreator creator;
-	IMap map;
-	int numberOfIter;
-	int mapSize;
-	int numS;
-	int numD;
-	int numG;
-	int numT;
-	int numW;
-	
-	
-public Starter(int numberOfIter, int mapSize, int numS, int numD, int numG, int numT, int numW) {
+public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator) {
 		
 		this.numberOfIter = numberOfIter;
-		map = new MapSimple(mapSize);
-		this.mapSize = mapSize;
-		creator = new ObjectsOnBoardCreator(map);
-		objectList = creator.create(numS, numD, numG, numT, numW);
-		
-		this.numS = numS;
-		this.numD = numD;
-		this.numG = numG; 
-		this.numT = numT; 
-		this.numW = numW;
-		
+		this.map = map;
+		objectList = objectsCreator.create(map);
+			
 	}
-	
 
-	
-	
 
-	
-	public int getSize()
-	{
-		return mapSize;
-	}
-	
-	
+    private static List<IObjectsOnBoard> objectList;	
+    IMap map;
+    int numberOfIter;
+
+
 	void runSimulation()
 	{
 		for(int i =0; i<numberOfIter; i++) {
@@ -61,8 +36,10 @@ public Starter(int numberOfIter, int mapSize, int numS, int numD, int numG, int 
 	
 	public static void main(String[] args) {
 		
-		//nie mozemy tutaj utworzyc ObjectsOnBoardCreator bo trzeba mu podac w konstruktorze konkretna mape, a ona jest tworzona dopiero w konstruktorze Starter
-		Starter starter = new Starter(10,100,20,2,50,2,3);    
+		IMap map = new MapSimple(100);
+		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(20,2,25,2,3);
+		Starter starter = new Starter(10, map, objectsCreator); 
+		
 		starter.runSimulation();
 		
 	}

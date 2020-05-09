@@ -4,14 +4,28 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ObjectsOnBoardCreator implements IObjectsOnBoardCreator{
-	public ObjectsOnBoardCreator(IMap map) {
-		this.map = map;	
+	public ObjectsOnBoardCreator(int numS, int numD, int numG, int numT, int numW) {
+		
+		this.numS = numS;
+		this.numD = numD;
+		this.numG = numG; 
+		this.numT = numT; 
+		this.numW = numW;
+	}
+	public ObjectsOnBoardCreator() { //konstruktor domyslny, gdy nic nie podamy 
+		
+		this(20,2,25,2,3);
 	}
 	
-	IMap map;
+	
+	int numS;
+	int numD;
+	int numG;
+	int numT;
+	int numW;
 
 	@Override
-	public List<IObjectsOnBoard> create(int numS, int numD, int numG, int numT, int numW) { 
+	public List<IObjectsOnBoard> create(IMap map) { 
 		
 		List<IObjectsOnBoard> list = new LinkedList<>();
 		
@@ -37,6 +51,7 @@ public class ObjectsOnBoardCreator implements IObjectsOnBoardCreator{
 		
 		return list;
 	}
+	
 
 	@Override
 	public void addNewObject(IObjectsOnBoard object) {
