@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Starter {
 	
-	List<IObjectsOnBoard> objectList;
+	private static List<IObjectsOnBoard> objectList;
 	IObjectsOnBoardCreator creator;
 	IMap map;
 	int numberOfIter;
@@ -53,13 +53,16 @@ public Starter(int numberOfIter, int mapSize, int numS, int numD, int numG, int 
 
 	}
 	
+	public static List<IObjectsOnBoard> getObjectList(){   // funkcja ta jest potrzebna do dodawania obiektow do listy, po ktorej iterujemy
+		return objectList;
+	}
+	
 	
 	
 	public static void main(String[] args) {
 		
 		//nie mozemy tutaj utworzyc ObjectsOnBoardCreator bo trzeba mu podac w konstruktorze konkretna mape, a ona jest tworzona dopiero w konstruktorze Starter
 		Starter starter = new Starter(10,100,20,2,50,2,3);    
-		
 		starter.runSimulation();
 		
 	}
