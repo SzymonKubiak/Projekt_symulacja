@@ -50,6 +50,12 @@ public class Position {
 			this.y=this.y-1;
 		}
 	}
+	
+	boolean equals(IObjectsOnBoard o1, IObjectsOnBoard o2) {
+		if( (o1.getPosition().getX()==o2.getPosition().getX() ) && (o1.getPosition().getY()==o2.getPosition().getY()) ) return true;
+		return false;
+		
+	}
 
 
 }
