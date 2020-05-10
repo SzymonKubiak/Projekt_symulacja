@@ -2,14 +2,12 @@ package simulation;
 
 public abstract class ObjectsOnBoard implements IObjectsOnBoard {
 	public ObjectsOnBoard(IMap map, int sightRange, int movementSpeed) {
-		this.map = map;
-		position = RandomGenerator.giveRandomPosition(map.getSize()); //nie wiemy czy pozycja jest zajeta trzeba to dopracowac		
+		this.map = map;		
 		this.sightRange = sightRange;
 		this.movementSpeed = movementSpeed;
 	}
 	
 	IMap map;
-	Position position;
 	int sightRange;
 	int movementSpeed;
 	
@@ -36,7 +34,25 @@ public abstract class ObjectsOnBoard implements IObjectsOnBoard {
 
 	@Override
 	public Position getPosition() {
-		return this.position;
+		return map.getObjectPosition(this);
 	}
 	
+
+
+protected void makeMove() {
+	
+	
+	int moveDirection;
+	Position newPosition;
+	do {
+		
+		do {
+			moveDirection=RandomGenerator.giveRandomMove(); //losujemy kierunek przemieszczenia
+		} while(!map.isTheMoveProperly(this.getPosition(), moveDirection)); // dopoki nie bêdzie poprawny - nie wyjdzie poza mape
+
+	newPosition= new Position(this.getPosition().positionAfterMove(moveDirection)); //obliczenie nowej pozycji
+		
+	} while(map.setPosition(this, newPosition));
+	 
+}
 }

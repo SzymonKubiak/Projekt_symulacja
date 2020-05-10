@@ -35,7 +35,7 @@ public class Position {
 		this.y=y;
 	}
 	
-	void positionAfterMove(int move) // u¿ywane do obliczenia nowej pozycji obiektu
+	Position positionAfterMove(int move) // u¿ywane do obliczenia nowej pozycji obiektu
 	{
 		if(move==1) {
 			this.x=this.x-1;
@@ -49,6 +49,7 @@ public class Position {
 		if(move==4) {
 			this.y=this.y-1;
 		}
+		return this;
 	}
 	
 	boolean equals(IObjectsOnBoard o1, IObjectsOnBoard o2) {

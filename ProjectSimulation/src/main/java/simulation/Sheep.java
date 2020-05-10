@@ -29,24 +29,27 @@ public class Sheep extends FarmAnimals {
 		}
 	}
 	
-	public void makeMove() {	
-			boolean moveProperly;
-			boolean movePossible;
-			int moveDirection;
-			Position newPosition;
+	
+	protected void makeMove() {
+		
+		boolean movePossible;
+		int moveDirection;
+		Position newPosition;
 		do {
-			moveDirection=RandomGenerator.giveRandomMove(); //losujemy kierunek przemieszczenia
-			moveProperly = map.isTheMoveProperly(this.position, moveDirection); //sprawdzenie czy ruch nie wyjedzie poza mape
-			newPosition= new Position(this.position); //stworzenie nowego obiektu na now¹ pozycjê
-			newPosition.positionAfterMove(moveDirection); //obliczenie pozycji po ruchu
-			if(map.getObject(newPosition)==null || map.getObject(newPosition) instanceof Grass) movePossible=true;  // sprawdzenie czy nowy ruch nie spowoduje kolizji z innym obiektem
-			else movePossible=false;
 			
-		} while(!moveProperly || !movePossible);
-		 position=null;  // zwolnienie pamiêci 
+			do {
+				moveDirection=RandomGenerator.giveRandomMove(); //losujemy kierunek przemieszczenia
+			} while(!map.isTheMoveProperly(this.getPosition(), moveDirection)); // dopoki nie bêdzie poprawny - nie wyjdzie poza mape
+
+		newPosition= new Position(this.getPosition().positionAfterMove(moveDirection)); //obliczenie nowej pozycji
+			
+		if(map.getObject(newPosition)==null || map.getObject(newPosition) instanceof Grass) movePossible=true;  // sprawdzenie czy nowy ruch nie spowoduje kolizji z innym obiektem
+		else movePossible=false;
+		
+	} while(!movePossible);
+	
 		map.setPosition(this, newPosition);
-		
-		
+	
 	}
 
 	@Override
