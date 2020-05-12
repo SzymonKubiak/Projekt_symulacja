@@ -89,6 +89,45 @@ public class MapSimple implements IMap {
 	public int getSize() {
 		return this.size;
 	}
+	
+	public int lookAroundForGrass(Position position) { //jako parametr przyjmuje klase której obiektow szuka
+		
+		int posX = position.getX();
+		int posY = position.getY();
+		for(IObjectsOnBoard obj : Starter.getObjectList()) {
+			if(obj instanceof Grass)						//przeszukujemy tylko obiekty typu Grass
+			{
+				int grassPosX=obj.getPosition().getX();			//przypisania w celu skrocenia zapisu
+				int grassPosY=obj.getPosition().getY();
+				if(posX == grassPosX && posY+1==grassPosY) return 1;	//zwraca kierunek 1 (jest do góry)
+				if(posX+1 == grassPosX && posY==grassPosY) return 2;	//zwraca kierunek 2 (jest na prawo)
+				if(posX == grassPosX && posY-1==grassPosY) return 3;	//zwraca kierunek 3 (jest na dół)
+				if(posX-1 == grassPosX && posY==grassPosY) return 4;	//zwraca kierunek 4 (jest na lewo)
+			}
+		}
+		return 0;
+		
+	}
+	
+public int wolfLookAroundForSheep(Position position) { 
+		
+		int posX = position.getX();
+		int posY = position.getY();
+		for(IObjectsOnBoard obj : Starter.getObjectList()) {
+			if(obj instanceof Sheep)									//przeszukujemy tylko obiekty typu Sheep
+			{
+				int sheepPosX=obj.getPosition().getX();					//przypisania w celu skrocenia zapisu
+				int sheepPosY=obj.getPosition().getY();
+				if(posX == sheepPosX && posY+1==sheepPosY) return 1;	//zwraca kierunek 1 (jest do góry)
+				if(posX+1 == sheepPosX && posY==sheepPosY) return 2;	//zwraca kierunek 2 (jest na prawo)
+				if(posX == sheepPosX && posY-1==sheepPosY) return 3;	//zwraca kierunek 3 (jest na dół)
+				if(posX-1 == sheepPosX && posY==sheepPosY) return 4;	//zwraca kierunek 4 (jest na lewo)
+				return 0;
+			}
+		}
+		return 0;
+		
+	}
 
 	
 }

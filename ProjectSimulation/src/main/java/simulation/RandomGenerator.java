@@ -20,4 +20,5 @@ public class RandomGenerator {
 		
 		return position;
 	}
+	
 }

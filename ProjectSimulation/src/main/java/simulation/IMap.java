@@ -17,5 +17,9 @@ public interface IMap {
 	boolean isTheMoveProperly(Position position, int move);
 	
 	int getSize();
+	
+	int wolfLookAroundForSheep(Position position);
+	
+	int lookAroundForGrass(Position position);
 
 }

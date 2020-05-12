@@ -44,10 +44,10 @@ protected void makeMove() {
 	do {
 		
 		do {
-			moveDirection=RandomGenerator.giveRandomMove(); //losujemy kierunek przemieszczenia
-		} while(!map.isTheMoveProperly(this.getPosition(), moveDirection)); // dopoki nie bêdzie poprawny - nie wyjdzie poza mape
+			moveDirection=RandomGenerator.giveRandomMove();							 //losujemy kierunek przemieszczenia
+		} while(!map.isTheMoveProperly(this.getPosition(), moveDirection)); 	 	 // dopoki nie bêdzie poprawny - nie wyjdzie poza mape
 
-	newPosition= new Position(this.getPosition().positionAfterMove(moveDirection)); //obliczenie nowej pozycji
+	newPosition= new Position(this.getPosition().positionAfterMove(moveDirection));  //obliczenie nowej pozycji
 		
 	} while(map.setPosition(this, newPosition));
 	 

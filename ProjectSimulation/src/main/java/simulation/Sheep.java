@@ -30,32 +30,16 @@ public class Sheep extends FarmAnimals {
 	}
 	
 	
-	protected void makeMove() {
-		
-		boolean movePossible;
-		int moveDirection;
-		Position newPosition;
-		do {
-			
-			do {
-				moveDirection=RandomGenerator.giveRandomMove(); //losujemy kierunek przemieszczenia
-			} while(!map.isTheMoveProperly(this.getPosition(), moveDirection)); // dopoki nie bêdzie poprawny - nie wyjdzie poza mape
-
-		newPosition= new Position(this.getPosition().positionAfterMove(moveDirection)); //obliczenie nowej pozycji
-			
-		if(map.getObject(newPosition)==null || map.getObject(newPosition) instanceof Grass) movePossible=true;  // sprawdzenie czy nowy ruch nie spowoduje kolizji z innym obiektem
-		else movePossible=false;
-		
-	} while(!movePossible);
-	
-		map.setPosition(this, newPosition);
-	
-	}
 
 	@Override
 	public void makeTurn() {
-		// TODO Auto-generated method stub
+		
 		
 	}
+	
+	public void lookForGrass() {
+		
+	}
+	
 
 }
