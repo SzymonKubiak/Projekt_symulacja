@@ -39,8 +39,9 @@ public class MapSimple implements IMap {
 	
 	@Override
 	public void delateObject(IObjectsOnBoard object) {                                  //czyszczenie tablicy i hashmapy przy calkowitym usuwaniu obiektu
-		objectsPositions.remove(object);                                                //usuniecie z hashmapy
 		tableMap[object.getPosition().getX()][object.getPosition().getY()]=null;        //usuniecie z tablicy
+		objectsPositions.remove(object);                                                //usuniecie z hashmapy
+		
 	}
 
 	
