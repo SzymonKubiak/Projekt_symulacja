@@ -3,12 +3,10 @@ package simulation;
 public class Grass implements IObjectsOnBoard {
 	public Grass(IMap map) {
 		this.map = map;
-		this.position = RandomGenerator.giveRandomPosition( map.getSize() );
 	}
 	
 	IMap map; //musi posiadac obiekt spelniajacy interface mapy, zeby wykonywac ponizsze metody. Moglibysmy utworzyc sobie jakis nowy w konstruktorze
 	          //ale w tym przypadku musimy dostac konkretny i dlatego jest podany jako argument konstruktora.
-	Position position;
 
 	
 
@@ -24,16 +22,13 @@ public class Grass implements IObjectsOnBoard {
 
 	@Override
 	public void disappear() {
-		for(IObjectsOnBoard o : Starter.getObjectList()) {
-			if(o == this){
-				o = null;
-			} //na ten moment raczej obiekt zostanie usuniety z listy, ale nie wiem, czy zniknie tez z kolekcji Mapa
-		}	
+		map.delateObject(this);                                //usuniecie z hashmapy i tablicy
+		Starter.getObjectList().remove(this);                  //usuniecie z listy
 	}
 
 	@Override
 	public Position getPosition() {
-		return this.position;
+		return map.getObjectPosition(this);
 	}
 
 
@@ -45,22 +40,7 @@ public class Grass implements IObjectsOnBoard {
 	
 	public void changePosition()
 	{
-		Position newPosition;
-		boolean isMovePossible;
-		
-		do {
-			newPosition=new Position(RandomGenerator.giveRandomPosition(map.getSize())); // wylosowanie pozycji na mapie
-			if(map.getObject(newPosition)==null) isMovePossible=true;
-			
-			else isMovePossible=false;      //// sprawdzenie czy wylosowane miejsce jest wolne
-		
-		}while(!isMovePossible);   // dopoki nie znajdzie miejsca ktore jest wolne
-		
-		position=null;  // zwolnienie pamiêci
-		map.setPosition(this, newPosition);
-		
-		
-		
+		while(!map.changePosition(this, RandomGenerator.giveRandomPosition( map.getSize() )));
 	}
 	
 	

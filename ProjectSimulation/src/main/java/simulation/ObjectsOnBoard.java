@@ -25,11 +25,8 @@ public abstract class ObjectsOnBoard implements IObjectsOnBoard {
 	
 	@Override
 	public void disappear() {
-		for(IObjectsOnBoard o : Starter.getObjectList()) {
-			if(o == this){
-				o = null;
-			} //na ten moment raczej obiekt zostanie usuniety z listy, ale nie wiem, czy zniknie tez z kolekcji Mapa
-		}
+		map.delateObject(this);                                //usuniecie z hashmapy i tablicy
+		Starter.getObjectList().remove(this);                  //usuniecie z listy
 	}
 
 	@Override

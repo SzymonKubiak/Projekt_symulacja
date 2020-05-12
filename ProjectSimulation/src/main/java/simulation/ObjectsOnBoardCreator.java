@@ -52,11 +52,4 @@ public class ObjectsOnBoardCreator implements IObjectsOnBoardCreator{
 		return list;
 	}
 	
-
-	@Override
-	public void addNewObject(IObjectsOnBoard object) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

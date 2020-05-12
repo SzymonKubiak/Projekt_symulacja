@@ -10,7 +10,7 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 		this.map = map;
 		objectList = objectsCreator.create(map); //utorzenie listy obiektow
 		
-		for(IObjectsOnBoard o : objectList) { //musimy dodac wszystkie utworzone obiekty do kolekcji typu map
+		for(IObjectsOnBoard o : objectList) { //musimy dodac wszystkie utworzone obiekty do kolekcji typu map i przypisac im randomowa pozycje
 			
 			while(!map.setPosition(o, RandomGenerator.giveRandomPosition( map.getSize() ) ) );
 			

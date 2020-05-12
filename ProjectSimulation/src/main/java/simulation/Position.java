@@ -52,11 +52,16 @@ public class Position {
 		return this;
 	}
 	
-	boolean equals(IObjectsOnBoard o1, IObjectsOnBoard o2) {
-		if( (o1.getPosition().getX()==o2.getPosition().getX() ) && (o1.getPosition().getY()==o2.getPosition().getY()) ) return true;
-		return false;
+	@Override
+	public boolean equals(Object o) {   //equals, ktore porownuje pozycje
+		if(o == this) return true;   
+		if(!(o instanceof Position)) return false;  //jezeli obiekt, ktory porownujemy nie jest obiektem kalsy Position - false
+		Position position = (Position)o;
 		
+		return(( this.getX() == position.getX() )&& ( this.getY() == position.getY() ));
 	}
-
-
+			
 }
+
+
+

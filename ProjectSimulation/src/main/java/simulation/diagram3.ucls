@@ -2,254 +2,238 @@
 <class-diagram version="1.2.4" icons="true" automaticImage="JPEG" always-add-relationships="false" 
   generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
   router="FAN">  
-  <class id="1" language="java" name="simulation.MapSimple" project="ProjectSimulation" 
-    file="/ProjectSimulation/src/main/java/simulation/MapSimple.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="160" width="309" x="525" y="213"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="simulation.Position" project="ProjectSimulation" 
-    file="/ProjectSimulation/src/main/java/simulation/Position.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="196" width="104" x="920" y="448"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="3" language="java" name="simulation.Enemies" project="ProjectSimulation" 
-    file="/ProjectSimulation/src/main/java/simulation/Enemies.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="141" width="218" x="1064" y="448"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="4" language="java" name="simulation.Thief" project="ProjectSimulation" 
-    file="/ProjectSimulation/src/main/java/simulation/Thief.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="195" x="829" y="684"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="simulation.Starter" project="ProjectSimulation" 
-    file="/ProjectSimulation/src/main/java/simulation/Starter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="178" width="139" x="346" y="213"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="6" language="java" name="simulation.IMap" project="ProjectSimulation" 
-    file="/ProjectSimulation/src/main/java/simulation/IMap.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="309" x="571" y="448"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="7" language="java" name="simulation.Wolf" project="ProjectSimulation" 
-    file="/ProjectSimulation/src/main/java/simulation/Wolf.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="195" x="1064" y="684"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="8" language="java" name="simulation.IObjectsOnBoard" project="ProjectSimulation" 
-    file="/ProjectSimulation/src/main/java/simulation/IObjectsOnBoard.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="160" width="150" x="381" y="448"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="9" language="java" name="simulation.RandomGenerator" project="ProjectSimulation" 
+  <class id="1" language="java" name="simulation.RandomGenerator" project="ProjectSimulation" 
     file="/ProjectSimulation/src/main/java/simulation/RandomGenerator.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="216" x="90" y="213"/>    
+    <position height="-1" width="-1" x="130" y="296"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="simulation.Grass" project="ProjectSimulation" 
-    file="/ProjectSimulation/src/main/java/simulation/Grass.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="178" width="150" x="874" y="213"/>    
+  <class id="2" language="java" name="simulation.FarmAnimals" project="ProjectSimulation" 
+    file="/ProjectSimulation/src/main/java/simulation/FarmAnimals.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1460" y="570"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="simulation.Sheep" project="ProjectSimulation" 
+  <class id="3" language="java" name="simulation.Sheep" project="ProjectSimulation" 
     file="/ProjectSimulation/src/main/java/simulation/Sheep.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="178" width="186" x="1299" y="684"/>    
+    <position height="-1" width="-1" x="1447" y="752"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="simulation.ObjectsOnBoard" project="ProjectSimulation" 
-    file="/ProjectSimulation/src/main/java/simulation/ObjectsOnBoard.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="195" width="245" x="1064" y="213"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="13" language="java" name="simulation.Dog" project="ProjectSimulation" 
+  <class id="4" language="java" name="simulation.Dog" project="ProjectSimulation" 
     file="/ProjectSimulation/src/main/java/simulation/Dog.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="172" x="1525" y="684"/>    
+    <position height="-1" width="-1" x="1690" y="730"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="simulation.Shepherd" project="ProjectSimulation" 
-    file="/ProjectSimulation/src/main/java/simulation/Shepherd.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="152" x="1588" y="213"/>    
+  <class id="5" language="java" name="simulation.ObjectsOnBoard" project="ProjectSimulation" 
+    file="/ProjectSimulation/src/main/java/simulation/ObjectsOnBoard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1269" y="290"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="15" language="java" name="simulation.IShepherd" project="ProjectSimulation" 
+  <class id="6" language="java" name="simulation.Enemies" project="ProjectSimulation" 
+    file="/ProjectSimulation/src/main/java/simulation/Enemies.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1012" y="570"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="simulation.Thief" project="ProjectSimulation" 
+    file="/ProjectSimulation/src/main/java/simulation/Thief.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="796" y="759"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="simulation.Wolf" project="ProjectSimulation" 
+    file="/ProjectSimulation/src/main/java/simulation/Wolf.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1099" y="757"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="9" language="java" name="simulation.IShepherd" project="ProjectSimulation" 
     file="/ProjectSimulation/src/main/java/simulation/IShepherd.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="88" width="152" x="1588" y="448"/>    
+    <position height="-1" width="-1" x="739" y="261"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="16" language="java" name="simulation.FarmAnimals" project="ProjectSimulation" 
-    file="/ProjectSimulation/src/main/java/simulation/FarmAnimals.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="87" width="226" x="1322" y="448"/>    
+  <class id="10" language="java" name="simulation.Shepherd" project="ProjectSimulation" 
+    file="/ProjectSimulation/src/main/java/simulation/Shepherd.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="737" y="415"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="17">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="12"/>  
+  <interface id="11" language="java" name="simulation.IObjectsOnBoard" project="ProjectSimulation" 
+    file="/ProjectSimulation/src/main/java/simulation/IObjectsOnBoard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1272" y="29"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="12" language="java" name="simulation.Position" project="ProjectSimulation" 
+    file="/ProjectSimulation/src/main/java/simulation/Position.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="501" y="28"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="simulation.MapSimple" project="ProjectSimulation" 
+    file="/ProjectSimulation/src/main/java/simulation/MapSimple.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="831" y="30"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="simulation.Grass" project="ProjectSimulation" 
+    file="/ProjectSimulation/src/main/java/simulation/Grass.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1592" y="25"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="15" language="java" name="simulation.IMap" project="ProjectSimulation" 
+    file="/ProjectSimulation/src/main/java/simulation/IMap.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="833" y="-312"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="16" language="java" name="simulation.Starter" project="ProjectSimulation" 
+    file="/ProjectSimulation/src/main/java/simulation/Starter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1273" y="-310"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="17">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="18" name="map"/>      
+      <multiplicity id="19" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="21" name="map"/>      
+      <multiplicity id="22" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="23">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
   </generalization>  
-  <association id="18">    
+  <association id="24">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="19" name="map"/>      
-      <multiplicity id="20" minimum="0" maximum="1"/>    
+      <attribute id="25" name="map"/>      
+      <multiplicity id="26" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="21">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="8"/>  
-  </realization>  
-  <generalization id="22">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <association id="23">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="24" name="position"/>      
-      <multiplicity id="25" minimum="0" maximum="1"/>    
+  <association id="27">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="28" name="objectList"/>      
+      <multiplicity id="29" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="26">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="12"/>  
-  </generalization>  
-  <generalization id="27">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <realization id="28">    
+  <realization id="30">    
     <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <realization id="31">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <realization id="32">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <generalization id="33">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <realization id="35">    
+    <end type="SOURCE" refId="13"/>    
     <end type="TARGET" refId="15"/>  
   </realization>  
-  <association id="29">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="30" name="objectList"/>      
-      <multiplicity id="31" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="32">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="33" name="map"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="35">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="36" name="tableMap"/>      
-      <multiplicity id="37" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <generalization id="36">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="37">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
   <generalization id="38">    
     <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="3"/>  
+    <end type="TARGET" refId="6"/>  
   </generalization>  
   <association id="39">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="40" name="map"/>      
-      <multiplicity id="41" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="40" name="tableMap"/>      
+      <multiplicity id="41" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="42">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="6"/>  
-  </realization>  
-  <generalization id="43">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <association id="44">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="45" name="position"/>      
-      <multiplicity id="46" minimum="0" maximum="1"/>    
+  <association id="42">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="43" name="objectsPositions"/>      
+      <multiplicity id="44" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="47">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="48" name="objectsPositions"/>      
-      <multiplicity id="49" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="50">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="8"/>  
-  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
