@@ -38,7 +38,7 @@ public class MapSimple implements IMap {
 	
 	
 	@Override
-	public void delateObject(IObjectsOnBoard object) {                                  //czyszczenie tablicy i hashmapy przy calkowitym usuwaniu obiektu
+	public void deleteObject(IObjectsOnBoard object) {                                  //czyszczenie tablicy i hashmapy przy calkowitym usuwaniu obiektu
 		tableMap[object.getPosition().getX()][object.getPosition().getY()]=null;        //usuniecie z tablicy
 		objectsPositions.remove(object);                                                //usuniecie z hashmapy
 		
@@ -55,13 +55,13 @@ public class MapSimple implements IMap {
 
 	
 	@Override
-	public Position getObjectPosition(IObjectsOnBoard object) { //// Odczyt pozycji podanego obiektu
-		return objectsPositions.get(object);   //get(Object key) - zwraca wartosc przypisaną do klucza 'key' lub null jesli do takiego klucza nie jest przypisana zadna wartosc
+	public Position getObjectPosition(IObjectsOnBoard object) { // Odczyt pozycji podanego obiektu
+		return objectsPositions.get(object);   					//get(Object key) - zwraca wartosc przypisaną do klucza 'key' lub null jesli do takiego klucza nie jest przypisana zadna wartosc
 	}
 
 	
 	@Override
-	public boolean isTheMoveProperly(Position position, int move) { ////Metoda sprawdza, czy nie wyjezdzamy za granice planszy
+	public boolean isTheMoveProperly(Position position, int move) { //Metoda sprawdza, czy nie wyjezdzamy za granice planszy
 		int x = position.getX();
 		int y = position.getY();
 		
@@ -90,14 +90,14 @@ public class MapSimple implements IMap {
 		return this.size;
 	}
 	
-	public int lookAroundForGrass(Position position) { //jako parametr przyjmuje klase której obiektow szuka
+	public int lookAroundForGrass(Position position) { 					//jako parametr przyjmuje klase której obiektow szuka
 		
 		int posX = position.getX();
 		int posY = position.getY();
 		for(IObjectsOnBoard obj : Starter.getObjectList()) {
-			if(obj instanceof Grass)						//przeszukujemy tylko obiekty typu Grass
+			if(obj instanceof Grass)									//przeszukujemy tylko obiekty typu Grass
 			{
-				int grassPosX=obj.getPosition().getX();			//przypisania w celu skrocenia zapisu
+				int grassPosX=obj.getPosition().getX();					//przypisania w celu skrocenia zapisu
 				int grassPosY=obj.getPosition().getY();
 				if(posX == grassPosX && posY+1==grassPosY) return 1;	//zwraca kierunek 1 (jest do góry)
 				if(posX+1 == grassPosX && posY==grassPosY) return 2;	//zwraca kierunek 2 (jest na prawo)
@@ -128,6 +128,51 @@ public int wolfLookAroundForSheep(Position position) {
 		return 0;
 		
 	}
+
+public boolean dogLookAroundForEnemies(Position position, int sightRange) { 
+	
+	int posX = position.getX();
+	int posY = position.getY();
+	for(IObjectsOnBoard obj : Starter.getObjectList()) {
+		if(obj instanceof Wolf || obj instanceof Thief)									//przeszukujemy tylko obiekty typu Sheep
+		{
+			int dogPosX=obj.getPosition().getX();										//przypisania w celu skrocenia zapisu
+			int dogPosY=obj.getPosition().getY();
+			
+			if(dogPosX-posX<sightRange && dogPosX-posX>-sightRange)
+			{
+				if(dogPosY-posY<sightRange && dogPosY-posY>-sightRange) return true;
+			}
+		}
+	}
+	return false;
+	
+	
+}
+
+public int thiefLookAroundForSheeps(Position position, int sightRange) {						 //zwraca ilosc owiec w zasiegu ataku
+	
+	int sheepCounter = 0;
+	int posX = position.getX();
+	int posY = position.getY();
+	for(IObjectsOnBoard obj : Starter.getObjectList()) {
+		if(obj instanceof Sheep)																//przeszukujemy tylko obiekty typu Sheep
+		{
+			int thiefPosX=obj.getPosition().getX();												//przypisania w celu skrocenia zapisu
+			int thiefPosY=obj.getPosition().getY();
+			
+			if(thiefPosX-posX<sightRange && thiefPosX-posX>-sightRange)							// jezeli znajduje sie w zasiegu na osi x
+			{
+				if(thiefPosY-posY<sightRange && thiefPosY-posY>-sightRange) sheepCounter++;  	// jezeli znajduje sie w zasiegu na osi y
+			}																					// gdy owca spelni oba warunki jest zwiekszana liczba owiec w zasiegu
+		}
+	}
+	
+	return sheepCounter;
+	
+}
+
+
 
 	
 }
