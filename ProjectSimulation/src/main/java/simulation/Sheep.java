@@ -21,11 +21,33 @@ public class Sheep extends FarmAnimals {
 	
 	void multiplicate()
 	{
-		if(this.multiplicationPoints==10)
+		Position newPosition;
+		int newDirection;
+		
+		if(this.multiplicationPoints==10 && map.isAnyEmptyFieldAround(this.getPosition()))  // czy jest 10 punktow rozmnazania i jest jakies wolne miejsce obok
 		{
-			this.multiplicationPoints=0;
 			
-		//	IMap.createNewObject();//// dokonczyc po zrobieniu metody create new object z mapsimple!!
+		do {
+		
+			do {
+				
+				newDirection = RandomGenerator.giveRandomMove();
+				
+			} while(!map.isTheMoveProperly(map.getObjectPosition(this), newDirection));
+			
+			newPosition= new Position(this.getPosition().positionAfterMove(newDirection)); 
+		
+		
+		}while(map.setPosition(new Sheep(map), newPosition));
+		
+		this.multiplicationPoints=0;	//reset punktów rozmna¿ania	
+			
+			
+			
+					
+			
+			
+			
 		}
 	}
 	

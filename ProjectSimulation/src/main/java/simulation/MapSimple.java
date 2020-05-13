@@ -172,6 +172,18 @@ public int thiefLookAroundForSheeps(Position position, int sightRange) {						 /
 	
 }
 
+public boolean isAnyEmptyFieldAround(Position position)
+{
+	int posX=position.getX();
+	int posY=position.getY();
+	
+	if(tableMap[posX+1][posY]==null) return true;
+	if(tableMap[posX-1][posY]==null) return true;
+	if(tableMap[posX][posY+1]==null) return true;
+	if(tableMap[posX][posY-1]==null) return true;
+	return false;
+}
+
 
 
 	

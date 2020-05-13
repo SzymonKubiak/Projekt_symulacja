@@ -21,4 +21,11 @@ public class RandomGenerator {
 		return position;
 	}
 	
+	static int giveRandomNumber(int range)
+	{
+		Random generator = new Random();
+		int number = generator.nextInt(range);
+		return number;
+	}
+	
 }

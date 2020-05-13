@@ -25,5 +25,7 @@ public interface IMap {
 	boolean dogLookAroundForEnemies(Position position, int sightRange);
 	
 	int thiefLookAroundForSheeps(Position position, int sightRange);
+	
+	boolean isAnyEmptyFieldAround(Position position);
 
 }
