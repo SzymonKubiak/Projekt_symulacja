@@ -45,7 +45,7 @@ protected void makeMove() {
 		
 		do {
 			moveDirection=RandomGenerator.giveRandomMove();							 //losujemy kierunek przemieszczenia
-		} while(!map.isTheMoveProperly(this.getPosition(), moveDirection)); 	 	 // dopoki nie bêdzie poprawny - nie wyjdzie poza mape
+		} while(!map.isTheMoveProperly(this.getPosition(), moveDirection)); 	 	 // dopoki nie bï¿½dzie poprawny - nie wyjdzie poza mape
 
 	newPosition= new Position(this.getPosition().positionAfterMove(moveDirection));  //obliczenie nowej pozycji
 		

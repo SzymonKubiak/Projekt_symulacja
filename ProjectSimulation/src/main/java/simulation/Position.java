@@ -4,7 +4,7 @@ public class Position {
 	private int x;
 	private int y;
 	
-	public Position(Position position) { ////Konstruktor pozycji s³u¿¹cy przy kopiowaniu
+	public Position(Position position) { ////Konstruktor pozycji sï¿½uï¿½ï¿½cy przy kopiowaniu
 		
 		this.x=position.getX();
 		this.y=position.getY();
@@ -35,19 +35,19 @@ public class Position {
 		this.y=y;
 	}
 	
-	Position positionAfterMove(int move) // u¿ywane do obliczenia nowej pozycji obiektu
+	Position positionAfterMove(int move) // uzywane do obliczenia nowej pozycji obiektu
 	{
-		if(move==1) {
-			this.x=this.x-1;
-		}
-		if(move==2) {
+		if(move==1) {              //jesli gora
 			this.y=this.y+1;
 		}
-		if(move==3) {
+		if(move==2) {              //jesli prawo
 			this.x=this.x+1;
 		}
-		if(move==4) {
+		if(move==3) {              //jesli dol
 			this.y=this.y-1;
+		}
+		if(move==4) {              //jesli lewo
+			this.x=this.x-1;
 		}
 		return this;
 	}
