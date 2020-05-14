@@ -1,55 +1,53 @@
 package simulation;
 
 public class Position {
-	private int x;
-	private int y;
-	
-	public Position(Position position) { ////Konstruktor pozycji s�u��cy przy kopiowaniu
+	public Position(){	
+	}
+	public Position(int x, int y){
+		this.x=x;
+		this.y=y;
+	}
+    public Position(Position position) { ////Konstruktor pozycji sluzacy przy kopiowaniu
 		
 		this.x=position.getX();
 		this.y=position.getY();
 	}
+    
+	private int x;
+	private int y;
 	
-	public Position()
-	{
-		
-	}
 	
-	int getX()
-	{
+	int getX(){
 		return x;
 	}
 	
-	int getY()
-	{
+	int getY(){
 		return y;
 	}
 	
-	void setX(int x)
-	{
+	void setX(int x){
 		this.x=x;
 	}
 	
-	void setY(int y)
-	{
+	void setY(int y){
 		this.y=y;
 	}
 	
-	Position positionAfterMove(int move) // uzywane do obliczenia nowej pozycji obiektu
+	Position positionAfterMove(int move) // zwraca pozycje obiektu, ktora by zajal, gdyby obiekt wykonal ruch w zadanym kierunku
 	{
-		if(move==1) {              //jesli gora
-			this.y=this.y+1;
+		if(move==1) {                        //jesli gora
+			return new Position(x,y+1);
 		}
-		if(move==2) {              //jesli prawo
-			this.x=this.x+1;
+		if(move==2) {                        //jesli prawo
+			return new Position(x+1,y);
 		}
-		if(move==3) {              //jesli dol
-			this.y=this.y-1;
+		if(move==3) {                        //jesli dol
+			return new Position(x,y-1);
 		}
-		if(move==4) {              //jesli lewo
-			this.x=this.x-1;
+		if(move==4) {                        //jesli lewo
+			return new Position(x-1,y);
 		}
-		return this;
+		return null;
 	}
 	
 	@Override

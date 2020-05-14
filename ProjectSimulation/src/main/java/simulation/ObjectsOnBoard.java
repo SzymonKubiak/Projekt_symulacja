@@ -36,7 +36,7 @@ public abstract class ObjectsOnBoard implements IObjectsOnBoard {
 	
 
 
-protected void makeMove() {
+protected void makeMove() { //metoda umozliwia tylko przechodzenie na puste pola
 	
 	
 	int moveDirection;
@@ -45,11 +45,11 @@ protected void makeMove() {
 		
 		do {
 			moveDirection=RandomGenerator.giveRandomMove();							 //losujemy kierunek przemieszczenia
-		} while(!map.isTheMoveProperly(this.getPosition(), moveDirection)); 	 	 // dopoki nie b�dzie poprawny - nie wyjdzie poza mape
+		} while(!map.isTheMoveProperly(this.getPosition(), moveDirection)); 	 	 //dopoki nie bedzie poprawny - nie wyjdzie poza mape
 
-	newPosition= new Position(this.getPosition().positionAfterMove(moveDirection));  //obliczenie nowej pozycji
+	newPosition= this.getPosition().positionAfterMove(moveDirection);                //obliczenie nowej pozycji
 		
-	} while(map.setPosition(this, newPosition));
+	} while(!map.changePosition(this, newPosition));
 	 
 }
 }
