@@ -23,8 +23,9 @@ public class Grass implements IObjectsOnBoard {
 
 	@Override
 	public void disappear() {
-		map.deleteObject(this);                                //usuniecie z hashmapy i tablicy
-		Starter.getObjectList().remove(this);                  //usuniecie z listy
+		map.deleteObject(this);                                							//usuniecie z hashmapy i tablicy
+		Starter.getObjectList().remove(this);											 //usuniecie z listy
+		while(!map.changePosition(this, RandomGenerator.giveRandomPosition( map.getSize() )));
 	}
 
 	@Override
@@ -39,10 +40,8 @@ public class Grass implements IObjectsOnBoard {
 		
 	}
 	
-	public void changePosition()
-	{
-		while(!map.changePosition(this, RandomGenerator.giveRandomPosition( map.getSize() )));
-	}
+
+
 	
 	@Override
 	public String toString() {
