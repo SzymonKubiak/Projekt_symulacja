@@ -21,41 +21,47 @@ public class Sheep extends FarmAnimals {
 	
 	void multiplicate()
 	{
-		if(this.multiplicationPoints==10)
+		Position newPosition;
+		int newDirection;
+		
+		if(this.multiplicationPoints==10 && map.isAnyEmptyFieldAround(this.getPosition()))  // czy jest 10 punktow rozmnazania i jest jakies wolne miejsce obok
 		{
-			this.multiplicationPoints=0;
 			
-		//	IMap.createNewObject();//// dokonczyc po zrobieniu metody create new object z mapsimple!!
+		do {
+		
+			do {
+				
+				newDirection = RandomGenerator.giveRandomMove();
+				
+			} while(!map.isTheMoveProperly(map.getObjectPosition(this), newDirection));
+			
+			newPosition= new Position(this.getPosition().positionAfterMove(newDirection)); 
+		
+		
+		}while(map.setPosition(new Sheep(map), newPosition));
+		
+		this.multiplicationPoints=0;	//reset punktów rozmna¿ania	
+			
+			
+			
+					
+			
+			
+			
 		}
 	}
 	
 	
-	protected void makeMove() {
-		
-		boolean movePossible;
-		int moveDirection;
-		Position newPosition;
-		do {
-			
-			do {
-				moveDirection=RandomGenerator.giveRandomMove(); //losujemy kierunek przemieszczenia
-			} while(!map.isTheMoveProperly(this.getPosition(), moveDirection)); // dopoki nie bêdzie poprawny - nie wyjdzie poza mape
-
-		newPosition= new Position(this.getPosition().positionAfterMove(moveDirection)); //obliczenie nowej pozycji
-			
-		if(map.getObject(newPosition)==null || map.getObject(newPosition) instanceof Grass) movePossible=true;  // sprawdzenie czy nowy ruch nie spowoduje kolizji z innym obiektem
-		else movePossible=false;
-		
-	} while(!movePossible);
-	
-		map.setPosition(this, newPosition);
-	
-	}
 
 	@Override
 	public void makeTurn() {
-		// TODO Auto-generated method stub
+		
 		
 	}
+	
+	public void lookForGrass() {
+		
+	}
+	
 
 }
