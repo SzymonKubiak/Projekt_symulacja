@@ -15,8 +15,8 @@ public class RandomGenerator {
 		Random generator = new Random();
 		Position position = new Position();
 		
-		position.setX(generator.nextInt(size));
-		position.setY(generator.nextInt(size));
+		position.setX(generator.nextInt(size-1));
+		position.setY(generator.nextInt(size-1));
 		
 		return position;
 	}
