@@ -8,7 +8,7 @@ public interface IMap {
 	
 	boolean changePosition(IObjectsOnBoard object, Position position);
 	
-	void delateObject(IObjectsOnBoard object);
+	void deleteObject(IObjectsOnBoard object);
 	
 	IObjectsOnBoard getObject(Position position);
 	
@@ -17,5 +17,15 @@ public interface IMap {
 	boolean isTheMoveProperly(Position position, int move);
 	
 	int getSize();
+	
+	int wolfLookAroundForSheep(Position position);
+	
+	int lookAroundForGrass(Position position);
+	
+	boolean dogLookAroundForEnemies(Position position, int sightRange);
+	
+	int thiefLookAroundForSheeps(Position position, int sightRange);
+	
+	boolean isAnyEmptyFieldAround(Position position);
 
 }
