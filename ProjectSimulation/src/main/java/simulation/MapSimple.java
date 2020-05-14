@@ -67,19 +67,19 @@ public class MapSimple implements IMap {
 		
 		if(move==1) 
 		{
-			if(x==0) return false;
+			if(y==0) return false;
 		}
 		if(move==2)
 		{
-			if(y==size) return false;
+			if(x<=size-2) return false;
 		}
 		if(move==3)
 		{
-			if(x==size) return false;
+			if(y<=size-2) return false;
 		}
 		if(move==4)
 		{
-			if(y==0) return false;
+			if(x==0) return false;
 		}
 		return true;
 	}

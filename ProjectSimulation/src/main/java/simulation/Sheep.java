@@ -27,7 +27,7 @@ public class Sheep extends FarmAnimals {
 		Position newPosition;
 		int newDirection;
 		
-		if(this.multiplicationPoints<=10 && map.isAnyEmptyFieldAround(this.getPosition()))  // czy jest 10 punktow rozmnazania i jest jakies wolne miejsce obok
+		if(this.multiplicationPoints>=10 && map.isAnyEmptyFieldAround(this.getPosition()))  // czy jest 10 punktow rozmnazania i jest jakies wolne miejsce obok
 		{	
 		do 
 		{
@@ -49,7 +49,10 @@ public class Sheep extends FarmAnimals {
 	public void makeTurn() {
 		
 		multiplicate();		// sprobuj sie rozmnozyc
-		if(!goForGrass()) makeMove();  // jezeli nie bylo trawy w poblizu to wykonaj dowolny ruch
+		if(goForGrass()==false)
+		{
+			this.makeMove();  // jezeli nie bylo trawy w poblizu to wykonaj dowolny ruch
+		}
 		
 		
 	}
@@ -60,7 +63,7 @@ public class Sheep extends FarmAnimals {
 		
 		if(grassDirection==0) return false;													// jezeli brak trawy w zasiegu zwraca false
 		
-		eatGrass(this.getPosition().positionAfterMove(grassDirection));						// zanim wejdzie na trawe, zjada ja
+		this.eatGrass(this.getPosition().positionAfterMove(grassDirection));						// zanim wejdzie na trawe, zjada ja
 		map.changePosition(this, this.getPosition().positionAfterMove(grassDirection));	// przenosi Owce tam gdzie byla trawa
 		return true;
 		
