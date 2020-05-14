@@ -36,9 +36,8 @@ public abstract class ObjectsOnBoard implements IObjectsOnBoard {
 	
 
 
-protected void makeMove() { //metoda umozliwia tylko przechodzenie na puste pola
-	
-	
+    protected void makeMove() { //metoda umozliwia tylko przechodzenie na puste pola
+    	
 	int moveDirection;
 	Position newPosition;
 	do {

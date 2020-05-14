@@ -22,6 +22,11 @@ public class Thief extends Enemies {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public String toString() {
+		return "T";
+	}
 
 	
 }

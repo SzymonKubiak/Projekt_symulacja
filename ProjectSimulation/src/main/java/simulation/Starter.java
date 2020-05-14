@@ -28,8 +28,11 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 	{
 		for(int i =0; i<numberOfIter; i++) {
 			
-			for(IObjectsOnBoard iObjectsOnBoard : objectList) 
+			for(IObjectsOnBoard iObjectsOnBoard : objectList) {
 				iObjectsOnBoard.makeTurn();
+			}
+			map.printTableMap();               //wyswietlenie tablicy dwuwymiarowej
+			System.out.println();
 		}
 
 	}
@@ -42,9 +45,9 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 	
 	public static void main(String[] args) {
 		
-		IMap map = new MapSimple(100);
-		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(20,2,25,2,3);
-		Starter starter = new Starter(10, map, objectsCreator); 
+		IMap map = new MapSimple(12);
+		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(5,1,15,2,1);
+		Starter starter = new Starter(1, map, objectsCreator); 
 		
 		starter.runSimulation();
 		

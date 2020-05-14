@@ -14,6 +14,8 @@ public interface IMap {
 	
 	Position getObjectPosition(IObjectsOnBoard object);
 	
+	void printTableMap();
+	
 	boolean isTheMoveProperly(Position position, int move);
 	
 	int getSize();

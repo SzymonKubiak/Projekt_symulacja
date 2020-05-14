@@ -59,6 +59,17 @@ public class MapSimple implements IMap {
 	public Position getObjectPosition(IObjectsOnBoard object) { // Odczyt pozycji podanego obiektu
 		return objectsPositions.get(object);   					//get(Object key) - zwraca wartosc przypisaną do klucza 'key' lub null jesli do takiego klucza nie jest przypisana zadna wartosc
 	}
+	
+	@Override
+	public void printTableMap() {
+		for(int i=size-1 ; i>=0; i--) {
+			for(int j=0 ; j<size; j++) {
+				if(tableMap[i][j]==null)System.out.print(". ");
+				else System.out.print( tableMap[i][j].toString() + " ");
+			}
+			System.out.println();
+		}
+	}
 
 	
 	@Override
@@ -183,8 +194,6 @@ public boolean isAnyEmptyFieldAround(Position position)
 	if(tableMap[posX][posY-1]==null) return true;
 	return false;
 }
-
-
 
 	
 }

@@ -1,6 +1,7 @@
 package simulation;
 
 public class Grass implements IObjectsOnBoard {
+	
 	public Grass(IMap map) {
 		this.map = map;
 	}
@@ -41,6 +42,11 @@ public class Grass implements IObjectsOnBoard {
 	public void changePosition()
 	{
 		while(!map.changePosition(this, RandomGenerator.giveRandomPosition( map.getSize() )));
+	}
+	
+	@Override
+	public String toString() {
+		return "G";
 	}
 	
 	

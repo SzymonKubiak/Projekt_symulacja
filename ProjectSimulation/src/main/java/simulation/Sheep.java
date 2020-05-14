@@ -63,5 +63,10 @@ public class Sheep extends FarmAnimals {
 		
 	}
 	
+	@Override
+	public String toString() {
+		return "S";
+	}
+	
 
 }
