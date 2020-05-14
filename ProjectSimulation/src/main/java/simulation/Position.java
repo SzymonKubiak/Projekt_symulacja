@@ -35,17 +35,18 @@ public class Position {
 	
 	Position positionAfterMove(int move) // zwraca pozycje obiektu, ktora by zajal, gdyby obiekt wykonal ruch w zadanym kierunku
 	{
+		
 		if(move==1) {                        //jesli gora
-			return new Position(x,y+1);
+			return new Position(this.x,this.y-1);
 		}
 		if(move==2) {                        //jesli prawo
-			return new Position(x+1,y);
+			return new Position(this.x+1,this.y);
 		}
 		if(move==3) {                        //jesli dol
-			return new Position(x,y-1);
+			return new Position(this.x,this.y+1);
 		}
 		if(move==4) {                        //jesli lewo
-			return new Position(x-1,y);
+			return new Position(this.x-1,this.y);
 		}
 		return null;
 	}
@@ -57,6 +58,12 @@ public class Position {
 		Position position = (Position)o;
 		
 		return(( this.getX() == position.getX() )&& ( this.getY() == position.getY() ));
+	}
+	
+	
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.x+","+this.y;
 	}
 			
 }

@@ -21,8 +21,8 @@ public class MapSimple implements IMap {
 	@Override
 	public boolean setPosition(IObjectsOnBoard object, Position position) {             //dla obiektow nie majacych pozycji (dla nowo utworzonych)
 		if(getObject(position)!=null) return false;
-		objectsPositions.put(object, position);                                         //dodanie do hashmapy
 		tableMap[position.getX()][position.getY()]=object;                              //dodanie do tablicy
+		objectsPositions.put(object, position);                                         //dodanie do hashmapy
 		return true;
 		
 	}
@@ -62,10 +62,10 @@ public class MapSimple implements IMap {
 	
 	@Override
 	public void printTableMap() {
-		for(int i=size-1 ; i>=0; i--) {
+		for(int i=0 ; i<size; i++) {
 			for(int j=0 ; j<size; j++) {
-				if(tableMap[i][j]==null)System.out.print(". ");
-				else System.out.print( tableMap[i][j].toString() + " ");
+				if(tableMap[j][i]==null)System.out.print(". ");
+				else System.out.print( tableMap[j][i].toString() + " ");
 			}
 			System.out.println();
 		}
@@ -83,11 +83,11 @@ public class MapSimple implements IMap {
 		}
 		if(move==2)
 		{
-			if(x<=size-2) return false;
+			if(x>size-2) return false;
 		}
 		if(move==3)
 		{
-			if(y<=size-2) return false;
+			if(y>size-2) return false;
 		}
 		if(move==4)
 		{
@@ -111,9 +111,9 @@ public class MapSimple implements IMap {
 			{
 				int grassPosX=obj.getPosition().getX();					//przypisania w celu skrocenia zapisu
 				int grassPosY=obj.getPosition().getY();
-				if(posX == grassPosX && posY+1==grassPosY) return 1;	//zwraca kierunek 1 (jest do góry)
+				if(posX == grassPosX && posY-1==grassPosY) return 1;	//zwraca kierunek 1 (jest do góry)
 				if(posX+1 == grassPosX && posY==grassPosY) return 2;	//zwraca kierunek 2 (jest na prawo)
-				if(posX == grassPosX && posY-1==grassPosY) return 3;	//zwraca kierunek 3 (jest na dół)
+				if(posX == grassPosX && posY+1==grassPosY) return 3;	//zwraca kierunek 3 (jest na dół)
 				if(posX-1 == grassPosX && posY==grassPosY) return 4;	//zwraca kierunek 4 (jest na lewo)
 			}
 		}

@@ -17,7 +17,7 @@ public class Sheep extends FarmAnimals {
 	
 	private void eatGrass(Position grassPosition)	//argumentem jest pozycja Trawy
 	{
-		this.multiplicationPoints++;				// zjedzenie trawy dodaje jeden punkt do rozmnazania
+		this.multiplicationPoints++;	// zjedzenie trawy dodaje jeden punkt do rozmnazania
 		map.getObject(grassPosition).disappear();	// wywo³uje metodê disappear na obiekcie Trawy
 	}
 	
@@ -29,6 +29,7 @@ public class Sheep extends FarmAnimals {
 		
 		if(this.multiplicationPoints>=10 && map.isAnyEmptyFieldAround(this.getPosition()))  // czy jest 10 punktow rozmnazania i jest jakies wolne miejsce obok
 		{	
+			IObjectsOnBoard newSheep = new Sheep(map);
 		do 
 		{
 			do 
@@ -37,9 +38,12 @@ public class Sheep extends FarmAnimals {
 			} while(!map.isTheMoveProperly(map.getObjectPosition(this), newDirection));
 			
 		newPosition= new Position(this.getPosition().positionAfterMove(newDirection)); 
-		} while(map.setPosition(new Sheep(map), newPosition));
 		
-		this.multiplicationPoints=0;	//reset punktów rozmna¿ania	
+		} while(map.setPosition(newSheep, newPosition));
+		
+		Starter.getAddedObjectsList().add(newSheep);
+		this.multiplicationPoints=0;	//reset punktow rozmnazania	
+		System.out.println("Multiplication 101!");
 		}
 	}
 	
@@ -52,6 +56,7 @@ public class Sheep extends FarmAnimals {
 		if(goForGrass()==false)
 		{
 			this.makeMove();  // jezeli nie bylo trawy w poblizu to wykonaj dowolny ruch
+			
 		}
 		
 		
@@ -62,7 +67,6 @@ public class Sheep extends FarmAnimals {
 		int grassDirection = map.lookAroundForGrass(this.getPosition());
 		
 		if(grassDirection==0) return false;													// jezeli brak trawy w zasiegu zwraca false
-		
 		this.eatGrass(this.getPosition().positionAfterMove(grassDirection));						// zanim wejdzie na trawe, zjada ja
 		map.changePosition(this, this.getPosition().positionAfterMove(grassDirection));	// przenosi Owce tam gdzie byla trawa
 		return true;

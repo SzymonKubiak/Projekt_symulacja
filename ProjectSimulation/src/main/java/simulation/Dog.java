@@ -19,6 +19,11 @@ public class Dog extends FarmAnimals {
 	public void makeTurn() {
 		// TODO Auto-generated method stub
 	}
+	@Override
+	public String toString() {
+		
+		return "D";
+	}
 }
 
 

@@ -1,5 +1,6 @@
 package simulation;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Starter {
@@ -19,20 +20,23 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 	}
 
 
-    private static List<IObjectsOnBoard> objectList;	
+    private static List<IObjectsOnBoard> objectList;
+    private static List<IObjectsOnBoard> addedObjectsList;
     IMap map;
     int numberOfIter;
 
 
 	void runSimulation()
 	{
+		addedObjectsList= new LinkedList<IObjectsOnBoard>();
 		for(int i =0; i<numberOfIter; i++) {
-			
+			map.printTableMap();               //wyswietlenie tablicy dwuwymiarowej
+			System.out.println();
+			objectList.addAll(addedObjectsList);					// przed kazda iteracja do listy dodawane s¹ nowo powstale obiekty
 			for(IObjectsOnBoard iObjectsOnBoard : objectList) {
 				iObjectsOnBoard.makeTurn();
 			}
-			map.printTableMap();               //wyswietlenie tablicy dwuwymiarowej
-			System.out.println();
+			
 		}
 
 	}
@@ -41,13 +45,17 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 		return objectList;
 	}
 	
+	public static List<IObjectsOnBoard> getAddedObjectsList(){   // funkcja ta jest potrzebna do dodawania obiektow do listy, po ktorej iterujemy
+		return addedObjectsList;
+	}
+	
 	
 	
 	public static void main(String[] args) {
 		
 		IMap map = new MapSimple(12);
-		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(5,1,15,2,1);
-		Starter starter = new Starter(1, map, objectsCreator); 
+		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(1,0,30,0,0);
+		Starter starter = new Starter(30, map, objectsCreator); 
 		
 		starter.runSimulation();
 		
