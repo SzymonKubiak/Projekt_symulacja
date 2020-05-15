@@ -188,11 +188,22 @@ public boolean isAnyEmptyFieldAround(Position position)
 {
 	int posX=position.getX();
 	int posY=position.getY();
-	
-	if(tableMap[posX+1][posY]==null) return true;
-	if(tableMap[posX-1][posY]==null) return true;
-	if(tableMap[posX][posY+1]==null) return true;
-	if(tableMap[posX][posY-1]==null) return true;
+	if(posX+1<size-1)							//warunki sa po to, aby uniknac proby dostania się do pol poza zakresem
+	{
+		if(tableMap[posX+1][posY]==null) return true;
+	}
+	if(posX-1>0)
+	{
+		if(tableMap[posX-1][posY]==null) return true;
+	}
+	if(posY+1<size-1)
+	{
+		if(tableMap[posX][posY+1]==null) return true;
+	}
+	if(posY-1>0)
+	{
+		if(tableMap[posX][posY-1]==null) return true;
+	}
 	return false;
 }
 

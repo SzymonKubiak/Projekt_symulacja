@@ -39,7 +39,7 @@ public class Sheep extends FarmAnimals {
 			
 		newPosition= new Position(this.getPosition().positionAfterMove(newDirection)); 
 		
-		} while(map.setPosition(newSheep, newPosition));
+		} while(!map.setPosition(newSheep, newPosition));
 		
 		Starter.getAddedObjectsList().add(newSheep);
 		this.multiplicationPoints=0;	//reset punktow rozmnazania	
