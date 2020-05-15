@@ -32,17 +32,17 @@ public class Sheep extends FarmAnimals {
 			IObjectsOnBoard newSheep = new Sheep(map);
 		do 
 		{
-			do 
+			do  
 			{	
 			newDirection = RandomGenerator.giveRandomMove();	
-			} while(!map.isTheMoveProperly(map.getObjectPosition(this), newDirection));
+			} while(!map.isTheMoveProperly(map.getObjectPosition(this), newDirection));  //losuje taki ruch, ktory nie wyjdzie poza mape wzgledem starej owcy
 			
-		newPosition= new Position(this.getPosition().positionAfterMove(newDirection)); 
+		newPosition= new Position(this.getPosition().positionAfterMove(newDirection)); //przypisanie pozycji, kotra nie wyjdzie poza mape
 		
-		} while(!map.setPosition(newSheep, newPosition));
+		} while(!map.setPosition(newSheep, newPosition));     //wykonuj dopoki przypisanie pozycji nie jest mozliwe do nowej owcy (jest to pozycja zajeta)
 		
-		Starter.getAddedObjectsList().add(newSheep);
-		this.multiplicationPoints=0;	//reset punktow rozmnazania	
+		Starter.getAddedObjectsList().add(newSheep); 
+		this.multiplicationPoints=0;	                      //reset punktow rozmnazania	
 		System.out.println("Multiplication 101!");
 		}
 	}

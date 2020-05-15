@@ -62,7 +62,7 @@ public class MapSimple implements IMap {
 	
 	@Override
 	public void printTableMap() {
-		for(int i=0 ; i<size; i++) {
+		for(int i=0; i<size; i++) {
 			for(int j=0 ; j<size; j++) {
 				if(tableMap[j][i]==null)System.out.print(". ");
 				else System.out.print( tableMap[j][i].toString() + " ");
@@ -77,19 +77,19 @@ public class MapSimple implements IMap {
 		int x = position.getX();
 		int y = position.getY();
 		
-		if(move==1) 
+		if(move==1)                     //jesli (wylosujemy) ruch w gore
 		{
 			if(y==0) return false;
 		}
-		if(move==2)
+		if(move==2)                     //jesli (wylosujemy) ruch w prawo
 		{
-			if(x>size-2) return false;
+			if(x==size-1) return false;  
 		}
-		if(move==3)
+		if(move==3)                     //jesli (wylosujemy) ruch w dol
 		{
-			if(y>size-2) return false;
+			if(y==size-1) return false;
 		}
-		if(move==4)
+		if(move==4)                     //jesli (wylosujemy) ruch w lewo
 		{
 			if(x==0) return false;
 		}
@@ -190,19 +190,19 @@ public boolean isAnyEmptyFieldAround(Position position)
 {
 	int posX=position.getX();
 	int posY=position.getY();
-	if(posX+1<size-1)							//warunki sa po to, aby uniknac proby dostania się do pol poza zakresem
+	if(posX+1<=size-1)							//warunki sa po to, aby uniknac proby dostania się do pol poza zakresem
 	{
 		if(tableMap[posX+1][posY]==null) return true;
 	}
-	if(posX-1>0)
+	if(posX-1>=0)
 	{
 		if(tableMap[posX-1][posY]==null) return true;
 	}
-	if(posY+1<size-1)
+	if(posY+1<=size-1)
 	{
 		if(tableMap[posX][posY+1]==null) return true;
 	}
-	if(posY-1>0)
+	if(posY-1>=0)
 	{
 		if(tableMap[posX][posY-1]==null) return true;
 	}

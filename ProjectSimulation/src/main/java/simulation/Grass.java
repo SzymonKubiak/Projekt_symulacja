@@ -39,9 +39,8 @@ public class Grass implements IObjectsOnBoard {
 		if(!isActive)
 		{
 			while(!map.setPosition(this, RandomGenerator.giveRandomPosition( map.getSize() )));
+			isActive=true;
 		}
-		isActive=true;
-		
 	}
 	
 

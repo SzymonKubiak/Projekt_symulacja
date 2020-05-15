@@ -9,7 +9,8 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 		
 		this.numberOfIter = numberOfIter;
 		this.map = map;
-		objectList = objectsCreator.create(map); //utorzenie listy obiektow
+		objectList = objectsCreator.create(map);                //utorzenie listy obiektow
+		addedObjectsList= new LinkedList<IObjectsOnBoard>();    //utworzenie dodatkowej listy na obiekty utworzone w trakcie iteracji
 		
 		for(IObjectsOnBoard o : objectList) { //musimy dodac wszystkie utworzone obiekty do kolekcji typu map i przypisac im randomowa pozycje
 			
@@ -28,11 +29,10 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 
 	void runSimulation()
 	{
-		addedObjectsList= new LinkedList<IObjectsOnBoard>();
 		for(int i =0; i<numberOfIter; i++) {
+			System.out.println("Iteration: " + i);
 			map.printTableMap();               //wyswietlenie tablicy dwuwymiarowej
 			System.out.println();
-			System.out.println(i);
 			objectList.addAll(addedObjectsList);					// przed kazda iteracja do listy dodawane s¹ nowo powstale obiekty
 			for(IObjectsOnBoard iObjectsOnBoard : objectList) {
 				iObjectsOnBoard.makeTurn();
@@ -54,8 +54,8 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 	
 	public static void main(String[] args) {
 		
-		IMap map = new MapSimple(15);
-		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(10,0,10,0,0);
+		IMap map = new MapSimple(10);
+		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(1,0,5,0,0);
 		Starter starter = new Starter(30, map, objectsCreator); 
 		
 		starter.runSimulation();
