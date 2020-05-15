@@ -77,6 +77,12 @@ public class Sheep extends FarmAnimals {
 	public String toString() {
 		return "S";
 	}
+
+	@Override
+	public boolean getState() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 
 }

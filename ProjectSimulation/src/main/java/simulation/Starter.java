@@ -55,8 +55,8 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 	public static void main(String[] args) {
 		
 		IMap map = new MapSimple(15);
-		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(10,0,30,0,0);
-		Starter starter = new Starter(300, map, objectsCreator); 
+		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(1,0,100,0,0);
+		Starter starter = new Starter(30, map, objectsCreator); 
 		
 		starter.runSimulation();
 		

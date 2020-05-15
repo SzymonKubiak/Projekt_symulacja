@@ -24,6 +24,11 @@ public class Dog extends FarmAnimals {
 		
 		return "D";
 	}
+	@Override
+	public boolean getState() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
 
 

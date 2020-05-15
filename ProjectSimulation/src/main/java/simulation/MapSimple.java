@@ -107,14 +107,16 @@ public class MapSimple implements IMap {
 		int posX = position.getX();
 		int posY = position.getY();
 		for(IObjectsOnBoard obj : Starter.getObjectList()) {
-			if(obj instanceof Grass)									//przeszukujemy tylko obiekty typu Grass
+			if(obj instanceof Grass && obj.getState())									//przeszukujemy tylko obiekty typu Grass
 			{
+			
 				int grassPosX=obj.getPosition().getX();					//przypisania w celu skrocenia zapisu
 				int grassPosY=obj.getPosition().getY();
 				if(posX == grassPosX && posY-1==grassPosY) return 1;	//zwraca kierunek 1 (jest do góry)
 				if(posX+1 == grassPosX && posY==grassPosY) return 2;	//zwraca kierunek 2 (jest na prawo)
 				if(posX == grassPosX && posY+1==grassPosY) return 3;	//zwraca kierunek 3 (jest na dół)
 				if(posX-1 == grassPosX && posY==grassPosY) return 4;	//zwraca kierunek 4 (jest na lewo)
+				
 			}
 		}
 		return 0;

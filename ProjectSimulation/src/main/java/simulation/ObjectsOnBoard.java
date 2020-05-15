@@ -37,8 +37,9 @@ public abstract class ObjectsOnBoard implements IObjectsOnBoard {
 
 
     protected void makeMove() { //metoda umozliwia tylko przechodzenie na puste pola
-    	
-	int moveDirection;
+    	if(map.isAnyEmptyFieldAround(this.getPosition()))
+	{
+    int moveDirection;
 	Position newPosition;
 	do {
 		
@@ -49,5 +50,6 @@ public abstract class ObjectsOnBoard implements IObjectsOnBoard {
 	newPosition= this.getPosition().positionAfterMove(moveDirection);                //obliczenie nowej pozycji
 		
 	} while(!map.changePosition(this, newPosition));
+	}
 }
 }

@@ -27,6 +27,11 @@ public class Thief extends Enemies {
 	public String toString() {
 		return "T";
 	}
+	@Override
+	public boolean getState() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 	
 }

@@ -26,6 +26,11 @@ public class Wolf extends Enemies {
 	public String toString() {
 		return "W";
 	}
+	@Override
+	public boolean getState() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 
 }
