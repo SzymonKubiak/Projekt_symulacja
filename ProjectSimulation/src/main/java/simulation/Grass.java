@@ -26,7 +26,6 @@ public class Grass implements IObjectsOnBoard {
 	public void disappear() {
 		isActive=false;
 		map.deleteObject(this);
-		//while(!map.changePosition(this, RandomGenerator.giveRandomPosition( map.getSize() )));
 	}
 
 	@Override
@@ -36,8 +35,12 @@ public class Grass implements IObjectsOnBoard {
 
 
 	@Override
-	public void makeTurn() {
-		// TODO Auto-generated method stub
+	public void makeTurn() {				// na poczatku kazdej rundy, trawy ktore zostaly zjedzone, dostaja nowe pozycje
+		if(!isActive)
+		{
+			while(!map.setPosition(this, RandomGenerator.giveRandomPosition( map.getSize() )));
+		}
+		isActive=true;
 		
 	}
 	

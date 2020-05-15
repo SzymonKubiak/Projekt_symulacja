@@ -29,16 +29,16 @@ public class ObjectsOnBoardCreator implements IObjectsOnBoardCreator{
 		
 		List<IObjectsOnBoard> list = new LinkedList<>();
 		
+		for(int i=0; i<numG; i++) {							//zmieniono kolejnosc dodania do listy, aby trawa byla na przodzie
+			list.add(new Grass(map));
+		}
+		
 		for(int i=0; i<numS; i++) {
 			list.add(new Sheep(map));
 		}
 		
 		for(int i=0; i<numD; i++) {
 			list.add(new Dog(map));
-		}
-		
-		for(int i=0; i<numG; i++) {
-			list.add(new Grass(map));
 		}
 		
 		for(int i=0; i<numT; i++) {
