@@ -15,8 +15,8 @@ public class RandomGenerator {
 		Random generator = new Random();
 		Position position = new Position();
 		
-		position.setX(generator.nextInt(size-1));
-		position.setY(generator.nextInt(size-1));
+		position.setX(generator.nextInt(size));   //dla size=100 losuje liczby z przedzialu od 0 do 99;
+		position.setY(generator.nextInt(size));
 		
 		return position;
 	}
