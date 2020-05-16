@@ -41,7 +41,7 @@ public class Sheep extends FarmAnimals {
 			newDirection = RandomGenerator.giveRandomMove();	
 			} while(!map.isTheMoveProperly(map.getObjectPosition(this), newDirection));  //losuje taki ruch, ktory nie wyjdzie poza mape wzgledem starej owcy
 			
-		newPosition= new Position(this.getPosition().positionAfterMove(newDirection)); //przypisanie pozycji, kotra nie wyjdzie poza mape
+		newPosition= this.getPosition().positionAfterMove(newDirection); //przypisanie pozycji, kotra nie wyjdzie poza mape
 		
 		} while(!map.setPosition(newSheep, newPosition));     //wykonuj dopoki przypisanie pozycji nie jest mozliwe do nowej owcy (jest to pozycja zajeta)
 		
@@ -70,9 +70,10 @@ public class Sheep extends FarmAnimals {
 	{
 		int grassDirection = map.lookAroundForGrass(this.getPosition());
 		
-		if(grassDirection==0) return false;													// jezeli brak trawy w zasiegu zwraca false
-		this.eatGrass(this.getPosition().positionAfterMove(grassDirection));						// zanim wejdzie na trawe, zjada ja
-		map.changePosition(this, this.getPosition().positionAfterMove(grassDirection));	// przenosi Owce tam gdzie byla trawa
+		if(grassDirection==0) return false;													  // jezeli brak trawy w zasiegu zwraca false
+		Position grassPosition = this.getPosition().positionAfterMove(grassDirection);        // obliczenie pozycji trawy
+		this.eatGrass(grassPosition);						                                  // zanim wejdzie na trawe, zjada ja
+		map.changePosition(this, grassPosition);	                                          // przenosi Owce tam gdzie byla trawa
 		return true;
 		
 	}
