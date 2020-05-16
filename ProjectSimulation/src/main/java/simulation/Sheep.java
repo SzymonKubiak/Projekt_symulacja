@@ -20,20 +20,14 @@ public class Sheep extends FarmAnimals {
 		this.multiplicationPoints++;	// zjedzenie trawy dodaje jeden punkt do rozmnazania
 		map.getObject(grassPosition).disappear();	// wywo³uje metodê disappear na obiekcie Trawy
 	}
-	
-	private boolean isFull(){                          //sprawdzanie, czy jest najedzona
-		if(this.multiplicationPoints==10) return true;
-		return false;
-	}    
-	
-	private void multiplicate()
+	   	
+	private boolean multiplicate()
 	{
-		Position newPosition;
-		int newDirection;
-		
-		if(map.isAnyEmptyFieldAround(this.getPosition()) )  // czy jest jakies wolne miejsce obok
+		if(this.multiplicationPoints>=10 &&map.isAnyEmptyFieldAround(this.getPosition()) )  // czy jest przynajmniej 10 punktow i jakies wolne miejsce obok
 		{	
 			IObjectsOnBoard newSheep = new Sheep(map);
+			Position newPosition;
+			int newDirection;
 		do 
 		{
 			do  
@@ -48,23 +42,27 @@ public class Sheep extends FarmAnimals {
 		Starter.getAddedObjectsList().add(newSheep); 
 		this.multiplicationPoints=0;	                      //reset punktow rozmnazania	
 		System.out.println("Multiplication 101!");
+		return true;
 		}
+		
+		return false;
 	}
 	
 	
 
 	@Override
 	public void makeTurn() {
-		if(this.isFull()) {               //jesli jest najedzona
-			multiplicate();               //proba multiplikacji (wykona sie, gdy bedzie wolne miejsce obok owcy)
-		}
-		else {                            //jesli nie jest najedzona
+		
+		if(multiplicate()); 
+		else {                     //jesli multiplikacja sie nie odbyla
+			
 			if(goForGrass()==false) {     //wykonaj zwykly ruch gdy nie ma trawy w poblizu, gdy zwroci true zje trawe i przejdzie na jej pozycje
 				this.makeMove();
-			}
+			}	
 		}
+	}		
 		
-	}
+	
 	
 	private boolean goForGrass()
 	{
