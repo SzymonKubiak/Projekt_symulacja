@@ -21,6 +21,25 @@ public class RandomGenerator {
 		return position;
 	}
 	
+	static Position giveRandomPositionEnemy(int size) 
+	{
+		Random generator = new Random();
+		int way = generator.nextInt(4) +1;
+		if(way==1) {                       //wystartuje od gory
+			return new Position(generator.nextInt(size) ,0);
+		}
+		if(way==2) {                       //od prawej strony
+			return new Position(size-1, generator.nextInt(size));
+		}
+		if(way==3) {                       //od dolu
+			return new Position(generator.nextInt(size) ,size-1);
+		}
+		if(way==4) {                       //od lewej strony
+			return new Position(0, generator.nextInt(size));
+		}
+		return null;
+	}
+	
 	static int giveRandomNumber(int range)
 	{
 		Random generator = new Random();

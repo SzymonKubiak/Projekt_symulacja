@@ -7,14 +7,17 @@ public class Starter {
 	
 public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator) {
 		
-		this.numberOfIter = numberOfIter;
+		Starter.numberOfIter = numberOfIter;
 		this.map = map;
 		objectList = objectsCreator.create(map);                //utorzenie listy obiektow
 		addedObjectsList= new LinkedList<IObjectsOnBoard>();    //utworzenie dodatkowej listy na obiekty utworzone w trakcie iteracji
 		
 		for(IObjectsOnBoard o : objectList) { //musimy dodac wszystkie utworzone obiekty do kolekcji typu map i przypisac im randomowa pozycje
+			if(o instanceof Enemies);   //jesli to wilk/zlodziej nie dodawaj go
+			else {
+				while(!map.setPosition(o, RandomGenerator.giveRandomPosition( map.getSize() ) ) );
+			}
 			
-			while(!map.setPosition(o, RandomGenerator.giveRandomPosition( map.getSize() ) ) );
 			
 		}
 			
@@ -23,16 +26,21 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 
     private static List<IObjectsOnBoard> objectList;
     private static List<IObjectsOnBoard> addedObjectsList;
-    IMap map;
-    int numberOfIter;
+    private static int actualIteration;                             //bedzie ja potrzebowal wilk i zlodziej
+    private static int numberOfIter;
+    IMap map; 
+    
 
 
 	void runSimulation()
 	{
-		for(int i =0; i<numberOfIter; i++) {
+		for(int i=0; i<numberOfIter; i++) {
+			actualIteration = i;
+			
 			System.out.println("Iteration: " + i);
-			map.printTableMap();               //wyswietlenie tablicy dwuwymiarowej
+			map.printTableMap();                                    //wyswietlenie tablicy dwuwymiarowej
 			System.out.println();
+			
 			for(IObjectsOnBoard iObjectsOnBoard : objectList) {
 				iObjectsOnBoard.makeTurn();
 			}
@@ -51,13 +59,19 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 		return addedObjectsList;
 	}
 	
+	public static int getActualIteration() {
+		return actualIteration;
+	}
 	
+	public static int getNumberOfIter() {
+		return numberOfIter;
+	}
 	
 	public static void main(String[] args) {
 		
 		IMap map = new MapSimple(10);
-		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(1,0,40,0,0);
-		Starter starter = new Starter(30, map, objectsCreator); 
+		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(0,0,0,0,1);
+		Starter starter = new Starter(10, map, objectsCreator); 
 		
 		starter.runSimulation();
 		
