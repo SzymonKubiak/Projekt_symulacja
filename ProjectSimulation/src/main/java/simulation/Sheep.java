@@ -21,13 +21,17 @@ public class Sheep extends FarmAnimals {
 		map.getObject(grassPosition).disappear();	// wywo³uje metodê disappear na obiekcie Trawy
 	}
 	
+	private boolean isFull(){                          //sprawdzanie, czy jest najedzona
+		if(this.multiplicationPoints==10) return true;
+		return false;
+	}    
 	
 	private void multiplicate()
 	{
 		Position newPosition;
 		int newDirection;
 		
-		if(this.multiplicationPoints>=10 && map.isAnyEmptyFieldAround(this.getPosition()))  // czy jest 10 punktow rozmnazania i jest jakies wolne miejsce obok
+		if(map.isAnyEmptyFieldAround(this.getPosition()) )  // czy jest jakies wolne miejsce obok
 		{	
 			IObjectsOnBoard newSheep = new Sheep(map);
 		do 
@@ -51,14 +55,14 @@ public class Sheep extends FarmAnimals {
 
 	@Override
 	public void makeTurn() {
-		
-		multiplicate();		// sprobuj sie rozmnozyc
-		if(goForGrass()==false)
-		{
-			this.makeMove();  // jezeli nie bylo trawy w poblizu to wykonaj dowolny ruch
-			
+		if(this.isFull()) {               //jesli jest najedzona
+			multiplicate();               //proba multiplikacji (wykona sie, gdy bedzie wolne miejsce obok owcy)
 		}
-		
+		else {                            //jesli nie jest najedzona
+			if(goForGrass()==false) {     //wykonaj zwykly ruch gdy nie ma trawy w poblizu, gdy zwroci true zje trawe i przejdzie na jej pozycje
+				this.makeMove();
+			}
+		}
 		
 	}
 	
