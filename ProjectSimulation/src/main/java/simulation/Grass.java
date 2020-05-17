@@ -36,10 +36,11 @@ public class Grass implements IObjectsOnBoard {
 
 	@Override
 	public void makeTurn() {				// na poczatku kazdej rundy, trawy ktore zostaly zjedzone, dostaja nowe pozycje
-		if(!isActive)
-		{
-			while(!map.setPosition(this, RandomGenerator.giveRandomPosition( map.getSize() )));
-			isActive=true;
+		if(!isActive){
+			if(map.isFreePlaceOnMap()) {    //jesli jest jakiekolwiek wolne miejsce wykonuj petle, w przeciwnym razie nie rob tego
+				while(!map.setPosition(this, RandomGenerator.giveRandomPosition( map.getSize() )));
+				isActive=true;
+			}	
 		}
 	}
 	

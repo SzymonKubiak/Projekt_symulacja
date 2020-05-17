@@ -25,9 +25,15 @@ public class Wolf extends Enemies {
 			}
 		
 		if(Starter.getActualIteration()==myTime) {  //jesli aktualna iteracja pokryje sie z jego wylosowana iteracja ma sie pojawic na mapie
-			//tutaj trzeba dodac metode sprawdzajaca, czy wg jest jakies wolne miejsce na brzegu
-			while(!map.setPosition(this, RandomGenerator.giveRandomPositionEnemy( map.getSize() )));
-			this.isActive = true;
+			if(map.isFreePlaceOnEdge()) {           //sprawdzanie, czy ma gdzie sie pojawic
+				while(!map.setPosition(this, RandomGenerator.giveRandomPositionEnemy( map.getSize() )));
+				this.isActive = true;
+			}
+			else {
+				myTime++;
+			}
+			
+			
 		}
 		else if(this.isActive) {
 			for(int i=0; i<4; i++) {

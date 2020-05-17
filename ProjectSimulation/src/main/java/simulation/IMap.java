@@ -18,6 +18,10 @@ public interface IMap {
 	
 	boolean isTheMoveProperly(Position position, int move);
 	
+	boolean isFreePlaceOnEdge();
+	
+	boolean isFreePlaceOnMap();
+	
 	int getSize();
 	
 	int wolfLookAroundForSheep(Position position);

@@ -208,6 +208,30 @@ public boolean isAnyEmptyFieldAround(Position position){
 	return false;
 }
 
+@Override
+public boolean isFreePlaceOnEdge() {
+	for(int i=1 ; i<(size-1); i++) {                      //i=1 bo nie chcemy sprawdzac dwa razy rogow
+		if(tableMap[i][0]==null)return true;              //sprawdzanie gory
+		if(tableMap[i][size-1]==null)return true;         //sprawdzanie dolu
+	}
+	for(int i=0 ; i<size; i++) {
+		if(tableMap[0][i]==null) return true;             //sprawdzanie lewej strony
+		if(tableMap[size-1][i]==null) return true;        //sprawdzanie prawej strony
+	}
+	return false;
+}
+
+@Override
+public boolean isFreePlaceOnMap() {
+	for(int i=0; i<size; i++) {
+		for(int j=0; j<size; j++) {
+			if(tableMap[i][j]==null)return true;
+		}
+	}
+	return false;
+}
+
+
 	
 }
 
