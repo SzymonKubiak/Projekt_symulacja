@@ -34,18 +34,22 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 
 	void runSimulation()
 	{
+		System.out.println("Starting map");
+		map.printTableMap();                                    //wyswietlenie tablicy dwuwymiarowej
+		System.out.println();
+		
 		for(int i=0; i<numberOfIter; i++) {
 			actualIteration = i;
-			
-			System.out.println("Iteration: " + i);
-			map.printTableMap();                                    //wyswietlenie tablicy dwuwymiarowej
-			System.out.println();
 			
 			for(IObjectsOnBoard iObjectsOnBoard : objectList) {
 				iObjectsOnBoard.makeTurn();
 			}
 			objectList.addAll(addedObjectsList);					// po kazdej iteracji do glownej listy dodawane sa nowo powstale obiekty
 			addedObjectsList.clear();                               // po dodaniu nalezy usunac wszystkie obiekty z dodatkowej listy
+			
+			System.out.println("Iteration: " + i);
+			map.printTableMap();                                    //wyswietlenie tablicy dwuwymiarowej
+			System.out.println();
 			
 		}
 

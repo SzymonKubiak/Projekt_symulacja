@@ -21,19 +21,18 @@ public class Wolf extends Enemies {
 	@Override
 	public void makeTurn() {
 		if(Starter.getActualIteration()==0) {   //jesli poczatek iteracji
-			myTime = RandomGenerator.giveRandomNumber((Starter.getNumberOfIter()-1)) +1; //musimy sie pozbyc zerowej iteracji //UWAGA tutaj chyba blad
-		}
+			myTime = RandomGenerator.giveRandomNumber( Starter.getNumberOfIter() );                //dla numerOfIteration=5 wylosuje liczbe od 0 do 4 
+			}
 		
-		if(this.isActive) {
+		if(Starter.getActualIteration()==myTime) {  //jesli aktualna iteracja pokryje sie z jego wylosowana iteracja ma sie pojawic na mapie
+			//tutaj trzeba dodac metode sprawdzajaca, czy wg jest jakies wolne miejsce na brzegu
+			while(!map.setPosition(this, RandomGenerator.giveRandomPositionEnemy( map.getSize() )));
+			this.isActive = true;
+		}
+		else if(this.isActive) {
 			for(int i=0; i<4; i++) {
 				this.makeMove();
 			}		
-		}
-		
-		if(Starter.getActualIteration()==myTime) {  //jesli aktualna iteracja pokryje sie z jego wylosowana iteracja ma sie pojawic na mapie
-			//tutaj trzeba dodac metode sprawdzajaca, czy wg jest jakies wolne miejsce na brzegu, jesli tak to to nizej
-			while(!map.setPosition(this, RandomGenerator.giveRandomPositionEnemy( map.getSize() )));
-			this.isActive = true;
 		}
 		
 	}

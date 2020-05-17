@@ -186,8 +186,7 @@ public int thiefLookAroundForSheeps(Position position, int sightRange) {						 /
 	
 }
 
-public boolean isAnyEmptyFieldAround(Position position)
-{
+public boolean isAnyEmptyFieldAround(Position position){
 	int posX=position.getX();
 	int posY=position.getY();
 	if(posX+1<=size-1)							//warunki sa po to, aby uniknac proby dostania się do pol poza zakresem
