@@ -8,7 +8,7 @@ public abstract class Enemies extends ObjectsOnBoard {
 	}
 	int visibilityRange;
 	boolean isActive = false;  //domyslnie beda ustawiane na nieaktywne (zarowno wilk jak i zlodziei)
-	public abstract void attack(IObjectsOnBoard object);
+	public abstract void attack();
 	
 	
 	

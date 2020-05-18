@@ -168,25 +168,28 @@ public boolean dogLookAroundForEnemies(Position position, int sightRange) {
 	
 }
 
-public int thiefLookAroundForSheeps(Position position, int sightRange) {						 //zwraca ilosc owiec w zasiegu ataku
+public ArrayList<IObjectsOnBoard> thiefLookAroundForSheeps(Position position, int sightRange) {						 //zwraca ilosc owiec w zasiegu ataku
 	
-	int sheepCounter = 0;
-	int posX = position.getX();
-	int posY = position.getY();
+	ArrayList<IObjectsOnBoard> sheepsInRange = new ArrayList<IObjectsOnBoard>();
+	
+	int thiefPosX = position.getX();
+	int thiefPosY = position.getY();
+	
 	for(IObjectsOnBoard obj : Starter.getObjectList()) {
 		if(obj instanceof Sheep)																//przeszukujemy tylko obiekty typu Sheep
-		{
-			int thiefPosX=obj.getPosition().getX();												//przypisania w celu skrocenia zapisu
-			int thiefPosY=obj.getPosition().getY();
-			
-			if(thiefPosX-posX<sightRange && thiefPosX-posX>-sightRange)							// jezeli znajduje sie w zasiegu na osi x
+			for(int i = thiefPosX-sightRange; i<=thiefPosX+sightRange; i++)
 			{
-				if(thiefPosY-posY<sightRange && thiefPosY-posY>-sightRange) sheepCounter++;  	// jezeli znajduje sie w zasiegu na osi y
-			}																					// gdy owca spelni oba warunki jest zwiekszana liczba owiec w zasiegu
-		}
+				for(int j = thiefPosY-sightRange; j<=thiefPosY+sightRange; j++)
+				{
+					if(this.getObject(new Position(i,j)) instanceof Sheep)
+					{
+						sheepsInRange.add(this.getObject(new Position(i,j) ) );
+					}
+				}
+			}
 	}
 	
-	return sheepCounter;
+	return sheepsInRange;
 	
 }
 

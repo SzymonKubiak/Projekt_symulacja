@@ -12,7 +12,7 @@ public class Wolf extends Enemies {
 	int myTime;
 
 	@Override
-	public void attack(IObjectsOnBoard object) {
+	public void attack() {
 		// TODO Auto-generated method stub
 		
 	}

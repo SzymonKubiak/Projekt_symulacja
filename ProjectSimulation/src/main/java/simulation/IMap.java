@@ -1,5 +1,6 @@
 package simulation;
 
+import java.util.ArrayList;
 
 public interface IMap {
 
@@ -30,7 +31,7 @@ public interface IMap {
 	
 	boolean dogLookAroundForEnemies(Position position, int sightRange);
 	
-	int thiefLookAroundForSheeps(Position position, int sightRange);
+	ArrayList<IObjectsOnBoard> thiefLookAroundForSheeps(Position position, int sightRange);
 	
 	boolean isAnyEmptyFieldAround(Position position);
 
