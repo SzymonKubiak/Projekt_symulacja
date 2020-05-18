@@ -24,9 +24,9 @@ public abstract class ObjectsOnBoard implements IObjectsOnBoard {
 	}
 	
 	@Override
-	public void disappear() {
+	public void disappear() {                                    
 		map.deleteObject(this);                                //usuniecie z hashmapy i tablicy
-		Starter.getObjectList().remove(this);                  //usuniecie z listy
+		Starter.getObjectsToRemove().add(this);                //dodanie do listy obiektow, ktore maja zosatc usuniete z glowenej listy po wykonaniu iteracji
 	}
 
 	@Override
@@ -36,9 +36,8 @@ public abstract class ObjectsOnBoard implements IObjectsOnBoard {
 	
 
 
-    protected void makeMove() { //metoda umozliwia tylko przechodzenie na puste pola
-    	if(map.isAnyEmptyFieldAround(this.getPosition()))
-	{
+    protected void makeMove() {                                                      //metoda umozliwia tylko przechodzenie na puste pola
+    if(map.isAnyEmptyFieldAround(this.getPosition())){
     int moveDirection;
 	Position newPosition;
 	do {

@@ -10,7 +10,8 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 		Starter.numberOfIter = numberOfIter;
 		this.map = map;
 		objectList = objectsCreator.create(map);                //utorzenie listy obiektow
-		addedObjectsList= new LinkedList<IObjectsOnBoard>();    //utworzenie dodatkowej listy na obiekty utworzone w trakcie iteracji
+		objectsToAdd = new LinkedList<IObjectsOnBoard>();    //utworzenie dodatkowej listy na obiekty utworzone w trakcie iteracji
+		objectsToRemove = new LinkedList<IObjectsOnBoard>();
 		
 		for(IObjectsOnBoard o : objectList) { //musimy dodac wszystkie utworzone obiekty do kolekcji typu map i przypisac im randomowa pozycje
 			if(o instanceof Enemies);   //jesli to wilk/zlodziej nie dodawaj go
@@ -25,7 +26,8 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 
 
     private static List<IObjectsOnBoard> objectList;
-    private static List<IObjectsOnBoard> addedObjectsList;
+    private static List<IObjectsOnBoard> objectsToAdd;
+    private static List<IObjectsOnBoard> objectsToRemove;
     private static int actualIteration;                             //bedzie ja potrzebowal wilk i zlodziej
     private static int numberOfIter;
     IMap map; 
@@ -44,11 +46,13 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 			for(IObjectsOnBoard iObjectsOnBoard : objectList) {
 				iObjectsOnBoard.makeTurn();
 			}
-			objectList.addAll(addedObjectsList);					// po kazdej iteracji do glownej listy dodawane sa nowo powstale obiekty
-			addedObjectsList.clear();                               // po dodaniu nalezy usunac wszystkie obiekty z dodatkowej listy
+			objectList.addAll(objectsToAdd);					// po kazdej iteracji do glownej listy dodawane sa nowo powstale obiekty
+			objectsToAdd.clear();                               // po dodaniu nalezy usunac wszystkie obiekty z dodatkowej listy
+			objectList.removeAll(objectsToRemove);              // po kazdej iteracji z glownej listy usuwane sa obiekty, ktore trafily do listy objectsToRemove
+			objectsToRemove.clear();                            // czyszczenie listy
 			
 			System.out.println("Iteration: " + i);
-			map.printTableMap();                                    //wyswietlenie tablicy dwuwymiarowej
+			map.printTableMap();                                //wyswietlenie tablicy dwuwymiarowej
 			System.out.println();
 			
 		}
@@ -59,8 +63,11 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 		return objectList;
 	}
 	
-	public static List<IObjectsOnBoard> getAddedObjectsList(){   // funkcja ta jest potrzebna do dodawania obiektow do listy, po ktorej iterujemy
-		return addedObjectsList;
+	public static List<IObjectsOnBoard> getObjectsToAdd(){   // funkcja ta jest potrzebna do dodawania obiektow do listy, po ktorej iterujemy
+		return objectsToAdd;
+	}
+	public static List<IObjectsOnBoard> getObjectsToRemove(){   // funkcja ta jest potrzebna do dodawania obiektow do listy, po ktorej iterujemy
+		return objectsToRemove;
 	}
 	
 	public static int getActualIteration() {
@@ -74,8 +81,8 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 	public static void main(String[] args) {
 		
 		IMap map = new MapSimple(10);
-		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(2,0,10,0,0);
-		Starter starter = new Starter(500, map, objectsCreator); 
+		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(10,0,0,0,1);
+		Starter starter = new Starter(30, map, objectsCreator); 
 		
 		starter.runSimulation();
 		

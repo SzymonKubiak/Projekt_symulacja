@@ -33,10 +33,6 @@ public class ObjectsOnBoardCreator implements IObjectsOnBoardCreator{
 			list.add(new Grass(map));
 		}
 		
-		for(int i=0; i<numS; i++) {
-			list.add(new Sheep(map));
-		}
-		
 		for(int i=0; i<numD; i++) {
 			list.add(new Dog(map));
 		}
@@ -47,6 +43,10 @@ public class ObjectsOnBoardCreator implements IObjectsOnBoardCreator{
 		
 		for(int i=0; i<numW; i++) {
 			list.add(new Wolf(map));
+		}
+		
+		for(int i=0; i<numS; i++) {
+			list.add(new Sheep(map));
 		}
 		
 		return list;

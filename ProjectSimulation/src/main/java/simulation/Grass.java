@@ -9,7 +9,7 @@ public class Grass implements IObjectsOnBoard {
 	
 	IMap map; //musi posiadac obiekt spelniajacy interface mapy, zeby wykonywac ponizsze metody. Moglibysmy utworzyc sobie jakis nowy w konstruktorze
 	          //ale w tym przypadku musimy dostac konkretny i dlatego jest podany jako argument konstruktora.
-	boolean isActive;
+	private boolean isActive;
 	
 
 	@Override

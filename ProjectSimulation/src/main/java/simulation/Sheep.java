@@ -5,6 +5,7 @@ public class Sheep extends FarmAnimals {
 	public Sheep(IMap map, int sightRange, int movementSpeed) {
 		super(map, sightRange, movementSpeed);
 		this.multiplicationPoints=0;
+		this.isActive = true;
 	}
 	
 	public Sheep(IMap map) { //ustawienie dodatkowego konstruktora, ktory sam przypisze domyslne wartosci do sightRange i movementSpeed
@@ -13,6 +14,7 @@ public class Sheep extends FarmAnimals {
 	
 	
 	public int multiplicationPoints;
+	private boolean isActive; 
 	
 	
 	private void eatGrass(Position grassPosition)	//argumentem jest pozycja Trawy
@@ -23,7 +25,7 @@ public class Sheep extends FarmAnimals {
 	   	
 	private boolean multiplicate()
 	{
-		if(this.multiplicationPoints>=10 &&map.isAnyEmptyFieldAround(this.getPosition()) )  // czy jest przynajmniej 10 punktow i jakies wolne miejsce obok
+		if(this.multiplicationPoints>=10 && map.isAnyEmptyFieldAround(this.getPosition()) )  // czy jest przynajmniej 10 punktow i jakies wolne miejsce obok
 		{	
 			IObjectsOnBoard newSheep = new Sheep(map);
 			Position newPosition;
@@ -39,7 +41,7 @@ public class Sheep extends FarmAnimals {
 		
 		} while(!map.setPosition(newSheep, newPosition));     //wykonuj dopoki przypisanie pozycji nie jest mozliwe do nowej owcy (jest to pozycja zajeta)
 		
-		Starter.getAddedObjectsList().add(newSheep); 
+		Starter.getObjectsToAdd().add(newSheep); 
 		this.multiplicationPoints=0;	                      //reset punktow rozmnazania	
 		System.out.println("Multiplication 101!");
 		return true;
@@ -52,11 +54,11 @@ public class Sheep extends FarmAnimals {
 
 	@Override
 	public void makeTurn() {
-		
-		if(multiplicate()); 
-		else {                     //jesli multiplikacja sie nie odbyla
+		if(this.isActive == false);        //jesli nie jest aktywna- nic nie rob     
+		else if(multiplicate()); 
+		else {                             //jesli multiplikacja sie nie odbyla
 			
-			if(goForGrass()==false) {     //wykonaj zwykly ruch gdy nie ma trawy w poblizu, gdy zwroci true zje trawe i przejdzie na jej pozycje
+			if(goForGrass()==false) {      //wykonaj zwykly ruch gdy nie ma trawy w poblizu, gdy zwroci true zje trawe i przejdzie na jej pozycje
 				this.makeMove();
 			}	
 		}
@@ -77,14 +79,20 @@ public class Sheep extends FarmAnimals {
 	}
 	
 	@Override
+	public void disappear() {                                  //nadpisanie implementacji z klasy abstrakcyjnej ObjectsOnBoard
+		map.deleteObject(this);                                //usuniecie z hashmapy i tablicy
+		Starter.getObjectsToRemove().add(this);                //dodanie do listy obiektow, ktore maja zosatc usuniete z glowenej listy po wykonaniu iteracji
+		this.isActive = false;                                 //dodatkowo zmieniamy isActive na false (we wczesniejszej implementacji disappear tego nie bylo)
+	}
+	
+	@Override
 	public String toString() {
 		return "S";
 	}
 
 	@Override
 	public boolean getState() {
-		// TODO Auto-generated method stub
-		return false;
+		return isActive;
 	}
 	
 
