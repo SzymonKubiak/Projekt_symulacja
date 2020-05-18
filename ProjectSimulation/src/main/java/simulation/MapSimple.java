@@ -1,8 +1,10 @@
 package simulation;
 
 import java.util.Map;
-import java.util.HashMap;
 
+
+import java.util.HashMap;
+import java.util.ArrayList;
 
 
 public class MapSimple implements IMap {
@@ -231,6 +233,21 @@ public boolean isFreePlaceOnMap() {
 		}
 	}
 	return false;
+}
+
+public ArrayList<Position> getListOfFreePlaces()		//Metoda analizuje tableMap i zwraca puste miejsca
+{
+	ArrayList<Position> freePlaces = new ArrayList<>();
+	
+	for(int i=0; i<size; i++)
+	{
+		for(int j = 0; j<size; j++)
+		{
+			if(tableMap[i][j]==null)	freePlaces.add(new Position(i,j));	// jezeli miejsce jest puste, to jego pozycje dodaje do listy
+		}
+	}
+	
+	return freePlaces;
 }
 
 

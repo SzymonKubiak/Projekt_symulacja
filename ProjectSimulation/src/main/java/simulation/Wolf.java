@@ -24,7 +24,7 @@ public class Wolf extends Enemies {
 		if(this.isActive) {
 			int sheepDirection;
 			
-			for(int i=0; i<4; i++) {                                                                 //wykonuje 4 ruchy w jednej iteracji
+			for(int i=0; i<movementSpeed; i++) {                                                                 //wykonuje 4 ruchy w jednej iteracji
 				sheepDirection = map.wolfLookAroundForSheep(this.getPosition());
 				if( sheepDirection!=0 ) {
 					
