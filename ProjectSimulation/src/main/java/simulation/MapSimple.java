@@ -175,19 +175,22 @@ public ArrayList<IObjectsOnBoard> thiefLookAroundForSheeps(Position position, in
 	int thiefPosX = position.getX();
 	int thiefPosY = position.getY();
 	
-	for(IObjectsOnBoard obj : Starter.getObjectList()) {
-		if(obj instanceof Sheep)																//przeszukujemy tylko obiekty typu Sheep
-			for(int i = thiefPosX-sightRange; i<=thiefPosX+sightRange; i++)
+			int startIndexX = (thiefPosX-sightRange<0) ? 0 : thiefPosX-sightRange;		// ustawienie zasięgu przeszukiwania
+			int startIndexY = (thiefPosY-sightRange<0) ? 0 : thiefPosY-sightRange;		// aby nie wyjsc poza tablice
+			int stopIndexX = (thiefPosX+sightRange>size-1) ? size-1 : thiefPosX+sightRange;
+			int stopIndexY = (thiefPosY+sightRange>size-1) ? size-1 : thiefPosY+sightRange;
+			
+			for(int i = startIndexX; i<=stopIndexX; i++)
 			{
-				for(int j = thiefPosY-sightRange; j<=thiefPosY+sightRange; j++)
+				for(int j = startIndexY; j<=stopIndexY; j++)
 				{
 					if(this.getObject(new Position(i,j)) instanceof Sheep)
-					{
+					{	
 						sheepsInRange.add(this.getObject(new Position(i,j) ) );
 					}
 				}
 			}
-	}
+		
 	
 	return sheepsInRange;
 	

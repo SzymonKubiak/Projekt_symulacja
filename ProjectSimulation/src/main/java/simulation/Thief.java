@@ -13,7 +13,7 @@ public class Thief extends Enemies {
 	
 	@Override
 	public void attack() {
-		
+		System.out.println("attac");
 		for(IObjectsOnBoard sheep : map.thiefLookAroundForSheeps(this.getPosition(), this.sightRange))
 		{
 			sheep.disappear();
