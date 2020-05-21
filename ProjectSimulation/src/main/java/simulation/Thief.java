@@ -13,9 +13,10 @@ public class Thief extends Enemies {
 	
 	@Override
 	public void attack() {
-		System.out.println("attac");
+		
 		for(IObjectsOnBoard sheep : map.thiefLookAroundForSheeps(this.getPosition(), this.sightRange))
-		{
+		{							//metoda thiefLookAround.. zwraca liste owiec bedacych w zasiegu zlodzieja
+									//dla kazdej z nich wywoluje metode disappear
 			sheep.disappear();
 		}
 		
@@ -31,7 +32,7 @@ public class Thief extends Enemies {
 				{
 					if(map.thiefLookAroundForSheeps(this.getPosition(), this.sightRange).size() < 2) this.makeMove(); // jezeli ilosc elementow w liscie, ktora zawiera wszystkie owce w zasiegu
 																									 		//jest mniejsza niz 2 to wykonuje ruch
-					else 
+						else
 						{
 						attack();	// gdy w zasiegu sa ponad dwie owce, wykonuje atak, ktory polega na zabraniu wszystkich owiec z pola zasiegu
 						break;      // w jednej kolejce moze tylko raz ukrasc owce
@@ -62,6 +63,11 @@ public class Thief extends Enemies {
 	@Override
 	public boolean getState() {
 		return isActive;
+	}
+	@Override
+	public void setState(boolean state) {
+		this.isActive=state;
+		
 	}
 
 	

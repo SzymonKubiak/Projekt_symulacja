@@ -56,6 +56,13 @@ public class Grass implements IObjectsOnBoard {
 	public boolean getState() {
 		return isActive;
 	}
+
+
+	@Override
+	public void setState(boolean state) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

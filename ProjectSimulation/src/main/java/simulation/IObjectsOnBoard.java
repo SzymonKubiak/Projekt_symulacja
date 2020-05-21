@@ -8,5 +8,6 @@ public interface IObjectsOnBoard {
 	Position getPosition();
 	void makeTurn();
 	boolean getState();
+	void setState(boolean state);
 	
 }

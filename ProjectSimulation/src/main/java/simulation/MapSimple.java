@@ -152,14 +152,14 @@ public boolean dogLookAroundForEnemies(Position position, int sightRange) {
 	int posX = position.getX();
 	int posY = position.getY();
 	for(IObjectsOnBoard obj : Starter.getObjectList()) {
-		if(obj instanceof Wolf || obj instanceof Thief)									//przeszukujemy tylko obiekty typu Sheep
+		if((obj instanceof Wolf || obj instanceof Thief) && obj.getState())									//przeszukujemy tylko obiekty typu Sheep
 		{
-			int dogPosX=obj.getPosition().getX();										//przypisania w celu skrocenia zapisu
-			int dogPosY=obj.getPosition().getY();
+			int enemyPosX=obj.getPosition().getX();										//przypisania w celu skrocenia zapisu
+			int enemyPosY=obj.getPosition().getY();
 			
-			if(dogPosX-posX<sightRange && dogPosX-posX>-sightRange)
+			if(enemyPosX-posX<sightRange && enemyPosX-posX>-sightRange)
 			{
-				if(dogPosY-posY<sightRange && dogPosY-posY>-sightRange) return true;
+				if(enemyPosY-posY<sightRange && enemyPosY-posY>-sightRange) return true;
 			}
 		}
 	}

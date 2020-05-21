@@ -65,6 +65,11 @@ public class Wolf extends Enemies {
 	public boolean getState() {
 		return isActive;
 	}
+	@Override
+	public void setState(boolean state) {
+		this.isActive=state;
+		
+	}
 
 
 }

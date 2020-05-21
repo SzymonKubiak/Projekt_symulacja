@@ -10,14 +10,26 @@ public class Dog extends FarmAnimals {
 
 	void bark()
 	{
-		
+		IShepherd shepherd = new Shepherd();			//stwarza obiekt klasy Pasterz
+		shepherd.removeEnemies();						// wywoluje metode removeEnemies();
+		shepherd=null;									// usuwa referencje do obiektu, dajac sygnal do wyczyszczenia pamieci
 	}
 
 	
 
 	@Override
 	public void makeTurn() {
-		// TODO Auto-generated method stub
+		
+		for(int i=0; i<movementSpeed; i++)
+		{
+			if(map.dogLookAroundForEnemies(this.getPosition(), sightRange)) 
+				{
+					bark();
+					break;
+				}
+			this.makeMove();
+		}
+			
 	}
 	@Override
 	public String toString() {
@@ -29,6 +41,12 @@ public class Dog extends FarmAnimals {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	@Override
+	public void setState(boolean state) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
 
 

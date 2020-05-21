@@ -9,6 +9,7 @@ public class Shepherd implements IShepherd{
 		{
 			if((obj instanceof Wolf || obj instanceof Thief) && obj.getState())
 			{
+				obj.setState(false);
 				obj.disappear();
 			}
 		}
