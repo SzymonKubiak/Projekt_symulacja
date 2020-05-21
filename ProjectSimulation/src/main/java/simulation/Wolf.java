@@ -63,8 +63,7 @@ public class Wolf extends Enemies {
 	}
 	@Override
 	public boolean getState() {
-		// TODO Auto-generated method stub
-		return false;
+		return isActive;
 	}
 
 

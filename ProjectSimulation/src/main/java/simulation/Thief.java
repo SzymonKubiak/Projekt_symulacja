@@ -61,8 +61,7 @@ public class Thief extends Enemies {
 	}
 	@Override
 	public boolean getState() {
-		// TODO Auto-generated method stub
-		return false;
+		return isActive;
 	}
 
 	
