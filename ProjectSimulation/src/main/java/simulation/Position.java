@@ -33,20 +33,40 @@ public class Position {
 		this.y=y;
 	}
 	
-	Position positionAfterMove(int move) // zwraca pozycje obiektu, ktora by zajal, gdyby obiekt wykonal ruch w zadanym kierunku
+	Position positionAfterMove(int move, int mapSize)          //zwraca pozycje obiektu, ktora by zajal, gdyby obiekt wykonal ruch w zadanym kierunku, jesli wyjdzie po za mape zwraca null
 	{
 		
-		if(move==1) {                        //jesli gora
-			return new Position(this.x,this.y-1);
+		if(move==1) {                                 //jesli gora
+			if(this.y == 0) {
+				return null;
+			}
+			else {
+				return new Position(this.x,this.y-1);
+			}	
 		}
-		if(move==2) {                        //jesli prawo
-			return new Position(this.x+1,this.y);
+		if(move==2) {                                 //jesli prawo
+			if(this.x == mapSize-1) {
+				return null;
+			}
+			else {
+				return new Position(this.x+1,this.y);
+			}			
 		}
-		if(move==3) {                        //jesli dol
-			return new Position(this.x,this.y+1);
+		if(move==3) {                                 //jesli dol
+			if(this.y == mapSize-1) {
+				return null;
+			}
+			else {
+				return new Position(this.x,this.y+1);
+			}	
 		}
-		if(move==4) {                        //jesli lewo
-			return new Position(this.x-1,this.y);
+		if(move==4) {                                 //jesli lewo
+			if(this.x == 0) {
+				return null;
+			}
+			else {
+				return new Position(this.x-1,this.y);
+			}		
 		}
 		return null;
 	}

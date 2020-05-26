@@ -1,43 +1,44 @@
 package simulation;
 
+import java.util.List;
+import java.util.TreeMap;
+
 public class Wolf extends Enemies {
 
-	public Wolf(IMap map, int sightRange, int movementSpeed, int visibilityRange) {
+	public Wolf(IMap map, int sightRange, int movementSpeed, float visibilityRange) {
 		super(map, sightRange, movementSpeed, visibilityRange);
 	}
 	public Wolf(IMap map) { //dodatkowy konstruktor, ktory sam przypisze domyslne wartosci do sightRange, movementSpeed i visibilityRange
-		this(map, 5, 4, 1);
+		this(map, 4, 4, 0.8F);
 	}
 	
 
-	@Override
-	public void attack() {
-		// TODO Auto-generated method stub
-		
+	public void attackSheep(Position sheepPosition) {
+		map.getObject(sheepPosition).disappear();
+		map.changePosition(this, sheepPosition);
 	}
-
 	
 	@Override
 	public void makeTurn() {
 		
 		if(this.isActive) {
-			int sheepDirection;
-			
-			for(int i=0; i<movementSpeed; i++) {                                                                 //wykonuje 4 ruchy w jednej iteracji
-				sheepDirection = map.wolfLookAroundForSheep(this.getPosition());
-				if( sheepDirection!=0 ) {
-					
-					Position sheepPosition = this.getPosition().positionAfterMove(sheepDirection);
-					Sheep sheepToRemove = (Sheep)map.getObject(sheepPosition);
-					sheepToRemove.disappear();         //disapper dla owcy-usuniecie z hashmapy i tablicy, isActive = false oraz dodanie do listy objectsToRemove                                                    	
-					map.changePosition(this, sheepPosition);                             //zmiana pozycji wilka na pozycje owcy
-					break;                                                               //przerwanie petli, aby w jednym ruchu nie zjadl kilku owiec
+			for(int i=0; i<movementSpeed; i++) {
+				if(this.isAnySheepInRange()) {
+					Sheep sheep = map.getTheNearestSheepInRange(this.getPosition(), this.sightRange);
+					Position sheepPosition = sheep.getPosition();
+					int squaredDistance = map.squaredDistanceBetweenPositions(this.getPosition(), sheepPosition);
+					if(squaredDistance == 1) {
+						this.attackSheep(sheepPosition);
+						break;
+					}
+					else {
+						this.moveCloseToGoal(sheepPosition);
+					}
 				}
-				else if(sheepDirection == 0){
+				else {
 					this.makeMove();
 				}
-				
-			}		
+			}	
 		}
 		if(Starter.getActualIteration()==0) {                                            //jesli poczatek iteracji
 			this.myTime = RandomGenerator.giveRandomNumber( Starter.getNumberOfIter() );      //dla numerOfIteration=5 wylosuje liczbe od 0 do 4 
@@ -53,6 +54,31 @@ public class Wolf extends Enemies {
 			}		
 		}
 		
+	}
+	
+	public boolean isAnySheepInRange() {
+		List<IObjectsOnBoard> objectsInRangeList = map.objectsInRangeList(this.getPosition(), this.sightRange);  //przypisanie listy obiektow w zasiegu
+		if(objectsInRangeList.size() != 0) {                                                                     //jesli lista nie jest pusta
+			for(IObjectsOnBoard o : objectsInRangeList) {                                                        //poszukiwanie owiec w liscie
+				if(o instanceof Sheep) return true;
+			}
+		}    	
+		return false;
+	}
+	
+	public void moveCloseToGoal(Position goalPosition){                                                //ruch zblizony do celu (odleglosc od celu wieksza od 1)
+		if(map.isAnyEmptyFieldAround(this.getPosition())) {                                            //jesli nie bedzie wolnego pola to nic nie zrobi
+			TreeMap<Integer, Position> positionsMap = new TreeMap<>();
+			for(int i = 1; i<=4; i++) {                                                                //sprawdzanie odleglosci od celu po zajeciu, mozliwej pozycji
+				Position position = this.getPosition().positionAfterMove(i, map.getSize());
+				if((position!=null) && (map.getObject(position)==null)) {                              //jesli istnieje taka pozycja na mapie i nie jest zajeta
+					int squaredDistance= map.squaredDistanceBetweenPositions(position, goalPosition);  //obliczanie odleglosci do kwadratu
+					positionsMap.put(squaredDistance, position);                                       //dodanie do mapy (odleglosc^2, pozycja)
+				}
+			}
+			Position newPosition = positionsMap.firstEntry().getValue();                               //wybranie pozycji najblizej celu, czyli pierwszej wartosci w mapie
+			map.changePosition(this, newPosition);
+		}
 	}
 	
 	@Override

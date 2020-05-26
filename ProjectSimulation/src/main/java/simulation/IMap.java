@@ -1,6 +1,6 @@
 package simulation;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface IMap {
 
@@ -25,14 +25,14 @@ public interface IMap {
 	
 	int getSize();
 	
-	int wolfLookAroundForSheep(Position position);
-	
-	int lookAroundForGrass(Position position);
-	
-	boolean dogLookAroundForEnemies(Position position, int sightRange);
-	
-	ArrayList<IObjectsOnBoard> thiefLookAroundForSheeps(Position position, int sightRange);
-	
 	boolean isAnyEmptyFieldAround(Position position);
+	
+	Sheep getTheNearestSheepInRange(Position position, float range);
+	
+	Grass getTheNearestGrassInRange(Position position, float range);
+	
+	int squaredDistanceBetweenPositions(Position position1, Position position2);
+	
+	List<IObjectsOnBoard> objectsInRangeList(Position position, float range);
 
 }

@@ -1,5 +1,7 @@
 package simulation;
 
+import java.util.List;
+
 public class Dog extends FarmAnimals {
 	public Dog(IMap map, int sightRange, int movementSpeed) {
 		super(map, sightRange, movementSpeed);
@@ -14,7 +16,6 @@ public class Dog extends FarmAnimals {
 		shepherd.removeEnemies();						// wywoluje metode removeEnemies();
 		shepherd=null;									// usuwa referencje do obiektu, dajac sygnal do wyczyszczenia pamieci
 	}
-
 	
 
 	@Override
@@ -22,15 +23,29 @@ public class Dog extends FarmAnimals {
 		
 		for(int i=0; i<movementSpeed; i++)
 		{
-			if(map.dogLookAroundForEnemies(this.getPosition(), sightRange)) 
-				{
-					bark();
-					break;
-				}
+			if(this.isAnyEnemyInRange()){
+				bark();
+				break;
+			}
 			this.makeMove();
 		}
 			
 	}
+	
+	public boolean isAnyEnemyInRange() {
+		List<IObjectsOnBoard> objectsInRangeList = map.objectsInRangeList(this.getPosition(), this.sightRange);  //dostajemy liste aktywnych obiektow w zasiegu
+		if(objectsInRangeList == null) return false;
+		for(IObjectsOnBoard o : objectsInRangeList) {
+			if(o instanceof Enemies) {
+				int squaredDistance = map.squaredDistanceBetweenPositions(this.getPosition(), o.getPosition());
+				float enemyVisibilityRange = ((Enemies)o).getVisibilityRange();       //pobranie visibilityRange od Wilka/Zlodzieja
+				float sightRangeWhenEnemy = sightRange*(enemyVisibilityRange);        //zasieg psa, dla danego obcego (np. pies(sightRange=4), wilk(visibilityRange = 0.8), zlodziej(visibilityRange = 1)), zlodziej bedzie dostrzegany przez psa normalnie poniewaz 4*1=4, a wilk bedzie dostrzegany przez psa 4*0.8=3.2 )
+				if(squaredDistance <= (sightRangeWhenEnemy*sightRangeWhenEnemy)) return true;				
+			}
+		}
+		return false;
+	}
+	
 	@Override
 	public String toString() {
 		

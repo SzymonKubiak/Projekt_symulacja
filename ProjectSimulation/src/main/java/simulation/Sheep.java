@@ -1,4 +1,6 @@
 package simulation;
+import java.util.List;
+import java.util.TreeMap;
 
 public class Sheep extends FarmAnimals {
 	
@@ -7,18 +9,18 @@ public class Sheep extends FarmAnimals {
 		this.multiplicationPoints=0;
 	}
 	public Sheep(IMap map) { //ustawienie dodatkowego konstruktora, ktory sam przypisze domyslne wartosci do sightRange i movementSpeed
-		this(map, 1, 2);  
+		this(map, 1, 1);  
 	}
 	
 	public int multiplicationPoints;
 	
 	private void eatGrass(Position grassPosition)	//argumentem jest pozycja Trawy
 	{
-		this.multiplicationPoints++;	// zjedzenie trawy dodaje jeden punkt do rozmnazania
-		map.getObject(grassPosition).disappear();	// wywo³uje metodê disappear na obiekcie Trawy
+		this.multiplicationPoints++;	            // zjedzenie trawy dodaje jeden punkt do rozmnazania
+		map.getObject(grassPosition).disappear();	// wywoluje metode disappear na obiekcie Trawy
 	}
 	   	
-	private boolean multiplicate()
+	private boolean multiplicationTry()
 	{
 		if(this.multiplicationPoints>=10 && map.isAnyEmptyFieldAround(this.getPosition()) )  // czy jest przynajmniej 10 punktow i jakies wolne miejsce obok
 		{	
@@ -32,7 +34,7 @@ public class Sheep extends FarmAnimals {
 			newDirection = RandomGenerator.giveRandomMove();	
 			} while(!map.isTheMoveProperly(map.getObjectPosition(this), newDirection));  //losuje taki ruch, ktory nie wyjdzie poza mape wzgledem starej owcy
 			
-		newPosition= this.getPosition().positionAfterMove(newDirection); //przypisanie pozycji, kotra nie wyjdzie poza mape
+		newPosition= this.getPosition().positionAfterMove(newDirection, map.getSize()); //przypisanie pozycji, kotra nie wyjdzie poza mape
 		
 		} while(!map.setPosition(newSheep, newPosition));     //wykonuj dopoki przypisanie pozycji nie jest mozliwe do nowej owcy (jest to pozycja zajeta)
 		
@@ -49,37 +51,58 @@ public class Sheep extends FarmAnimals {
 
 	@Override
 	public void makeTurn() {
-		if(this.isActive == false);        //jesli nie jest aktywna- nic nie rob     
-		else if(multiplicate()); 
-		else {                             //jesli multiplikacja sie nie odbyla
-			
-			if(goForGrass()==false) {      //wykonaj zwykly ruch gdy nie ma trawy w poblizu, gdy zwroci true zje trawe i przejdzie na jej pozycje
+		if(this.isActive) {
+			if(multiplicationTry());
+			else if (this.isAnyGrassInRange()) {
+				Grass grass = map.getTheNearestGrassInRange(this.getPosition(), this.sightRange);
+				Position grassPosition = grass.getPosition();
+				int squaredDistance = map.squaredDistanceBetweenPositions(this.getPosition(), grassPosition);
+				if(squaredDistance == 1) {
+					this.stepOnTheGrass(grassPosition);
+				}
+				else {                                     //gdy odlegosc do kwadratu jest wieksza od 1
+					this.moveCloseToGoal(grassPosition);
+				}
+			}
+			else {
 				this.makeMove();
-			}	
+			}
 		}
+		
 	}		
 		
+	 
+	public void moveCloseToGoal(Position goalPosition){                                                //ruch zblizony do celu (odleglosc od celu wieksza od 1)
+		if(map.isAnyEmptyFieldAround(this.getPosition())) {                                            //jesli nie bedzie wolnego pola to nic nie zrobi
+			TreeMap<Integer, Position> positionsMap = new TreeMap<>();
+			for(int i = 1; i<=4; i++) {
+				Position position = this.getPosition().positionAfterMove(i, map.getSize());
+				if((position!=null) && (map.getObject(position)==null)) {                              //jesli istnieje taka pozycja na mapie i nie jest zajeta
+					int squaredDistance= map.squaredDistanceBetweenPositions(position, goalPosition);  //obliczanie odleglosci do kwadratu
+					positionsMap.put(squaredDistance, position);                                       //dodanie do mapy (odleglosc^2, pozycja)
+				}
+			}
+			Position newPosition = positionsMap.firstEntry().getValue();
+			map.changePosition(this, newPosition);
+		}
+	}
 	
-	
-	private boolean goForGrass()
-	{
-		int grassDirection = map.lookAroundForGrass(this.getPosition());
-		
-		if(grassDirection==0) return false;													  // jezeli brak trawy w zasiegu zwraca false
-		Position grassPosition = this.getPosition().positionAfterMove(grassDirection);        // obliczenie pozycji trawy
-		this.eatGrass(grassPosition);						                                  // zanim wejdzie na trawe, zjada ja
-		map.changePosition(this, grassPosition);	                                          // przenosi Owce tam gdzie byla trawa
-		return true;
+	private void stepOnTheGrass(Position grassPosition){
+		this.eatGrass(grassPosition);
+		map.changePosition(this, grassPosition);
 		
 	}
 	
-	@Override
-	public void disappear() {                                  //nadpisanie implementacji z klasy abstrakcyjnej ObjectsOnBoard
-		map.deleteObject(this);                                //usuniecie z hashmapy i tablicy
-		Starter.getObjectsToRemove().add(this);                //dodanie do listy obiektow, ktore maja zosatc usuniete z glowenej listy po wykonaniu iteracji
-		this.isActive = false;                                 //dodatkowo zmieniamy isActive na false (we wczesniejszej implementacji disappear tego nie bylo)
+	public boolean isAnyGrassInRange() {
+		List<IObjectsOnBoard> objectsInRangeList = map.objectsInRangeList(this.getPosition(), this.sightRange);  //przypisanie listy obiektow w zasiegu
+		if(objectsInRangeList.size() != 0) {                                                                     //jesli lista nie jest pusta
+			for(IObjectsOnBoard o : objectsInRangeList) {                                                        //poszukiwanie trawy w liscie
+				if(o instanceof Grass) return true;
+			}
+		}    	
+		return false;
 	}
-	
+		
 	@Override
 	public String toString() {
 		return "S";

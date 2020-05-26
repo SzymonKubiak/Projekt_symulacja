@@ -23,9 +23,10 @@ public class Grass implements IObjectsOnBoard {
 	}
 
 	@Override
-	public void disappear() {
-		isActive=false;
-		map.deleteObject(this);
+	public void disappear() {                                  
+		map.deleteObject(this);                                //usuniecie z hashmapy i tablicy
+		Starter.getObjectsToRemove().add(this);                //dodanie do listy obiektow, ktore maja zosatc usuniete z glowenej listy po wykonaniu iteracji
+		this.isActive = false;                                 //isActive = false
 	}
 
 	@Override
