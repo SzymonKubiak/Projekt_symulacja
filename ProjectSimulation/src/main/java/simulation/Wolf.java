@@ -9,7 +9,6 @@ public class Wolf extends Enemies {
 		this(map, 5, 4, 1);
 	}
 	
-	int myTime;
 
 	@Override
 	public void attack() {
@@ -40,18 +39,17 @@ public class Wolf extends Enemies {
 				
 			}		
 		}
-		
 		if(Starter.getActualIteration()==0) {                                            //jesli poczatek iteracji
-			myTime = RandomGenerator.giveRandomNumber( Starter.getNumberOfIter() );      //dla numerOfIteration=5 wylosuje liczbe od 0 do 4 
+			this.myTime = RandomGenerator.giveRandomNumber( Starter.getNumberOfIter() );      //dla numerOfIteration=5 wylosuje liczbe od 0 do 4 
 			}
 		
-		if(Starter.getActualIteration()==myTime) {                       //jesli aktualna iteracja pokryje sie z jego wylosowana iteracja ma sie pojawic na mapie
+		if(Starter.getActualIteration()==this.myTime) {                       //jesli aktualna iteracja pokryje sie z jego wylosowana iteracja ma sie pojawic na mapie
 			if(map.isFreePlaceOnEdge()) {                                //sprawdzanie, czy ma gdzie sie pojawic
 				while(!map.setPosition(this, RandomGenerator.giveRandomPositionEnemy( map.getSize() )));
 				this.isActive = true;
 			}
 			else {
-				myTime++;
+				this.myTime++;
 			}		
 		}
 		
@@ -61,15 +59,5 @@ public class Wolf extends Enemies {
 	public String toString() {
 		return "W";
 	}
-	@Override
-	public boolean getState() {
-		return isActive;
-	}
-	@Override
-	public void setState(boolean state) {
-		this.isActive=state;
-		
-	}
-
 
 }

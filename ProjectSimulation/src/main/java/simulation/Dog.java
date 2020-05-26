@@ -36,17 +36,6 @@ public class Dog extends FarmAnimals {
 		
 		return "D";
 	}
-	@Override
-	public boolean getState() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public void setState(boolean state) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }
 
 

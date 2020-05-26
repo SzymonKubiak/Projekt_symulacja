@@ -10,6 +10,7 @@ public abstract class ObjectsOnBoard implements IObjectsOnBoard {
 	IMap map;
 	int sightRange;
 	int movementSpeed;
+	boolean isActive;
 	
 
 
@@ -35,7 +36,6 @@ public abstract class ObjectsOnBoard implements IObjectsOnBoard {
 	}
 	
 
-
     protected void makeMove() {                                                      //metoda umozliwia tylko przechodzenie na puste pola
     if(map.isAnyEmptyFieldAround(this.getPosition())){
     int moveDirection;
@@ -46,9 +46,20 @@ public abstract class ObjectsOnBoard implements IObjectsOnBoard {
 			moveDirection=RandomGenerator.giveRandomMove();							 //losujemy kierunek przemieszczenia
 		} while(!map.isTheMoveProperly(this.getPosition(), moveDirection)); 	 	 //dopoki nie bedzie poprawny - nie wyjdzie poza mape
 
-	newPosition= this.getPosition().positionAfterMove(moveDirection);                //obliczenie nowej pozycji
+	    newPosition= this.getPosition().positionAfterMove(moveDirection);                //obliczenie nowej pozycji
 		
 	} while(!map.changePosition(this, newPosition));
 	}
-}
+    }
+    
+	@Override
+	public boolean getState() {
+		return isActive;
+	}
+
+	@Override
+	public void setState(boolean state) {
+		this.isActive = state;
+	}
+    
 }

@@ -60,8 +60,7 @@ public class Grass implements IObjectsOnBoard {
 
 	@Override
 	public void setState(boolean state) {
-		// TODO Auto-generated method stub
-		
+		this.isActive = state;		
 	}
 	
 	

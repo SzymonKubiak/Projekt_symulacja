@@ -5,17 +5,12 @@ public class Sheep extends FarmAnimals {
 	public Sheep(IMap map, int sightRange, int movementSpeed) {
 		super(map, sightRange, movementSpeed);
 		this.multiplicationPoints=0;
-		this.isActive = true;
 	}
-	
 	public Sheep(IMap map) { //ustawienie dodatkowego konstruktora, ktory sam przypisze domyslne wartosci do sightRange i movementSpeed
 		this(map, 1, 2);  
 	}
 	
-	
 	public int multiplicationPoints;
-	private boolean isActive; 
-	
 	
 	private void eatGrass(Position grassPosition)	//argumentem jest pozycja Trawy
 	{
@@ -89,17 +84,4 @@ public class Sheep extends FarmAnimals {
 	public String toString() {
 		return "S";
 	}
-
-	@Override
-	public boolean getState() {
-		return isActive;
-	}
-
-	@Override
-	public void setState(boolean state) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-
 }
