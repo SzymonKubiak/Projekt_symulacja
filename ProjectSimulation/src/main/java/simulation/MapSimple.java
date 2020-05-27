@@ -1,9 +1,9 @@
 package simulation;
 
 import java.util.Map;
-
-
+import java.util.TreeMap;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ArrayList;
 
 
@@ -103,98 +103,65 @@ public class MapSimple implements IMap {
 	public int getSize() {
 		return this.size;
 	}
-	
-	public int lookAroundForGrass(Position position) { 					//jako parametr przyjmuje klase której obiektow szuka
-		
-		int posX = position.getX();
-		int posY = position.getY();
-		for(IObjectsOnBoard obj : Starter.getObjectList()) {
-			if(obj instanceof Grass && obj.getState())									//przeszukujemy tylko obiekty typu Grass
-			{
-			
-				int grassPosX=obj.getPosition().getX();					//przypisania w celu skrocenia zapisu
-				int grassPosY=obj.getPosition().getY();
-				if(posX == grassPosX && posY-1==grassPosY) return 1;	//zwraca kierunek 1 (jest do góry)
-				if(posX+1 == grassPosX && posY==grassPosY) return 2;	//zwraca kierunek 2 (jest na prawo)
-				if(posX == grassPosX && posY+1==grassPosY) return 3;	//zwraca kierunek 3 (jest na dół)
-				if(posX-1 == grassPosX && posY==grassPosY) return 4;	//zwraca kierunek 4 (jest na lewo)
-				
-			}
-		}
-		return 0;
-		
-	}
-	
-public int wolfLookAroundForSheep(Position position) { 
-		
-		int posX = position.getX();
-		int posY = position.getY();
-		
-		for(IObjectsOnBoard obj : Starter.getObjectList()) {
-			if(obj instanceof Sheep)									    //przeszukujemy tylko obiekty typu Sheep
-			{
-				if(obj.getState()) {                       //sprawdzaj jesli owca nie zostala jeszcze zjedzona
-					int sheepPosX=obj.getPosition().getX();					//przypisania w celu skrocenia zapisu
-					int sheepPosY=obj.getPosition().getY();
-					if(posX == sheepPosX && posY-1==sheepPosY) return 1;	//zwraca kierunek 1 (jest do góry)
-					if(posX+1 == sheepPosX && posY==sheepPosY) return 2;	//zwraca kierunek 2 (jest na prawo)
-					if(posX == sheepPosX && posY+1==sheepPosY) return 3;	//zwraca kierunek 3 (jest na dół)
-					if(posX-1 == sheepPosX && posY==sheepPosY) return 4;	//zwraca kierunek 4 (jest na lewo)
-				}
-			}
-		}
-		return 0;
-		
-	}
 
-public boolean dogLookAroundForEnemies(Position position, int sightRange) { 
+public int squaredDistanceBetweenPositions(Position position1, Position position2){     //zwraca dystans pomiedzy pozycjami podniesiony do kwadratu
+	int pos1X = position1.getX();
+	int pos1Y = position1.getY();
 	
-	int posX = position.getX();
-	int posY = position.getY();
+	int pos2X = position2.getX();
+	int pos2Y = position2.getY();
+	
+	int distanceX = pos1X-pos2X;
+	int distanceY = pos1Y-pos2Y;
+	
+	return (distanceX*distanceX) + (distanceY*distanceY);
+}
+public List<IObjectsOnBoard> objectsInRangeList(Position position, float range){
+	List<IObjectsOnBoard> objectsInRangeList = new ArrayList<>();
 	for(IObjectsOnBoard obj : Starter.getObjectList()) {
-		if((obj instanceof Wolf || obj instanceof Thief) && obj.getState())									//przeszukujemy tylko obiekty typu Sheep
-		{
-			int enemyPosX=obj.getPosition().getX();										//przypisania w celu skrocenia zapisu
-			int enemyPosY=obj.getPosition().getY();
-			
-			if(enemyPosX-posX<sightRange && enemyPosX-posX>-sightRange)
-			{
-				if(enemyPosY-posY<sightRange && enemyPosY-posY>-sightRange) return true;
+		if(obj.getState()) {                                                                         //jesli jest aktywny
+			int squaredDistance = this.squaredDistanceBetweenPositions(position, obj.getPosition()); //oblicz odlelosc do kwadratu
+			if(squaredDistance <= range*range) {                                                     //jesli odleglosc do kwadratu <= zasieg do kwadratu
+				objectsInRangeList.add(obj);                                                         //dodaj do listy
 			}
 		}
 	}
-	return false;
-	
-	
+	return objectsInRangeList;
 }
 
-public ArrayList<IObjectsOnBoard> thiefLookAroundForSheeps(Position position, int sightRange) {						 //zwraca ilosc owiec w zasiegu ataku
-	
-	ArrayList<IObjectsOnBoard> sheepsInRange = new ArrayList<IObjectsOnBoard>();
-	
-	int thiefPosX = position.getX();
-	int thiefPosY = position.getY();
-	
-			int startIndexX = (thiefPosX-sightRange<0) ? 0 : thiefPosX-sightRange;		// ustawienie zasięgu przeszukiwania
-			int startIndexY = (thiefPosY-sightRange<0) ? 0 : thiefPosY-sightRange;		// aby nie wyjsc poza tablice
-			int stopIndexX = (thiefPosX+sightRange>size-1) ? size-1 : thiefPosX+sightRange;
-			int stopIndexY = (thiefPosY+sightRange>size-1) ? size-1 : thiefPosY+sightRange;
-			
-			for(int i = startIndexX; i<=stopIndexX; i++)
-			{
-				for(int j = startIndexY; j<=stopIndexY; j++)
-				{
-					if(this.getObject(new Position(i,j)) instanceof Sheep)
-					{	
-						sheepsInRange.add(this.getObject(new Position(i,j) ) );
-					}
-				}
-			}
-		
-	
-	return sheepsInRange;
-	
+public Sheep getTheNearestSheepInRange(Position position, float range) {
+	List<IObjectsOnBoard> objectsInRangeList = this.objectsInRangeList(position, range);    //pobranie listy obiektow w zasiegu
+	if(objectsInRangeList.size() == 0) return null;                                         //jesli pobrana lista jest pusta, zwroc null
+	TreeMap<Integer, Sheep> sheepsInRangeMap = new TreeMap<>();                             //utworzenie TreeMap, ktora sortuje klucze (w tym przypadku kluczami sa liczby calkowite)
+	for(IObjectsOnBoard obj : objectsInRangeList) {                                         //sprawdzamy, czy w liscie sa owce
+		if( obj instanceof Sheep ) {                                                        //jesli tak dodajemy do mapy (odleglosc^2, owca)
+			int squaredDistance = this.squaredDistanceBetweenPositions(position, obj.getPosition());
+			sheepsInRangeMap.put(squaredDistance, (Sheep)obj );
+		}
+	}
+	if(sheepsInRangeMap.size() == 0) return null;                                            //jesli nie bylo owiec, zwracamy null
+	else {                                                     
+		return sheepsInRangeMap.firstEntry().getValue();                                     //zwracamy najblizsza owce z mapy (czyli pierwsza w mapie)
+	}
 }
+
+
+public Grass getTheNearestGrassInRange(Position position, float range) {
+	List<IObjectsOnBoard> objectsInRangeList = this.objectsInRangeList(position, range);     //analogicznie jak getTheNearestSheepInRange();
+	if(objectsInRangeList.size() == 0) return null;
+	TreeMap<Integer, Grass> grassInRangeMap = new TreeMap<>();                                       
+	for(IObjectsOnBoard obj : objectsInRangeList) {
+		if( obj instanceof Grass) {
+			int squaredDistance = this.squaredDistanceBetweenPositions(position, obj.getPosition());
+			grassInRangeMap.put(squaredDistance, (Grass)obj );
+		}
+	}
+	if(grassInRangeMap.size() == 0) return null;
+	else {                                                                                            
+		return grassInRangeMap.firstEntry().getValue();
+	}
+}
+
 
 public boolean isAnyEmptyFieldAround(Position position){
 	int posX=position.getX();
@@ -256,7 +223,5 @@ public ArrayList<Position> getListOfFreePlaces()		//Metoda analizuje tableMap i 
 	return freePlaces;
 }
 
-
-	
 }
 

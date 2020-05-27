@@ -81,8 +81,10 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 	public static void main(String[] args) {
 		
 		IMap map = new MapSimple(10);
+
 																	// glowne parametry symulacji. Ilosci (po kolei):
 		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(10,0,10,5,1);		// Owca, Pies, Trawa, Zlodziej, Wilk
+
 		Starter starter = new Starter(30, map, objectsCreator); 
 		
 		starter.runSimulation();
