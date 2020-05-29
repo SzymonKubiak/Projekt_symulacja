@@ -12,15 +12,7 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 		objectList = objectsCreator.create(map);                //utorzenie listy obiektow
 		objectsToAdd = new LinkedList<IObjectsOnBoard>();    //utworzenie dodatkowej listy na obiekty utworzone w trakcie iteracji
 		objectsToRemove = new LinkedList<IObjectsOnBoard>();
-		
-		for(IObjectsOnBoard o : objectList) { //musimy dodac wszystkie utworzone obiekty do kolekcji typu map i przypisac im randomowa pozycje
-			if(o instanceof Enemies);   //jesli to wilk/zlodziej nie dodawaj go
-			else {
-				while(!map.setPosition(o, RandomGenerator.giveRandomPosition( map.getSize() ) ) );
-			}
-			
-			
-		}
+		this.setObjectsOnMap(objectList);
 			
 	}
 
@@ -34,27 +26,50 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
     
 
 
-	void runSimulation()
+    public boolean parametersCorrectness(List<IObjectsOnBoard> objectsList) {
+    	int quantity = 0;
+    	for(IObjectsOnBoard o : objectsList) {
+    		if(o instanceof Enemies);
+    		else quantity++;
+    	}
+    	if(quantity > (map.getSize()*map.getSize())) return false;
+    	else return true;
+    }
+    
+    public void setObjectsOnMap(List<IObjectsOnBoard> objectList) {
+   	    if(this.parametersCorrectness(objectList) ) {         //jesli obiektow jest mniej lub tyle samo co miejsc na mapie to przypisanie sie wykona
+    		for(IObjectsOnBoard o : objectList) {                     //musimy dodac obiekty do kolekcji typu map i przypisac im randomowa pozycje
+    			if(o instanceof Enemies);                             //jesli to wilk/zlodziej nie dodawaj go (oni maja byc pozniej dodani)
+    			else {
+    				while(!map.setPosition(o, RandomGenerator.giveRandomPosition( map.getSize() ) ) );
+    			}
+        	}
+    	}		
+    }
+    
+	public void runSimulation()
 	{
-		System.out.println("Starting map");
-		map.printTableMap();                                    //wyswietlenie tablicy dwuwymiarowej
-		System.out.println();
-		
-		for(int i=0; i<numberOfIter; i++) {
-			actualIteration = i;
+		if(parametersCorrectness(objectList) == false) {
+			System.out.println("The objects won't fit on the map!");
+		}
+		else {
+			System.out.println("Starting map");
+			map.printTableMap();                                    //wyswietlenie tablicy dwuwymiarowej
 			
-			for(IObjectsOnBoard iObjectsOnBoard : objectList) {
-				iObjectsOnBoard.makeTurn();
+			for(int i=0; i<numberOfIter; i++) {
+				actualIteration = i;
+				
+				for(IObjectsOnBoard iObjectsOnBoard : objectList) {
+					iObjectsOnBoard.makeTurn();
+				}
+				objectList.addAll(objectsToAdd);					// po kazdej iteracji do glownej listy dodawane sa nowo powstale obiekty
+				objectsToAdd.clear();                               // po dodaniu nalezy usunac wszystkie obiekty z dodatkowej listy
+				objectList.removeAll(objectsToRemove);              // po kazdej iteracji z glownej listy usuwane sa obiekty, ktore trafily do listy objectsToRemove
+				objectsToRemove.clear();                            // czyszczenie listy
+				
+				System.out.println("Iteration: " + i);
+				map.printTableMap();                                //wyswietlenie tablicy dwuwymiarowej			
 			}
-			objectList.addAll(objectsToAdd);					// po kazdej iteracji do glownej listy dodawane sa nowo powstale obiekty
-			objectsToAdd.clear();                               // po dodaniu nalezy usunac wszystkie obiekty z dodatkowej listy
-			objectList.removeAll(objectsToRemove);              // po kazdej iteracji z glownej listy usuwane sa obiekty, ktore trafily do listy objectsToRemove
-			objectsToRemove.clear();                            // czyszczenie listy
-			
-			System.out.println("Iteration: " + i);
-			map.printTableMap();                                //wyswietlenie tablicy dwuwymiarowej
-			System.out.println();
-			
 		}
 
 	}
@@ -81,11 +96,10 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 	public static void main(String[] args) {
 		
 		IMap map = new MapSimple(10);
+																                            // glowne parametry symulacji. Ilosci (po kolei):
+		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(99,1,1,5,10);		// Owca, Pies, Trawa, Zlodziej, Wilk
 
-																	// glowne parametry symulacji. Ilosci (po kolei):
-		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(10,0,10,5,1);		// Owca, Pies, Trawa, Zlodziej, Wilk
-
-		Starter starter = new Starter(30, map, objectsCreator); 
+		Starter starter = new Starter(1000, map, objectsCreator); 
 		
 		starter.runSimulation();
 		

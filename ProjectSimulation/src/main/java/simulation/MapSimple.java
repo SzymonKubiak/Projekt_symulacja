@@ -70,6 +70,7 @@ public class MapSimple implements IMap {
 			}
 			System.out.println();
 		}
+		System.out.println();
 	}
 
 	
