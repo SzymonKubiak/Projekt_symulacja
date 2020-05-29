@@ -2,7 +2,7 @@ package simulation;
 import java.util.Random;
 public class RandomGenerator {
 	
-	static int giveRandomMove() //// Generuje liczbê od 1 - 4.  Przyjmujemy kierunki: 1-góra, 2-prawo, 3-dó³, 4-lewo.
+	public static int giveRandomMove() //// Generuje liczbê od 1 - 4.  Przyjmujemy kierunki: 1-góra, 2-prawo, 3-dó³, 4-lewo.
 	{
 		Random generator = new Random();
 		int number = generator.nextInt(4)+1;
@@ -10,7 +10,7 @@ public class RandomGenerator {
 	}
 	
 	
-	static Position giveRandomPosition(int size) //// Generuje randomowe wspó³rzêdne na mapie i odsy³a obiekt Position
+	public static Position giveRandomPosition(int size) //// Generuje randomowe wspó³rzêdne na mapie i odsy³a obiekt Position
 	{
 		Random generator = new Random();
 		Position position = new Position();
@@ -21,7 +21,7 @@ public class RandomGenerator {
 		return position;
 	}
 	
-	static Position giveRandomPositionEnemy(int size) 
+	public static Position giveRandomPositionEnemy(int size) 
 	{
 		Random generator = new Random();
 		int way = generator.nextInt(4) +1;
@@ -40,7 +40,7 @@ public class RandomGenerator {
 		return null;
 	}
 	
-	static int giveRandomNumber(int range)
+	public static int giveRandomNumber(int range)
 	{
 		Random generator = new Random();
 		int number = generator.nextInt(range);

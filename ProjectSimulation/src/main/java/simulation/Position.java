@@ -17,11 +17,11 @@ public class Position {
 	private int y;
 	
 	
-	int getX(){
+	public int getX(){
 		return x;
 	}
 	
-	int getY(){
+	public int getY(){
 		return y;
 	}
 	

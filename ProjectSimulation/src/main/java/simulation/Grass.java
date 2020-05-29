@@ -25,7 +25,7 @@ public class Grass implements IObjectsOnBoard {
 	@Override
 	public void disappear() {                                  
 		map.deleteObject(this);                                //usuniecie z hashmapy i tablicy
-		Starter.getObjectsToRemove().add(this);                //dodanie do listy obiektow, ktore maja zosatc usuniete z glowenej listy po wykonaniu iteracji
+		//Starter.getObjectsToRemove().add(this);                //dodanie do listy obiektow, ktore maja zosatc usuniete z glowenej listy po wykonaniu iteracji
 		this.isActive = false;                                 //isActive = false
 	}
 
@@ -37,10 +37,15 @@ public class Grass implements IObjectsOnBoard {
 
 	@Override
 	public void makeTurn() {				// na poczatku kazdej rundy, trawy ktore zostaly zjedzone, dostaja nowe pozycje
-		if(!isActive){
-			if(map.isFreePlaceOnMap()) {    //jesli jest jakiekolwiek wolne miejsce wykonuj petle, w przeciwnym razie nie rob tego
-				while(!map.setPosition(this, RandomGenerator.giveRandomPosition( map.getSize() )));
-				isActive=true;
+		if(!isActive){						// jezeli trawa zostala zjedzona to ma stan ustawiony jako niekatywny
+			
+			int numberOfFreePlaces= map.getListOfFreePlaces().size();
+			
+			if (numberOfFreePlaces>0)			//jezeli istnieje wolne miejsce na mapie gdzie trawa moze odrosnac
+			{ 
+				map.setPosition(this, map.getListOfFreePlaces().get(RandomGenerator.giveRandomNumber(numberOfFreePlaces)));
+				isActive=true;	
+									//Trawa zostaje umieszczona na wylosowanym z wolnych miejsc, a jej stan jest aktywny
 			}	
 		}
 	}

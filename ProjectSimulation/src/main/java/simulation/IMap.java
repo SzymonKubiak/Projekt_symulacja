@@ -21,7 +21,7 @@ public interface IMap {
 	
 	boolean isFreePlaceOnEdge();
 	
-	boolean isFreePlaceOnMap();
+	//boolean isFreePlaceOnMap();
 	
 	int getSize();
 	
@@ -34,5 +34,7 @@ public interface IMap {
 	int squaredDistanceBetweenPositions(Position position1, Position position2);
 	
 	List<IObjectsOnBoard> objectsInRangeList(Position position, float range);
+	
+	List<Position> getListOfFreePlaces();
 
 }

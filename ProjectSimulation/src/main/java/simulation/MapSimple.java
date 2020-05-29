@@ -198,17 +198,8 @@ public boolean isFreePlaceOnEdge() {
 	return false;
 }
 
-@Override
-public boolean isFreePlaceOnMap() {
-	for(int i=0; i<size; i++) {
-		for(int j=0; j<size; j++) {
-			if(tableMap[i][j]==null)return true;
-		}
-	}
-	return false;
-}
 
-public ArrayList<Position> getListOfFreePlaces()		//Metoda analizuje tableMap i zwraca puste miejsca
+public List<Position> getListOfFreePlaces()		//Metoda analizuje tableMap i zwraca obiekty Position zawierające puste miejsca
 {
 	ArrayList<Position> freePlaces = new ArrayList<>();
 	
