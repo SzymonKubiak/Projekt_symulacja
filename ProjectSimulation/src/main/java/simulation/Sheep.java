@@ -54,7 +54,7 @@ public class Sheep extends FarmAnimals {
 		if(this.isActive) {
 			if(multiplicationTry());
 			else if (this.isAnyGrassInRange()) {
-				Grass grass = map.getTheNearestGrassInRange(this.getPosition(), this.sightRange);
+				Grass grass = this.getTheNearestGrassInRange();
 				Position grassPosition = grass.getPosition();
 				int squaredDistance = map.squaredDistanceBetweenPositions(this.getPosition(), grassPosition);
 				if(squaredDistance == 1) {
@@ -101,6 +101,22 @@ public class Sheep extends FarmAnimals {
 			}
 		}    	
 		return false;
+	}
+	
+	public Grass getTheNearestGrassInRange() {
+		List<IObjectsOnBoard> objectsInRangeList = map.objectsInRangeList(this.getPosition(), this.sightRange);     //analogicznie jak getTheNearestSheepInRange();
+		if(objectsInRangeList.size() == 0) return null;
+		TreeMap<Integer, Grass> grassInRangeMap = new TreeMap<>();                                       
+		for(IObjectsOnBoard obj : objectsInRangeList) {
+			if( obj instanceof Grass) {
+				int squaredDistance = map.squaredDistanceBetweenPositions(this.getPosition(), obj.getPosition());
+				grassInRangeMap.put(squaredDistance, (Grass)obj );
+			}
+		}
+		if(grassInRangeMap.size() == 0) return null;
+		else {                                                                                            
+			return grassInRangeMap.firstEntry().getValue();
+		}
 	}
 		
 	@Override

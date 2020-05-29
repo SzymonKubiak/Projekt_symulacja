@@ -21,15 +21,9 @@ public interface IMap {
 	
 	boolean isFreePlaceOnEdge();
 	
-	//boolean isFreePlaceOnMap();
-	
 	int getSize();
 	
 	boolean isAnyEmptyFieldAround(Position position);
-	
-	Sheep getTheNearestSheepInRange(Position position, float range);
-	
-	Grass getTheNearestGrassInRange(Position position, float range);
 	
 	int squaredDistanceBetweenPositions(Position position1, Position position2);
 	

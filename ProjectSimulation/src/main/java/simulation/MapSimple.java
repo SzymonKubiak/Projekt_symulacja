@@ -1,7 +1,6 @@
 package simulation;
 
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
@@ -127,39 +126,6 @@ public List<IObjectsOnBoard> objectsInRangeList(Position position, float range){
 		}
 	}
 	return objectsInRangeList;
-}
-
-public Sheep getTheNearestSheepInRange(Position position, float range) {
-	List<IObjectsOnBoard> objectsInRangeList = this.objectsInRangeList(position, range);    //pobranie listy obiektow w zasiegu
-	if(objectsInRangeList.size() == 0) return null;                                         //jesli pobrana lista jest pusta, zwroc null
-	TreeMap<Integer, Sheep> sheepsInRangeMap = new TreeMap<>();                             //utworzenie TreeMap, ktora sortuje klucze (w tym przypadku kluczami sa liczby calkowite)
-	for(IObjectsOnBoard obj : objectsInRangeList) {                                         //sprawdzamy, czy w liscie sa owce
-		if( obj instanceof Sheep ) {                                                        //jesli tak dodajemy do mapy (odleglosc^2, owca)
-			int squaredDistance = this.squaredDistanceBetweenPositions(position, obj.getPosition());
-			sheepsInRangeMap.put(squaredDistance, (Sheep)obj );
-		}
-	}
-	if(sheepsInRangeMap.size() == 0) return null;                                            //jesli nie bylo owiec, zwracamy null
-	else {                                                     
-		return sheepsInRangeMap.firstEntry().getValue();                                     //zwracamy najblizsza owce z mapy (czyli pierwsza w mapie)
-	}
-}
-
-
-public Grass getTheNearestGrassInRange(Position position, float range) {
-	List<IObjectsOnBoard> objectsInRangeList = this.objectsInRangeList(position, range);     //analogicznie jak getTheNearestSheepInRange();
-	if(objectsInRangeList.size() == 0) return null;
-	TreeMap<Integer, Grass> grassInRangeMap = new TreeMap<>();                                       
-	for(IObjectsOnBoard obj : objectsInRangeList) {
-		if( obj instanceof Grass) {
-			int squaredDistance = this.squaredDistanceBetweenPositions(position, obj.getPosition());
-			grassInRangeMap.put(squaredDistance, (Grass)obj );
-		}
-	}
-	if(grassInRangeMap.size() == 0) return null;
-	else {                                                                                            
-		return grassInRangeMap.firstEntry().getValue();
-	}
 }
 
 

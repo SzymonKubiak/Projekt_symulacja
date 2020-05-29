@@ -24,7 +24,7 @@ public class Wolf extends Enemies {
 		if(this.isActive) {
 			for(int i=0; i<movementSpeed; i++) {
 				if(this.isAnySheepInRange()) {
-					Sheep sheep = map.getTheNearestSheepInRange(this.getPosition(), this.sightRange);
+					Sheep sheep = this.getTheNearestSheepInRange();
 					Position sheepPosition = sheep.getPosition();
 					int squaredDistance = map.squaredDistanceBetweenPositions(this.getPosition(), sheepPosition);
 					if(squaredDistance == 1) {
@@ -64,6 +64,22 @@ public class Wolf extends Enemies {
 			}
 		}    	
 		return false;
+	}
+	
+	public Sheep getTheNearestSheepInRange() {
+		List<IObjectsOnBoard> objectsInRangeList = map.objectsInRangeList(this.getPosition(), this.sightRange);    //pobranie listy obiektow w zasiegu
+		if(objectsInRangeList.size() == 0) return null;                                         //jesli pobrana lista jest pusta, zwroc null
+		TreeMap<Integer, Sheep> sheepsInRangeMap = new TreeMap<>();                             //utworzenie TreeMap, ktora sortuje klucze (w tym przypadku kluczami sa liczby calkowite)
+		for(IObjectsOnBoard obj : objectsInRangeList) {                                         //sprawdzamy, czy w liscie sa owce
+			if( obj instanceof Sheep ) {                                                        //jesli tak dodajemy do mapy (odleglosc^2, owca)
+				int squaredDistance = map.squaredDistanceBetweenPositions(this.getPosition(), obj.getPosition());
+				sheepsInRangeMap.put(squaredDistance, (Sheep)obj );
+			}
+		}
+		if(sheepsInRangeMap.size() == 0) return null;                                            //jesli nie bylo owiec, zwracamy null
+		else {                                                     
+			return sheepsInRangeMap.firstEntry().getValue();                                     //zwracamy najblizsza owce z mapy (czyli pierwsza w mapie)
+		}
 	}
 	
 	public void moveCloseToGoal(Position goalPosition){                                                //ruch zblizony do celu (odleglosc od celu wieksza od 1)

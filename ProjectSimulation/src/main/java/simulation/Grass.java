@@ -25,7 +25,6 @@ public class Grass implements IObjectsOnBoard {
 	@Override
 	public void disappear() {                                  
 		map.deleteObject(this);                                //usuniecie z hashmapy i tablicy
-		//Starter.getObjectsToRemove().add(this);                //dodanie do listy obiektow, ktore maja zosatc usuniete z glowenej listy po wykonaniu iteracji
 		this.isActive = false;                                 //isActive = false
 	}
 
@@ -50,8 +49,7 @@ public class Grass implements IObjectsOnBoard {
 		}
 	}
 	
-
-
+	
 	
 	@Override
 	public String toString() {
@@ -62,7 +60,6 @@ public class Grass implements IObjectsOnBoard {
 	public boolean getState() {
 		return isActive;
 	}
-
 
 	@Override
 	public void setState(boolean state) {
