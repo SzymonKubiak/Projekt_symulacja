@@ -1,6 +1,7 @@
 package simulation;
-import java.util.List;
+
 import java.util.TreeMap;
+import java.util.List;
 
 public class Sheep extends FarmAnimals {
 	
@@ -12,14 +13,29 @@ public class Sheep extends FarmAnimals {
 		this(map, 1, 1);  
 	}
 	
+	/** multiplicationPoints to zmienna okreslajaca zdolnosc Owcy do wykonania akcji rozmnazania.
+	 */
 	public int multiplicationPoints;
 	
+	
+	
+	/** Metoda obsluguje zdarzenie, kiedy Owca bedzie mogla zjesc Trawe, ktora jest w poblizu.
+	 * 	Jako argument przyjmuje pozycje Trawy @param grassPosition.
+	 * 	Dodaje punkt do multiplicationPoints oraz wywoluje metode disappear na zjedzonej Trawie.
+	 */
 	private void eatGrass(Position grassPosition)	//argumentem jest pozycja Trawy
 	{
 		this.multiplicationPoints++;	            // zjedzenie trawy dodaje jeden punkt do rozmnazania
 		map.getObject(grassPosition).disappear();	// wywoluje metode disappear na obiekcie Trawy
 	}
-	   	
+	
+	
+	
+	/** Metoda sprawdza czy dana Owca spelnia kryteria do rozmnazania: ma 10 pkt multiplicationPoints i czy jest obok niej na mapie wolne miejsce.
+	 * 	Jezeli kryteria zostaly spelnione, w losowym wolnym miejscu obok Owcy powstaje kolejna.
+	 * 	multiplicationPoints Owcy, ktora sie rozmnozyla zostaja zresetowane.
+	 * 	@return True - jezeli rozmnozenie zaszlo; False - jezeli ktorys z warunkow nie zostal spelniony.
+	 */
 	private boolean multiplicationTry()
 	{
 		if(this.multiplicationPoints>=10 && map.isAnyEmptyFieldAround(this.getPosition()) )  // czy jest przynajmniej 10 punktow i jakies wolne miejsce obok
@@ -48,7 +64,14 @@ public class Sheep extends FarmAnimals {
 	}
 	
 	
-
+	/** Glowna metoda obiektu.
+	 * 	Sprawdza wszystkie sytuacje mozliwe do zdarzenia, zarzadza zachowaniem Owcy:
+	 * 	Sprawdza czy Owca spelnia warunki aby sie rozmnozyc i jezeli tak, to robi to i konczy ruch.
+	 * 	Jezeli nie, sprawdza czy gdzies w poblizu znajduje sie Trawa i jezeli jest w zasiegu to zjada ja wywolujac metode eatGrass(),
+	 * 	albo zbliza sie do niej.
+	 * 
+	 * 	W przeciwnym przypadku wykonuje losowy ruch za pomoca metody makeMove().
+	 */
 	@Override
 	public void makeTurn() {
 		if(this.isActive) {
@@ -68,32 +91,24 @@ public class Sheep extends FarmAnimals {
 				this.makeMove();
 			}
 		}
-		
-	}		
-		
-	 
-	public void moveCloseToGoal(Position goalPosition){                                                //ruch zblizony do celu (odleglosc od celu wieksza od 1)
-		if(map.isAnyEmptyFieldAround(this.getPosition())) {                                            //jesli nie bedzie wolnego pola to nic nie zrobi
-			TreeMap<Integer, Position> positionsMap = new TreeMap<>();
-			for(int i = 1; i<=4; i++) {
-				Position position = this.getPosition().positionAfterMove(i, map.getSize());
-				if((position!=null) && (map.getObject(position)==null)) {                              //jesli istnieje taka pozycja na mapie i nie jest zajeta
-					int squaredDistance= map.squaredDistanceBetweenPositions(position, goalPosition);  //obliczanie odleglosci do kwadratu
-					positionsMap.put(squaredDistance, position);                                       //dodanie do mapy (odleglosc^2, pozycja)
-				}
-			}
-			Position newPosition = positionsMap.firstEntry().getValue();
-			map.changePosition(this, newPosition);
-		}
 	}
+		
+
 	
+	/**	Metoda wykonuje sie tylko wtedy gdy Trawa jest w zasiegu ruchu Owcy.
+	 * Wywoluje metode eatGrass() oraz przenosi Owce na pozycje na ktorej Trawa sie znajdowala.
+	 * @param grassPosition
+	 */
 	private void stepOnTheGrass(Position grassPosition){
 		this.eatGrass(grassPosition);
 		map.changePosition(this, grassPosition);
-		
 	}
 	
-	public boolean isAnyGrassInRange() {
+	
+	/** Metoda sprawdza czy w zasiegu wzroku Owcy jest obiekt klasy Grass.
+	 * @return true - jezeli w zasiegu wzroku jest obiekt klasy Trawa, w przeciwnym wypadku - false.
+	 */
+	protected boolean isAnyGrassInRange() {
 		List<IObjectsOnBoard> objectsInRangeList = map.objectsInRangeList(this.getPosition(), this.sightRange);  //przypisanie listy obiektow w zasiegu
 		if(objectsInRangeList.size() != 0) {                                                                     //jesli lista nie jest pusta
 			for(IObjectsOnBoard o : objectsInRangeList) {                                                        //poszukiwanie trawy w liscie
@@ -103,7 +118,11 @@ public class Sheep extends FarmAnimals {
 		return false;
 	}
 	
-	public Grass getTheNearestGrassInRange() {
+	
+	/** Metoda sposrod listy obiektow klasy Trawa bedacych w zasiegu wzroku Owcy, wybiera najblizej lezacy na mapie.
+	 * @return najblizszy obiekt klasy Grass.
+	 */
+	protected Grass getTheNearestGrassInRange() {
 		List<IObjectsOnBoard> objectsInRangeList = map.objectsInRangeList(this.getPosition(), this.sightRange);     //analogicznie jak getTheNearestSheepInRange();
 		if(objectsInRangeList.size() == 0) return null;
 		TreeMap<Integer, Grass> grassInRangeMap = new TreeMap<>();                                       
@@ -118,8 +137,10 @@ public class Sheep extends FarmAnimals {
 			return grassInRangeMap.firstEntry().getValue();
 		}
 	}
-		
+	
 	@Override
+	/** Metoda sluzaca do wyswietlania graficznie mapy.
+	 */
 	public String toString() {
 		return "S";
 	}

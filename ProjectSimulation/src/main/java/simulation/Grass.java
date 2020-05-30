@@ -13,16 +13,6 @@ public class Grass implements IObjectsOnBoard {
 	
 
 	@Override
-	public void setMap(IMap map) {
-		this.map = map;
-	}
-
-	@Override
-	public IMap getMap() {
-		return this.map;
-	}
-
-	@Override
 	public void disappear() {                                  
 		map.deleteObject(this);                                //usuniecie z hashmapy i tablicy
 		this.isActive = false;                                 //isActive = false

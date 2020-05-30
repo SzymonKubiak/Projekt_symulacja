@@ -47,6 +47,15 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
     	}		
     }
     
+    private void actualiseList()
+    {
+    	objectList.addAll(objectsToAdd);					// po kazdej iteracji do glownej listy dodawane sa nowo powstale obiekty
+		objectsToAdd.clear();                               // po dodaniu nalezy usunac wszystkie obiekty z dodatkowej listy
+		objectList.removeAll(objectsToRemove);              // po kazdej iteracji z glownej listy usuwane sa obiekty, ktore trafily do listy objectsToRemove
+		objectsToRemove.clear();                            // czyszczenie listy
+		
+    }
+    
 	public void runSimulation()
 	{
 		if(parametersCorrectness(objectList) == false) {
@@ -62,10 +71,8 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 				for(IObjectsOnBoard iObjectsOnBoard : objectList) {
 					iObjectsOnBoard.makeTurn();
 				}
-				objectList.addAll(objectsToAdd);					// po kazdej iteracji do glownej listy dodawane sa nowo powstale obiekty
-				objectsToAdd.clear();                               // po dodaniu nalezy usunac wszystkie obiekty z dodatkowej listy
-				objectList.removeAll(objectsToRemove);              // po kazdej iteracji z glownej listy usuwane sa obiekty, ktore trafily do listy objectsToRemove
-				objectsToRemove.clear();                            // czyszczenie listy
+				
+				actualiseList();
 				
 				System.out.println("Iteration: " + i);
 				map.printTableMap();                                //wyswietlenie tablicy dwuwymiarowej			

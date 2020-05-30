@@ -77,25 +77,12 @@ public class Wolf extends Enemies {
 			}
 		}
 		if(sheepsInRangeMap.size() == 0) return null;                                            //jesli nie bylo owiec, zwracamy null
-		else {                                                     
+		else {
 			return sheepsInRangeMap.firstEntry().getValue();                                     //zwracamy najblizsza owce z mapy (czyli pierwsza w mapie)
 		}
 	}
 	
-	public void moveCloseToGoal(Position goalPosition){                                                //ruch zblizony do celu (odleglosc od celu wieksza od 1)
-		if(map.isAnyEmptyFieldAround(this.getPosition())) {                                            //jesli nie bedzie wolnego pola to nic nie zrobi
-			TreeMap<Integer, Position> positionsMap = new TreeMap<>();
-			for(int i = 1; i<=4; i++) {                                                                //sprawdzanie odleglosci od celu po zajeciu, mozliwej pozycji
-				Position position = this.getPosition().positionAfterMove(i, map.getSize());
-				if((position!=null) && (map.getObject(position)==null)) {                              //jesli istnieje taka pozycja na mapie i nie jest zajeta
-					int squaredDistance= map.squaredDistanceBetweenPositions(position, goalPosition);  //obliczanie odleglosci do kwadratu
-					positionsMap.put(squaredDistance, position);                                       //dodanie do mapy (odleglosc^2, pozycja)
-				}
-			}
-			Position newPosition = positionsMap.firstEntry().getValue();                               //wybranie pozycji najblizej celu, czyli pierwszej wartosci w mapie
-			map.changePosition(this, newPosition);
-		}
-	}
+	
 	
 	@Override
 	public String toString() {
