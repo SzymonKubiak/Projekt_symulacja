@@ -13,7 +13,7 @@ public class Wolf extends Enemies {
 	}
 	
 
-	public void attackSheep(Position sheepPosition) {
+	private void attackSheep(Position sheepPosition) {
 		map.getObject(sheepPosition).disappear();
 		map.changePosition(this, sheepPosition);
 	}
@@ -56,7 +56,7 @@ public class Wolf extends Enemies {
 		
 	}
 	
-	public boolean isAnySheepInRange() {
+	protected boolean isAnySheepInRange() {
 		List<IObjectsOnBoard> objectsInRangeList = map.objectsInRangeList(this.getPosition(), this.sightRange);  //przypisanie listy obiektow w zasiegu
 		if(objectsInRangeList.size() != 0) {                                                                     //jesli lista nie jest pusta
 			for(IObjectsOnBoard o : objectsInRangeList) {                                                        //poszukiwanie owiec w liscie
@@ -66,7 +66,7 @@ public class Wolf extends Enemies {
 		return false;
 	}
 	
-	public Sheep getTheNearestSheepInRange() {
+	protected Sheep getTheNearestSheepInRange() {
 		List<IObjectsOnBoard> objectsInRangeList = map.objectsInRangeList(this.getPosition(), this.sightRange);    //pobranie listy obiektow w zasiegu
 		if(objectsInRangeList.size() == 0) return null;                                         //jesli pobrana lista jest pusta, zwroc null
 		TreeMap<Integer, Sheep> sheepsInRangeMap = new TreeMap<>();                             //utworzenie TreeMap, ktora sortuje klucze (w tym przypadku kluczami sa liczby calkowite)

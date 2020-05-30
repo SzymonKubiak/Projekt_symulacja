@@ -9,10 +9,10 @@ public abstract class ObjectsOnBoard implements IObjectsOnBoard {
 		this.movementSpeed = movementSpeed;
 	}
 	
-	IMap map;
-	int sightRange;
-	int movementSpeed;
-	boolean isActive;
+	protected IMap map;
+	protected int sightRange;
+	protected int movementSpeed;
+	protected boolean isActive;
 	
 
 	@Override

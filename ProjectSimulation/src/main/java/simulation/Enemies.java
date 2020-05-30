@@ -8,7 +8,8 @@ public abstract class Enemies extends ObjectsOnBoard {
 		super.isActive = false;                   //domyslnie beda ustawiane na nieaktywne (zarowno wilk jak i zlodziei)
 	}
 	private float visibilityRange;
-	int myTime;
+	protected int myTime;
+	
 	public float getVisibilityRange(){
 		return this.visibilityRange;
 	}

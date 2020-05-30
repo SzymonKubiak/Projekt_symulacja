@@ -10,7 +10,7 @@ public class Dog extends FarmAnimals {
 		this(map, 4, 3);        
 	}
 
-	public void bark()
+	private void bark()
 	{
 		IShepherd shepherd = new Shepherd();			//stwarza obiekt klasy Pasterz
 		shepherd.removeEnemies();						// wywoluje metode removeEnemies();
@@ -32,7 +32,7 @@ public class Dog extends FarmAnimals {
 			
 	}
 	
-	public boolean isAnyEnemyInRange() {
+	protected boolean isAnyEnemyInRange() {
 		List<IObjectsOnBoard> objectsInRangeList = map.objectsInRangeList(this.getPosition(), this.sightRange);  //dostajemy liste aktywnych obiektow w zasiegu
 		if(objectsInRangeList == null) return false;
 		for(IObjectsOnBoard o : objectsInRangeList) {

@@ -15,7 +15,7 @@ public class Sheep extends FarmAnimals {
 	
 	/** multiplicationPoints to zmienna okreslajaca zdolnosc Owcy do wykonania akcji rozmnazania.
 	 */
-	public int multiplicationPoints;
+	private int multiplicationPoints;
 	
 	
 	

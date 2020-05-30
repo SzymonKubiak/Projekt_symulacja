@@ -25,15 +25,15 @@ public class Position {
 		return y;
 	}
 	
-	void setX(int x){
+	public void setX(int x){
 		this.x=x;
 	}
 	
-	void setY(int y){
+	public void setY(int y){
 		this.y=y;
 	}
 	
-	Position positionAfterMove(int move, int mapSize)          //zwraca pozycje obiektu, ktora by zajal, gdyby obiekt wykonal ruch w zadanym kierunku, jesli wyjdzie po za mape zwraca null
+	public Position positionAfterMove(int move, int mapSize)          //zwraca pozycje obiektu, ktora by zajal, gdyby obiekt wykonal ruch w zadanym kierunku, jesli wyjdzie po za mape zwraca null
 	{
 		
 		if(move==1) {                                 //jesli gora
@@ -71,14 +71,6 @@ public class Position {
 		return null;
 	}
 	
-	@Override
-	public boolean equals(Object o) {   //equals, ktore porownuje pozycje
-		if(o == this) return true;   
-		if(!(o instanceof Position)) return false;  //jezeli obiekt, ktory porownujemy nie jest obiektem kalsy Position - false
-		Position position = (Position)o;
-		
-		return(( this.getX() == position.getX() )&& ( this.getY() == position.getY() ));
-	}
 	
 	
 	public String toString() {

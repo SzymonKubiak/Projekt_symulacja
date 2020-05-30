@@ -14,7 +14,7 @@ public class Thief extends Enemies {
 	
 	
 	
-	public void attackSheeps() {
+	private void attackSheeps() {
 		for(Sheep sheep : this.sheepsInRangeList()) {
 			sheep.disappear();
 		}	
@@ -51,7 +51,7 @@ public class Thief extends Enemies {
 		
 	}
 	
-	public List<Sheep> sheepsInRangeList(){
+	private List<Sheep> sheepsInRangeList(){
 		List<IObjectsOnBoard> objectsInRangeList = map.objectsInRangeList(this.getPosition(), this.sightRange);
 		List<Sheep> sheepsInRangeList = new ArrayList<>();
 		if(objectsInRangeList.size() != 0) {
