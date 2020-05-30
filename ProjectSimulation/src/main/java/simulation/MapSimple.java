@@ -118,11 +118,16 @@ public int squaredDistanceBetweenPositions(Position position1, Position position
 }
 public List<IObjectsOnBoard> objectsInRangeList(Position position, float range){
 	List<IObjectsOnBoard> objectsInRangeList = new ArrayList<>();
-	for(IObjectsOnBoard obj : Starter.getObjectList()) {
-		if(obj.getState()) {                                                                         //jesli jest aktywny
-			int squaredDistance = this.squaredDistanceBetweenPositions(position, obj.getPosition()); //oblicz odlelosc do kwadratu
-			if(squaredDistance <= range*range) {                                                     //jesli odleglosc do kwadratu <= zasieg do kwadratu
-				objectsInRangeList.add(obj);                                                         //dodaj do listy
+	for(int i = 0 ; i<size ; i++) {
+		for(int j = 0 ; j <size ; j++) {
+			if(tableMap[i][j] != null) {
+				Position pos = new Position(i,j);
+				if(this.getObject(pos).getState()) {                                                                               //jesli jest aktywny
+					int squaredDistance = this.squaredDistanceBetweenPositions(position, this.getObject(pos).getPosition());       //oblicz odlelosc do kwadratu
+					if(squaredDistance <= range*range) {                                                                           //jesli odleglosc do kwadratu <= zasieg do kwadratu
+						objectsInRangeList.add(this.getObject(pos));                                                               //dodaj do listy
+					}
+				}
 			}
 		}
 	}

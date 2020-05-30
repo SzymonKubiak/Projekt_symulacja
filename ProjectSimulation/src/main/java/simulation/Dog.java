@@ -10,7 +10,7 @@ public class Dog extends FarmAnimals {
 		this(map, 4, 3);        
 	}
 
-	void bark()
+	public void bark()
 	{
 		IShepherd shepherd = new Shepherd();			//stwarza obiekt klasy Pasterz
 		shepherd.removeEnemies();						// wywoluje metode removeEnemies();
