@@ -13,7 +13,8 @@ public class Thief extends Enemies {
 	}
 	
 	
-	
+	/** Metoda zabija wszystkie Owce bedace w zasiegu ataku Zlodzieja.
+	 */
 	private void attackSheeps() {
 		for(Sheep sheep : this.sheepsInRangeList()) {
 			sheep.disappear();
@@ -21,6 +22,10 @@ public class Thief extends Enemies {
 	}
 
 	@Override
+	/** Glowna metoda Zlodzieja, generujaca go w losowym czasie na mapie,
+	 * 	a gdy juz Zlodziej istnieje na mapie odpowiada za jego atak gdy conajmniej dwie Owce sa w poblizu.
+	 * 	Gdy atak nie zachodzi, Zlodziej porusza sie losowo.
+	 */
 	public void makeTurn() {
 		
 		if(this.isActive){
@@ -51,6 +56,9 @@ public class Thief extends Enemies {
 		
 	}
 	
+	/** Metoda wskazuje na Owce bedace w zasiegu ataku Zlodzieja
+	 * @return lista Owiec w zasiegu ataku
+	 */
 	private List<Sheep> sheepsInRangeList(){
 		List<IObjectsOnBoard> objectsInRangeList = map.objectsInRangeList(this.getPosition(), this.sightRange);
 		List<Sheep> sheepsInRangeList = new ArrayList<>();

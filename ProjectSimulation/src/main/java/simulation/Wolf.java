@@ -12,13 +12,22 @@ public class Wolf extends Enemies {
 		this(map, 4, 4, 0.8F);
 	}
 	
-
+	
+	/** Metoda obslugujaca zdarzenie zjedzenia Owcy przez Wilka, kiedy ta znajdzie sie w zasiegu jego razenia
+	 * @param sheepPosition
+	 */
 	private void attackSheep(Position sheepPosition) {
 		map.getObject(sheepPosition).disappear();
 		map.changePosition(this, sheepPosition);
 	}
 	
+	
 	@Override
+	/** Glowna metoda Wilka decydujaca o jego zachowaniu w zaleznosci od warunkow.
+	 * 	Jezeli Wilk jest na mapie to w zaleznosci od obecnosci Owcy w poblizu, albo ja atakuje, zbliza sie do niej,
+	 * 	a gdy w zasiegu brak Owiec wykonuje dowolny ruch.
+	 * 	Gdy Wilk nie zostal umieszczony na mapie, czeka na mozliwosc losowego pojawienia sie.
+	 */
 	public void makeTurn() {
 		
 		if(this.isActive) {
@@ -40,22 +49,25 @@ public class Wolf extends Enemies {
 				}
 			}	
 		}
-		if(Starter.getActualIteration()==0) {                                            //jesli poczatek iteracji
-			this.myTime = RandomGenerator.giveRandomNumber( Starter.getNumberOfIter() );      //dla numerOfIteration=5 wylosuje liczbe od 0 do 4 
+		if(Starter.getActualIteration()==0) {                                            		//jesli poczatek iteracji
+			this.myTime = RandomGenerator.giveRandomNumber( Starter.getNumberOfIter() );        //dla numerOfIteration=5 wylosuje liczbe od 0 do 4 
 			}
 		
-		if(Starter.getActualIteration()==this.myTime) {                       //jesli aktualna iteracja pokryje sie z jego wylosowana iteracja ma sie pojawic na mapie
-			if(map.isFreePlaceOnEdge()) {                                //sprawdzanie, czy ma gdzie sie pojawic
+		if(Starter.getActualIteration()==this.myTime) {                       					//jesli aktualna iteracja pokryje sie z jego wylosowana iteracja ma sie pojawic na mapie
+			if(map.isFreePlaceOnEdge()) {                               					    //sprawdzanie, czy ma gdzie sie pojawic
 				while(!map.setPosition(this, RandomGenerator.giveRandomPositionEnemy( map.getSize() )));
 				this.isActive = true;
 			}
 			else {
-				this.myTime++;
+				this.myTime++;									// jezeli wylosowana runda pojawienia sie Wilka nadeszla, jednak nie na mapie brak miejsca, runda jest przesuwana
 			}		
 		}
-		
 	}
 	
+	
+	/**	Metoda sprawdza, czy w zasiegu wzroku Wilka jest jakas Owca.
+	 * @return true - jezeli jest Owca w jego zasiegu, w przeciwnym wypadku - false.
+	 */
 	protected boolean isAnySheepInRange() {
 		List<IObjectsOnBoard> objectsInRangeList = map.objectsInRangeList(this.getPosition(), this.sightRange);  //przypisanie listy obiektow w zasiegu
 		if(objectsInRangeList.size() != 0) {                                                                     //jesli lista nie jest pusta
@@ -66,6 +78,10 @@ public class Wolf extends Enemies {
 		return false;
 	}
 	
+	
+	/** Metoda szuka najblizszej Owcy w zasiegu wzroku Wilka.
+	 * @return obiekt Owca ktory jest najblizej.
+	 */
 	protected Sheep getTheNearestSheepInRange() {
 		List<IObjectsOnBoard> objectsInRangeList = map.objectsInRangeList(this.getPosition(), this.sightRange);    //pobranie listy obiektow w zasiegu
 		if(objectsInRangeList.size() == 0) return null;                                         //jesli pobrana lista jest pusta, zwroc null
