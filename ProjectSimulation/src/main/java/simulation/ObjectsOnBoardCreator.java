@@ -4,6 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ObjectsOnBoardCreator implements IObjectsOnBoardCreator{
+	/**
+	 * @param numS - liczba Owiec
+	 * @param numD - liczba Psow
+	 * @param numG - liczba pol Trawy
+	 * @param numT - liczba Zlodziei
+	 * @param numW - liczba Wilkow
+	 */
 	public ObjectsOnBoardCreator(int numS, int numD, int numG, int numT, int numW) {
 		
 		this.numS = numS;
@@ -12,6 +19,9 @@ public class ObjectsOnBoardCreator implements IObjectsOnBoardCreator{
 		this.numT = numT; 
 		this.numW = numW;
 	}
+	/**
+	 * Konstruktor domyslny.
+	 */
 	public ObjectsOnBoardCreator() { //konstruktor domyslny, gdy nic nie podamy 
 		
 		this(20,2,25,2,3);
@@ -24,6 +34,10 @@ public class ObjectsOnBoardCreator implements IObjectsOnBoardCreator{
 	int numT;
 	int numW;
 
+	/**
+	 * Metoda inicjalizuje wszystkie obiekty, ktore beda brac udzial w poczatkowej fazie symulacji,
+	 * zwraca liste tych obiektow.
+	 */
 	@Override
 	public List<IObjectsOnBoard> create(IMap map) { 
 		
