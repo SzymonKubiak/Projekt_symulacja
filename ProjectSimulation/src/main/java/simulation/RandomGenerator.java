@@ -2,6 +2,10 @@ package simulation;
 import java.util.Random;
 public class RandomGenerator {
 	
+	/**
+	 * Metoda generuje liczbê od 1 - 4.  Przyjmujemy kierunki: 1-góra, 2-prawo, 3-dó³, 4-lewo.
+	 * @return losowa liczba 1-4.
+	 */
 	public static int giveRandomMove() //// Generuje liczbê od 1 - 4.  Przyjmujemy kierunki: 1-góra, 2-prawo, 3-dó³, 4-lewo.
 	{
 		Random generator = new Random();
@@ -10,6 +14,11 @@ public class RandomGenerator {
 	}
 	
 	
+	/**
+	 * Metoda losuje dowolne polozenie na mapie.
+	 * @param size.
+	 * @return Obiekt Position ktory zawiera wylosowane wspolrzedne.
+	 */
 	public static Position giveRandomPosition(int size) //// Generuje randomowe wspó³rzêdne na mapie i odsy³a obiekt Position
 	{
 		Random generator = new Random();
@@ -21,6 +30,11 @@ public class RandomGenerator {
 		return position;
 	}
 	
+	/**
+	 * Metoda generuje losowe polozenie przy krawedzi mapy.
+	 * @param size
+	 * @return Obiekt Position ktory zawiera wylosowane wspolrzedne.
+	 */
 	public static Position giveRandomPositionEnemy(int size) 
 	{
 		Random generator = new Random();
@@ -40,6 +54,11 @@ public class RandomGenerator {
 		return null;
 	}
 	
+	/**
+	 * Metoda losuje liczbe calkowita z podanego zakresu.
+	 * @param range - zasieg losowania
+	 * @return losowa liczba z zakresu.
+	 */
 	public static int giveRandomNumber(int range)
 	{
 		Random generator = new Random();

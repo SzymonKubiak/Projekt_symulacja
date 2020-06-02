@@ -5,6 +5,14 @@ import java.util.List;
 
 public class Starter {
 	
+/**
+ * Metoda inicjalizuje potrzebne komponenty, takie jak glowna lista - po ktorej iterujemy cala symulacje,
+ * Lista obiektow do dodania, ktore zostaly dodane na konkretnym etapie symulacji,
+ * Lista obiektow do usuniecia, ktore zostaly do niej dodane w ciagu symuacji.
+ * @param numberOfIter - ilosc epok symulacji
+ * @param map - referencja do obiektu mapa
+ * @param objectsCreator - referencja do kreatora obiektow
+ */
 public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator) {
 		
 		Starter.numberOfIter = numberOfIter;
@@ -26,6 +34,11 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
     
 
 
+    /**
+     * Metoda sprawdza, czy podane startowe ilosci obiektow, sa w stanie zmiescic sie na mapie.
+     * @param objectsList
+     * @return True jezeli ilosc obiektow jest mniejsza niz ilosc pol mapy, w przeciwnym przypadku false.
+     */
     public boolean parametersCorrectness(List<IObjectsOnBoard> objectsList) {
     	int quantity = 0;
     	for(IObjectsOnBoard o : objectsList) {
@@ -36,6 +49,10 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
     	else return true;
     }
     
+    /**
+     * Metoda nadaje pozycje kazdemu obiektowi - uzywana tylko raz, na poczatku symulacji.
+     * @param objectList
+     */
     public void setObjectsOnMap(List<IObjectsOnBoard> objectList) {
    	    if(this.parametersCorrectness(objectList) ) {         //jesli obiektow jest mniej lub tyle samo co miejsc na mapie to przypisanie sie wykona
     		for(IObjectsOnBoard o : objectList) {                     //musimy dodac obiekty do kolekcji typu map i przypisac im randomowa pozycje
@@ -47,6 +64,10 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
     	}		
     }
     
+    /**
+     * Metoda aktualizuje glowna liste po ktorej iterujemy.
+     * Dodaje obiekty, ktore powstaly i usuwa, ktore powinny zostac usuniete.
+     */
     private void actualiseList()
     {
     	objectList.addAll(objectsToAdd);					// po kazdej iteracji do glownej listy dodawane sa nowo powstale obiekty
@@ -56,6 +77,10 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 		
     }
     
+	/**
+	 * Czesc glowna symulacji - obsluga wszystkich zdarzen, drukowanie mapy w konsoli,
+	 * Iteracja po kazdym obiekcie z listy objectList i wywolywanie metody makeTurn(), aktualizacja listy obiektow.
+	 */
 	public void runSimulation()
 	{
 		if(parametersCorrectness(objectList) == false) {
@@ -81,21 +106,36 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 
 	}
 	
+	/**
+	 * @return Glowna lista obiektow.
+	 */
 	public static List<IObjectsOnBoard> getObjectList(){   // funkcja ta jest potrzebna do dodawania obiektow do listy, po ktorej iterujemy
 		return objectList;
 	}
 	
+	/**
+	 * @return Lista obiektow do dodania przed kolejna iteracja.
+	 */
 	public static List<IObjectsOnBoard> getObjectsToAdd(){   // funkcja ta jest potrzebna do dodawania obiektow do listy, po ktorej iterujemy
 		return objectsToAdd;
 	}
+	/**
+	 * @return  Lista obiektow do usuniecia przed kolejna iteracja.
+	 */
 	public static List<IObjectsOnBoard> getObjectsToRemove(){   // funkcja ta jest potrzebna do dodawania obiektow do listy, po ktorej iterujemy
 		return objectsToRemove;
 	}
 	
+	/**
+	 * @return Numer indeksu iteracji
+	 */
 	public static int getActualIteration() {
 		return actualIteration;
 	}
 	
+	/**
+	 * @return Calkowita ilosc iteracji
+	 */
 	public static int getNumberOfIter() {
 		return numberOfIter;
 	}
