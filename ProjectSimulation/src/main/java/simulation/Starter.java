@@ -36,7 +36,7 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 
     /**
      * Metoda sprawdza, czy podane startowe ilosci obiektow, sa w stanie zmiescic sie na mapie.
-     * @param objectsList
+     * @param objectsList - lista glowna obiektow.
      * @return True jezeli ilosc obiektow jest mniejsza niz ilosc pol mapy, w przeciwnym przypadku false.
      */
     public boolean parametersCorrectness(List<IObjectsOnBoard> objectsList) {
@@ -51,7 +51,7 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
     
     /**
      * Metoda nadaje pozycje kazdemu obiektowi - uzywana tylko raz, na poczatku symulacji.
-     * @param objectList
+     * @param objectList - lista glowna obiektow.
      */
     public void setObjectsOnMap(List<IObjectsOnBoard> objectList) {
    	    if(this.parametersCorrectness(objectList) ) {         //jesli obiektow jest mniej lub tyle samo co miejsc na mapie to przypisanie sie wykona
@@ -100,7 +100,7 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 				actualiseList();
 				
 				System.out.println("Iteration: " + i);
-				map.printTableMap();                                //wyswietlenie tablicy dwuwymiarowej			
+				//map.printTableMap();                                //wyswietlenie tablicy dwuwymiarowej			
 			}
 		}
 
@@ -140,9 +140,23 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 		return numberOfIter;
 	}
 	
+	/**
+	 * Metoda wpisuje stan stada owiec.
+	 */
+	public void endingMessage() {
+		
+		int aliveSheepCounter=0;
+		
+		for(IObjectsOnBoard o : objectList)
+		{
+			if(o instanceof Sheep) aliveSheepCounter++;
+		}
+		System.out.println("Alive sheep(s) left: "+ aliveSheepCounter);
+	}
+	
 	public static void main(String[] args) {
 		
-		IMap map = new MapSimple(10);
+		IMap map = new MapSimple(15);
 																                            // glowne parametry symulacji. Ilosci (po kolei):
 		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(99,0,0,5,10);		// Owca, Pies, Trawa, Zlodziej, Wilk
 
@@ -150,6 +164,7 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 		
 		starter.runSimulation();
 		
+		starter.endingMessage();
 	}
 
 }

@@ -16,7 +16,7 @@ public class RandomGenerator {
 	
 	/**
 	 * Metoda losuje dowolne polozenie na mapie.
-	 * @param size.
+	 * @param size - rozmiar mapy
 	 * @return Obiekt Position ktory zawiera wylosowane wspolrzedne.
 	 */
 	public static Position giveRandomPosition(int size) //// Generuje randomowe wspó³rzêdne na mapie i odsy³a obiekt Position
@@ -32,7 +32,7 @@ public class RandomGenerator {
 	
 	/**
 	 * Metoda generuje losowe polozenie przy krawedzi mapy.
-	 * @param size
+	 * @param size - rozmiar mapy
 	 * @return Obiekt Position ktory zawiera wylosowane wspolrzedne.
 	 */
 	public static Position giveRandomPositionEnemy(int size) 

@@ -5,8 +5,7 @@ public class Grass implements IObjectsOnBoard {
 	/**
 	 * Konstruktor zapisuje referencje do obiektu implementujacego interfejs IMap.
 	 * Ustawia pole isActive na true.
-	 * 
-	 * @param map
+	 * @param map.
 	 */
 	public Grass(IMap map) {
 		this.map = map;

@@ -11,7 +11,7 @@ public class MapSimple implements IMap {
 	/**
 	 * Metoda tworzy tabele dwuwymiarowa, na ktorej reprezentowane beda obiekty.
 	 * Tworzy takze HashMape ktora ulatwi dostanie sie do poszczegolnego obiektu.
-	 * @param rozmiar mapy
+	 * @param size - rozmiar mapy
 	 */
 	public MapSimple(int size) {
 		tableMap = new IObjectsOnBoard[size][size];
@@ -26,7 +26,7 @@ public class MapSimple implements IMap {
 	
 	/**
 	 *	Metoda sluzaca do ustawiania pozycji obiektu, ktory nie zostal jeszcze ulokowany na mapie
-	 * 	@param Obiekt ktory umieszczamy, oraz pozycja ktora bedzie mial.
+	 * 	@param  object - Obiekt ktory umieszczamy @param position - pozycja ktora bedzie mial.
 	 */
 	@Override
 	public boolean setPosition(IObjectsOnBoard object, Position position) {             //dla obiektow nie majacych pozycji (dla nowo utworzonych)
@@ -39,7 +39,7 @@ public class MapSimple implements IMap {
 	
 	/**
 	 *	Metoda sluzaca do zmiany pozycji obiektu, ktory byl juz wczesniej na mapie.
-	 * 	@param Obiekt ktory umieszczamy, oraz pozycja ktora bedzie mial.
+	 * 	@param  object - Obiekt ktory umieszczamy @param position - pozycja ktora bedzie mial.
 	 */
 	@Override
 	public boolean changePosition(IObjectsOnBoard object, Position position) {          //dla obiektow majacych juz jakas pozycje
@@ -54,7 +54,7 @@ public class MapSimple implements IMap {
 	/**
 	 * Metoda sluzy do usuniecia danego obiektu z mapy.
 	 * Usuwa obiekt z tablicy i HashMapy.
-	 * @param obiekt, ktory chcemy usunac.
+	 * @param object - obiekt, ktory chcemy usunac.
 	 */
 	@Override
 	public void deleteObject(IObjectsOnBoard object) {                                  //czyszczenie tablicy i hashmapy przy calkowitym usuwaniu obiektu
@@ -67,7 +67,7 @@ public class MapSimple implements IMap {
 	
 	/**
 	 *	Metoda zwraca obiekt znajdujacy sie na podanej pozycji.
-	 * @param Pozycja, ktora sprawdzamy.
+	 * @param position - Pozycja, ktora sprawdzamy.
 	 */
 	@Override
 	public IObjectsOnBoard getObject(Position position) {
@@ -80,7 +80,7 @@ public class MapSimple implements IMap {
 	
 	/**
 	 * Metoda zwraca pozycje danego obiektu.
-	 * @param Obiekt ktorego pozycji szukamy.
+	 * @param object - Obiekt ktorego pozycji szukamy.
 	 */
 	@Override
 	public Position getObjectPosition(IObjectsOnBoard object) { // Odczyt pozycji podanego obiektu
@@ -105,7 +105,8 @@ public class MapSimple implements IMap {
 	
 	/**
 	 *	Metoda sprawdza czy analizowany ruch nie wyjdzie poza mape.
-	 *	@param Pozycja z ktorej sie ruszamy, kierunek ruchu.
+	 *	@param position - Pozycja z ktorej sie ruszamy, 
+	 *	@param move - kierunek ruchu.
 	 */
 	@Override
 	public boolean isTheMoveProperly(Position position, int move) { //Metoda sprawdza, czy nie wyjezdzamy za granice planszy
