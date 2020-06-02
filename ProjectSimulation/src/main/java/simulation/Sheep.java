@@ -69,7 +69,6 @@ public class Sheep extends FarmAnimals {
 	 * 	Sprawdza czy Owca spelnia warunki aby sie rozmnozyc i jezeli tak, to robi to i konczy ruch.
 	 * 	Jezeli nie, sprawdza czy gdzies w poblizu znajduje sie Trawa i jezeli jest w zasiegu to zjada ja wywolujac metode eatGrass(),
 	 * 	albo zbliza sie do niej.
-	 * 
 	 * 	W przeciwnym przypadku wykonuje losowy ruch za pomoca metody makeMove().
 	 */
 	@Override
