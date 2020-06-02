@@ -10,11 +10,11 @@ public class Position {
 	}
     
     /**
-	 * @param x wspolrzedna x na mapie.
+	 * x wspolrzedna x na mapie.
 	 */
 	private int x;
 	/**
-	 * @param y wspolrzedna y na mapie.
+	 *  y wspolrzedna y na mapie.
 	 */
 	private int y;
 	
@@ -33,13 +33,15 @@ public class Position {
 		return y;
 	}
 	
-	/**Metoda pozwala na ustawienie wspolrzednej x.
+	/**Metoda pozwala na ustawienie wspolrzednej x
+	 * @param x - wspolrzedna x ktora chcemy ustawic.
 	 */
 	public void setX(int x){
 		this.x=x;
 	}
 	
 	/**Metoda pozwala na ustawienie wspolrzednej y.
+	 * @param y - wspolrzedna y ktora chcemy ustawic.
 	 */
 	public void setY(int y){
 		this.y=y;

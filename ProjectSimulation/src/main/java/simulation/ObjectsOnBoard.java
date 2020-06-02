@@ -10,19 +10,19 @@ public abstract class ObjectsOnBoard implements IObjectsOnBoard {
 	}
 	
 	/**
-	 * @param map - obiekt implementujacy interfejs IMap, przechowujacy dane o polozeniu na mapie wszystkich obiektow symulacji.
+	 * map - obiekt implementujacy interfejs IMap, przechowujacy dane o polozeniu na mapie wszystkich obiektow symulacji.
 	 */
 	protected IMap map;
 	/**
-	 * @param sightRange - zawiera informacie o zasiegu widzenia danego obiektu.
+	 * sightRange - zawiera informacie o zasiegu widzenia danego obiektu.
 	 */
 	protected int sightRange;
 	/**
-	 * @param movementSpeed (predkosc ruchu) - zawiera informacje o ilosci ruchow, ktore moze wykonac na planszy podczas jednej iteracji.
+	 * movementSpeed (predkosc ruchu) - zawiera informacje o ilosci ruchow, ktore moze wykonac na planszy podczas jednej iteracji.
 	 */
 	protected int movementSpeed;
 	/**
-	 * @param isActive pole zawierajace informacje o tym, czy dany obiekt jest aktywny.
+	 * isActive - pole zawierajace informacje o tym, czy dany obiekt jest aktywny.
 	 */
 	protected boolean isActive;
 	

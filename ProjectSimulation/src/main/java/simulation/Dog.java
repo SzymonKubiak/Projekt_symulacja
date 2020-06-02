@@ -8,6 +8,7 @@ public class Dog extends FarmAnimals {
 	}
 	/**Domyslny konstruktor klasy Dog.
 	 * Wartosc sightRange ustalana jest na 4, movementSpeed na 3.
+	 * @param map - zawiera referencje do obiektu mapy
 	 */
 	public Dog(IMap map) {  
 		this(map, 4, 3);        
