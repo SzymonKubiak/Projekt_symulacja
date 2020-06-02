@@ -100,7 +100,7 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 				actualiseList();
 				
 				System.out.println("Iteration: " + i);
-				//map.printTableMap();                                //wyswietlenie tablicy dwuwymiarowej			
+				map.printTableMap();                                //wyswietlenie tablicy dwuwymiarowej			
 			}
 		}
 
@@ -139,32 +139,18 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 	public static int getNumberOfIter() {
 		return numberOfIter;
 	}
-	
-	/**
-	 * Metoda wpisuje stan stada owiec.
-	 */
-	public void endingMessage() {
-		
-		int aliveSheepCounter=0;
-		
-		for(IObjectsOnBoard o : objectList)
-		{
-			if(o instanceof Sheep) aliveSheepCounter++;
-		}
-		System.out.println("Alive sheep(s) left: "+ aliveSheepCounter);
-	}
+
 	
 	public static void main(String[] args) {
 		
 		IMap map = new MapSimple(15);
 																                            // glowne parametry symulacji. Ilosci (po kolei):
-		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(99,0,0,5,10);		// Owca, Pies, Trawa, Zlodziej, Wilk
+		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(20,1,20,5,1);		// Owca, Pies, Trawa, Zlodziej, Wilk
 
 		Starter starter = new Starter(1000, map, objectsCreator); 
 		
 		starter.runSimulation();
-		
-		starter.endingMessage();
+	
 	}
 
 }
