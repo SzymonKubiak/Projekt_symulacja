@@ -2,28 +2,41 @@ package simulation;
 
 public class Grass implements IObjectsOnBoard {
 	
+	/**
+	 * Konstruktor zapisuje referencje do obiektu implementujacego interfejs IMap.
+	 * Ustawia pole isActive na true.
+	 * @param map.
+	 */
 	public Grass(IMap map) {
 		this.map = map;
 		this.isActive=true;
 	}
 	
-	IMap map; //musi posiadac obiekt spelniajacy interface mapy, zeby wykonywac ponizsze metody. Moglibysmy utworzyc sobie jakis nowy w konstruktorze
-	          //ale w tym przypadku musimy dostac konkretny i dlatego jest podany jako argument konstruktora.
+	IMap map;
 	private boolean isActive;
 	
 
+	/**
+	 * Metoda wykonywana, gdy Trawa zostaje zjedzona, znika z mapy i jej atrybut isActive staje sie false
+	 */
 	@Override
 	public void disappear() {                                  
 		map.deleteObject(this);                                //usuniecie z hashmapy i tablicy
 		this.isActive = false;                                 //isActive = false
 	}
 
+	/**
+	 * Metoda zwraca sie do mapy w celu odczytu pozycji Trawy
+	 */
 	@Override
 	public Position getPosition() {
 		return map.getObjectPosition(this);
 	}
 
 
+	/**
+	 * Na poczatku kazdej rundy, Trawa ktora zostala zjedzona - czyli maj atrybut isActive ustawiony jako false, dostaje nowa pozycje
+	 */
 	@Override
 	public void makeTurn() {				// na poczatku kazdej rundy, trawy ktore zostaly zjedzone, dostaja nowe pozycje
 		if(!isActive){						// jezeli trawa zostala zjedzona to ma stan ustawiony jako niekatywny
@@ -39,18 +52,23 @@ public class Grass implements IObjectsOnBoard {
 		}
 	}
 	
-	
-	
+
 	@Override
 	public String toString() {
 		return "G";
 	}
 
+	/**
+	 * Metoda zwraca stan Trawy.
+	 */
 	@Override
 	public boolean getState() {
 		return isActive;
 	}
 
+	/**
+	 *Metoda ustawia stan Trawy.
+	 */
 	@Override
 	public void setState(boolean state) {
 		this.isActive = state;		
