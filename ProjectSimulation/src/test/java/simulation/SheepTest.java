@@ -6,13 +6,13 @@ import org.junit.Test;
 
 public class SheepTest {
 	IMap map = new MapSimple(10);
-	Sheep sheep = new Sheep(map);
+	Sheep sheep = new Sheep(map,3,1);
 
 	@Test
 	public void testMoveCloseToGoal() {
 		Position goalPosition = new Position(5,5);
-		Position sheepPosition = new Position(5,2);
-		Position nextPosition = new Position(5,3);
+		Position sheepPosition = new Position(5,3);
+		Position nextPosition = new Position(5,4);
 		map.setPosition(sheep, sheepPosition);
 		sheep.moveCloseToGoal(goalPosition);
 		assertTrue(sheep.getPosition().equals(nextPosition));

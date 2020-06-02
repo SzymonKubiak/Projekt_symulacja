@@ -71,6 +71,14 @@ public class Position {
 		return null;
 	}
 	
+	@Override	
+	public boolean equals(Object o) {   			//equals, ktore porownuje pozycje	
+		if(o == this) return true;   	
+		if(!(o instanceof Position)) return false;  //jezeli obiekt, ktory porownujemy nie jest obiektem klasy Position - false	
+		Position position = (Position)o;	
+
+		return(( this.getX() == position.getX() )&& ( this.getY() == position.getY() ));	
+	}
 	
 	
 	public String toString() {
