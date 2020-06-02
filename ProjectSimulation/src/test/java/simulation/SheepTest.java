@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class SheepTest {
 	IMap map = new MapSimple(10);
-	Sheep sheep = new Sheep(map,3,1);
+	Sheep sheep = new Sheep(map);
 
 	@Test
 	public void testMoveCloseToGoal() {
@@ -21,7 +21,7 @@ public class SheepTest {
 
 	@Test
 	public void testIsAnyGrassInRange() {
-		sheep.sightRange = 3;              //na potrzeby testu ustawiamy sightRange = 3 (domyslnie mamy na 1)
+		sheep.sightRange = 3;                              //na potrzeby testu ustawiamy sightRange = 3, aby testy byly poprawne po zmianie sightRange (domyslnie 1)
 		Position sheepPosition = new Position(5,5);
 		map.setPosition(sheep, sheepPosition);
 		Grass grass1 = new Grass(map);
