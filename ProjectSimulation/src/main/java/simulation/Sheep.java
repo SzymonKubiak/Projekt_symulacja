@@ -56,7 +56,6 @@ public class Sheep extends FarmAnimals {
 		
 		Starter.getObjectsToAdd().add(newSheep); 
 		this.multiplicationPoints=0;	                      //reset punktow rozmnazania	
-		System.out.println("Multiplication 101!");
 		return true;
 		}
 		

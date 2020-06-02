@@ -143,11 +143,11 @@ public Starter(int numberOfIter, IMap map, IObjectsOnBoardCreator objectsCreator
 	
 	public static void main(String[] args) {
 		
-		IMap map = new MapSimple(15);
+		IMap map = new MapSimple(12);
 																                            // glowne parametry symulacji. Ilosci (po kolei):
-		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(20,1,20,5,1);		// Owca, Pies, Trawa, Zlodziej, Wilk
+		IObjectsOnBoardCreator objectsCreator = new ObjectsOnBoardCreator(15,1,10,5,5);		// Owca, Pies, Trawa, Zlodziej, Wilk
 
-		Starter starter = new Starter(1000, map, objectsCreator); 
+		Starter starter = new Starter(300, map, objectsCreator); 
 		
 		starter.runSimulation();
 	
