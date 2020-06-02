@@ -64,7 +64,8 @@ public class Sheep extends FarmAnimals {
 	}
 	
 	
-	/** Glowna metoda obiektu.
+	/** 
+	 * 	Glowna metoda obiektu.
 	 * 	Sprawdza wszystkie sytuacje mozliwe do zdarzenia, zarzadza zachowaniem Owcy:
 	 * 	Sprawdza czy Owca spelnia warunki aby sie rozmnozyc i jezeli tak, to robi to i konczy ruch.
 	 * 	Jezeli nie, sprawdza czy gdzies w poblizu znajduje sie Trawa i jezeli jest w zasiegu to zjada ja wywolujac metode eatGrass(),
