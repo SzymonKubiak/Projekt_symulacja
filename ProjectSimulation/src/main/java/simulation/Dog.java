@@ -6,15 +6,15 @@ public class Dog extends FarmAnimals {
 	public Dog(IMap map, int sightRange, int movementSpeed) {
 		super(map, sightRange, movementSpeed);
 	}
-	/**Domyslny konstruktor klasy Dog
-	 * @param map jest przekazywane do glownego konstruktora
+	/**Domyslny konstruktor klasy Dog.
 	 * Wartosc sightRange ustalana jest na 4, movementSpeed na 3.
 	 */
 	public Dog(IMap map) {  
 		this(map, 4, 3);        
 	}
 
-	/**Metoda tworzaca pasterza
+	
+	/**Metoda tworzaca pasterza.
 	 * Metoda ta odpowiedzialna jest za utworzenie nowego obiektu implementujacego interfejs IShepherd, wywolanie na tym obiekcie metody removeEnemies() 
 	 * i nastepnie jego usuniecie(tj. usuwa referencje do obiektu, dajac sygnal do wyczyszczenia pamieci).
 	 */
@@ -43,8 +43,8 @@ public class Dog extends FarmAnimals {
 			
 	}
 	
-	/**Metoda sprawdzajaca, czy w zasiegu znajduje sie jakis wrog
-	 * @return true-gdy sie znajduje, false-gdy sie nie znajduje
+	/**Metoda sprawdzajaca, czy w zasiegu znajduje sie jakis wrog.
+	 * @return true-gdy sie znajduje, false-gdy sie nie znajduje.
 	 */
 	protected boolean isAnyEnemyInRange() {
 		List<IObjectsOnBoard> objectsInRangeList = map.objectsInRangeList(this.getPosition(), this.sightRange);  //pobranie listy aktywnych obiektow w zasiegu

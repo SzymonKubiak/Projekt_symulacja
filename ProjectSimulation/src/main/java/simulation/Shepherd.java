@@ -2,7 +2,7 @@ package simulation;
 
 public class Shepherd implements IShepherd{
 	
-	/**Metoda odpowiedzialna za usuniecie wrogow z mapy
+	/**Metoda odpowiedzialna za usuniecie wrogow z mapy.
 	 *Jesli wilk lub zlodziej jest aktywny, zmienia jego status na nieaktywny i wywoluje na nim metode disappear().
 	 */
 	@Override
